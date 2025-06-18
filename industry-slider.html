@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Focus Showcase</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN (used for base utilities, custom styles override where needed) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+            color: #fff;
+        }
+
+        /* Container for the entire scrollable area */
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100svh;
+            overflow: hidden; /* Important for horizontal scrolling */
+        }
+
+        /* Progress bar at the top */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 8px;
+            transform: scaleX(0%);
+            transform-origin: center left;
+            background-color: #f4d35e; /* Highlight color for progress bar */
+            will-change: transform;
+            z-index: 10; /* Above everything else */
+            box-shadow: 0 0 15px rgba(244, 211, 94, 0.4);
+        }
+
+        /* Progress counter at the bottom right */
+        .progress-counter {
+            position: fixed;
+            bottom: 1rem;
+            right: 2.5rem;
+            color: #fff;
+            z-index: 10;
+            text-shadow: 5px 5px 15px rgb(0 0 0 / 15%);
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+        }
+
+        /* Main scroller element */
+        .scroller {
+            display: flex;
+            height: 100svh;
+            will-change: transform;
+            transform: translateX(0);
+        }
+
+        /* Individual industry sections/slides */
+        .industry-slide {
+            flex-shrink: 0; /* Prevent slides from shrinking */
+            width: 100vw; /* Each slide takes full viewport width */
+            height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-sizing: border-box; /* Include padding in width */
+            color: #fff;
+            text-align: center;
+            position: relative; /* For background image/icon positioning */
+            overflow: hidden; /* Ensure content doesn't overflow */
+        }
+
+        /* Industry title styling */
+        .industry-slide h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 8vw; /* Responsive font size */
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin: 0;
+            z-index: 2; /* Above background elements */
+            opacity: 0; /* Hidden by default for fade-in */
+            transform: scale(0.9); /* Slightly smaller for scale-in */
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* Enhanced easing */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+
+        /* Active slide entrance animation */
+        .industry-slide.is-active h1 {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Background image/icon styling */
+        .industry-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 1; /* Shows full background image with no tint */
+            z-index: 1;
+            /* Added transition for subtle fade-in of background as slide becomes active */
+            transition: opacity 0.6s ease-out;
+            /* Placeholder for background image error */
+            background-image: url('https://placehold.co/1920x1080/4a4a4a/ffffff?text=Image+Loading...');
+        }
+
+        /* Define background images for each slide using the provided real links */
+        .industry-slide:nth-child(1)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/14331.jpg'); }
+        .industry-slide:nth-child(2)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/vendor-weighting-fresh-produce-buyer.jpg'); }
+        .industry-slide:nth-child(3)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5044.jpg'); }
+        .industry-slide:nth-child(4)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2237.jpg'); }
+        .industry-slide:nth-child(5)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/41092.jpg'); }
+        .industry-slide:nth-child(6)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/60360.jpg'); }
+        .industry-slide:nth-child(7)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2149153256.jpg'); }
+
+
+        /* Pagination dots */
+        .pagination-dots {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem; /* Space between dots */
+            z-index: 10;
+        }
+
+        .pagination-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.4;
+            cursor: pointer;
+            transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .pagination-dot.is-active {
+            opacity: 1;
+            background-color: #f4d35e; /* Highlight color for active dot */
+            transform: scale(1.2); /* Slightly larger for active dot */
+            box-shadow: 0 0 15px rgba(244, 211, 94, 0.8); /* Enhanced glow */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .industry-slide h1 {
+                font-size: 10vw; /* Adjust for smaller screens */
+            }
+            .progress-counter {
+                font-size: 1.5rem;
+                right: 1.5rem;
+            }
+            .pagination-dots {
+                gap: 0.5rem;
+            }
+            .pagination-dot {
+                width: 0.6rem;
+                height: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .industry-slide h1 {
+                font-size: 12vw; /* Further adjust for mobile */
+            }
+            .progress-counter {
+                font-size: 1.2rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar"></div>
+        <div class="progress-counter">
+            <h1>0%</h1>
+        </div>
+
+        <div class="scroller">
+            <!-- Industry Slides -->
+            <section class="industry-slide" data-index="0"><h1>Manufacturing</h1></section>
+            <section class="industry-slide" data-index="1"><h1>Retail</h1></section>
+            <section class="industry-slide" data-index="2"><h1>Automotive</h1></section>
+            <section class="industry-slide" data-index="3"><h1>Healthcare</h1></section>
+            <section class="industry-slide" data-index="4"><h1>Fintech</h1></section>
+            <section class="industry-slide" data-index="5"><h1>Education</h1></section>
+            <section class="industry-slide" data-index="6"><h1>Travel & Tourism</h1></section>
+        </div>
+
+        <div class="pagination-dots">
+            <!-- Dots will be dynamically generated by JavaScript -->
+        </div>
+    </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".container");
+    const scroller = document.querySelector(".scroller");
+    const progressCounter = document.querySelector(".progress-counter h1");
+    const progressBar = document.querySelector(".progress-bar");
+    const paginationDotsContainer = document.querySelector(".pagination-dots");
+    const industrySlides = Array.from(document.querySelectorAll(".industry-slide"));
+
+    const smoothFactor = 0.08; // Controls the easing of the scroll animation
+    const touchSensitivity = 2.5; // Multiplier for touch swipe distance
+    const autoplayDelay = 2000; // Autoplay interval in milliseconds (2 seconds)
+    const pauseAutoplayDuration = 2000; // Duration to pause autoplay after user interaction
+
+    let targetScrollX = 0; // The desired scroll position
+    let currentScrollX = 0; // The actual current scroll position
+    let isAnimating = false; // Flag to prevent multiple animation frames
+    let currentProgressScale = 0; // Current scale of the progress bar
+    let targetProgressScale = 0; // Target scale of the progress bar
+    let autoplayInterval; // Stores the autoplay interval ID
+    let autoplayTimeoutId; // Stores the timeout ID for resuming autoplay
+
+    let slideWidth; // Width of a single slide (viewport width)
+    let maxScrollX; // Maximum scrollable distance
+
+    /**
+     * Recalculates slide width and maximum scroll distance on resize or load.
+     * Ensures responsiveness by adapting to current viewport size.
+     */
+    const recalculateWidths = () => {
+        slideWidth = window.innerWidth;
+        scroller.style.width = `calc(${industrySlides.length} * 100vw + 1px)`; // +1px to avoid potential rendering glitches
+        maxScrollX = (industrySlides.length - 1) * slideWidth;
+    };
+
+    /**
+     * Linear interpolation function for smooth transitions.
+     * @param {number} start - Starting value.
+     * @param {number} end - Ending value.
+     * @param {number} factor - Interpolation factor (0-1).
+     * @returns {number} - Interpolated value.
+     */
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    /**
+     * Clamps a value within a specified range.
+     * @param {number} value - The value to clamp.
+     * @param {number} min - The minimum allowed value.
+     * @param {number} max - The maximum allowed value.
+     * @returns {number} - The clamped value.
+     */
+    const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
+
+    /**
+     * Sets up the pagination dots dynamically based on the number of slides.
+     * Attaches click listeners to each dot for direct navigation.
+     */
+    const setupPagination = () => {
+        paginationDotsContainer.innerHTML = ""; // Clear existing dots
+        industrySlides.forEach((_, index) => {
+            const dot = document.createElement("div");
+            dot.classList.add("pagination-dot");
+            dot.dataset.index = index;
+            dot.addEventListener("click", () => {
+                stopAutoplay(); // Pause autoplay on pagination click
+                // Set targetScrollX to the exact position of the clicked slide
+                targetScrollX = clamp(index * slideWidth, 0, maxScrollX);
+                // Start animation if not already running
+                if (!isAnimating) {
+                    isAnimating = true;
+                    requestAnimationFrame(animate);
+                }
+                restartAutoplayWithDelay(); // Resume autoplay after a delay
+            });
+            paginationDotsContainer.appendChild(dot);
+        });
+    };
+
+    /**
+     * Updates the UI elements: progress bar, progress counter, and pagination dots.
+     * Applies 'is-active' class to the currently active slide for title animation.
+     */
+    const updateUI = () => {
+        // Calculate scroll percentage for progress bar and counter
+        const percentage = maxScrollX === 0 ? 0 : (currentScrollX / maxScrollX) * 100;
+        targetProgressScale = percentage / 100;
+        progressCounter.textContent = `${Math.round(percentage)}%`;
+
+        // Smoothly update progress bar scale
+        currentProgressScale = lerp(currentProgressScale, targetProgressScale, smoothFactor);
+        progressBar.style.transform = `scaleX(${currentProgressScale})`;
+
+        // Update active state of pagination dots
+        const dots = Array.from(paginationDotsContainer.children);
+        // Determine the active slide index by rounding the current scroll position
+        const activeIndex = Math.round(currentScrollX / slideWidth);
+        dots.forEach((dot, index) =>
+            dot.classList.toggle("is-active", index === activeIndex) // Toggle 'is-active' class
+        );
+
+        // Apply 'is-active' class to the current slide for title animation
+        industrySlides.forEach((slide, index) =>
+            slide.classList.toggle("is-active", index === activeIndex)
+        );
+    };
+
+    /**
+     * The main animation loop for smooth scrolling.
+     * Uses linear interpolation to move currentScrollX towards targetScrollX.
+     */
+    const animate = () => {
+        // Interpolate currentScrollX towards targetScrollX with easing
+        currentScrollX = lerp(currentScrollX, targetScrollX, smoothFactor);
+        currentScrollX = clamp(currentScrollX, 0, maxScrollX); // Ensure within bounds
+
+        // Apply the transform directly to the scroller element
+        scroller.style.transform = `translateX(-${currentScrollX}px)`;
+        updateUI(); // Update UI elements based on new scroll position
+
+        // Continue animation if the difference is significant
+        if (Math.abs(targetScrollX - currentScrollX) > 0.1) {
+            requestAnimationFrame(animate);
+        } else {
+            // Snap to the exact target position to prevent minor discrepancies
+            currentScrollX = targetScrollX;
+            scroller.style.transform = `translateX(-${currentScrollX}px)`;
+            isAnimating = false; // Animation finished
+        }
+    };
+
+    /**
+     * Starts the autoplay interval.
+     */
+    const startAutoplay = () => {
+        stopAutoplay(); // Clear any existing autoplay interval
+        autoplayInterval = setInterval(() => {
+            let nextIndex = Math.round(targetScrollX / slideWidth) + 1; // Calculate next slide index
+            if (nextIndex >= industrySlides.length) {
+                nextIndex = 0; // Loop back to the first slide
+            }
+            targetScrollX = clamp(nextIndex * slideWidth, 0, maxScrollX); // Set snapped target position
+            if (!isAnimating) {
+                isAnimating = true;
+                requestAnimationFrame(animate); // Start animation if not running
+            }
+        }, autoplayDelay);
+    };
+
+    /**
+     * Stops the current autoplay interval and pending timeout.
+     */
+    const stopAutoplay = () => {
+        clearInterval(autoplayInterval);
+        clearTimeout(autoplayTimeoutId);
+    };
+
+    /**
+     * Restarts autoplay after a short delay. Used after user interaction.
+     */
+    const restartAutoplayWithDelay = () => {
+        stopAutoplay(); // Stop current autoplay and any pending restarts
+        autoplayTimeoutId = setTimeout(startAutoplay, pauseAutoplayDuration); // Set timeout to resume
+    };
+
+    /**
+     * Handles mouse wheel scrolling.
+     * Prevents default scroll behavior and snaps to the next/previous slide.
+     */
+    container.addEventListener("wheel", (e) => {
+        e.preventDefault(); // Prevent page vertical scrolling
+        stopAutoplay(); // Pause autoplay
+
+        const currentSlideIndex = Math.round(targetScrollX / slideWidth);
+        let nextIndex = currentSlideIndex;
+
+        if (e.deltaY > 0) { // Scroll down (next slide)
+            nextIndex = Math.min(industrySlides.length - 1, currentSlideIndex + 1);
+        } else if (e.deltaY < 0) { // Scroll up (previous slide)
+            nextIndex = Math.max(0, currentSlideIndex - 1);
+        }
+
+        targetScrollX = clamp(nextIndex * slideWidth, 0, maxScrollX); // Snap to nearest slide
+        if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(animate); // Start animation
+        }
+        restartAutoplayWithDelay(); // Resume autoplay after delay
+    }, { passive: false });
+
+    // Touch interaction variables
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let lastMoveTime = 0;
+    let initialTargetScrollX = 0; // To store targetScrollX at touchstart
+
+    /**
+     * Handles touchstart event for mobile swipe gestures.
+     */
+    container.addEventListener("touchstart", (e) => {
+        stopAutoplay(); // Pause autoplay
+        isDown = true;
+        startX = e.touches[0].clientX; // Starting X position of the touch
+        scrollLeft = currentScrollX; // Store current scroll position
+        initialTargetScrollX = targetScrollX; // Store targetScrollX for initial snapping
+        velocity = 0; // Reset velocity
+        lastMoveTime = Date.now(); // Record start time
+        cancelAnimationFrame(animate); // Stop ongoing animation for direct manipulation
+    }, { passive: false });
+
+    /**
+     * Handles touchmove event for mobile swipe gestures.
+     * Calculates drag distance and updates targetScrollX directly.
+     */
+    container.addEventListener("touchmove", (e) => {
+        if (!isDown) return; // Only process if touch is active
+        e.preventDefault(); // Prevent default touch behavior (e.g., vertical scroll)
+
+        const x = e.touches[0].clientX; // Current X position of the touch
+        const deltaX = x - startX; // Change in X position
+        const walk = deltaX * touchSensitivity; // Scaled movement for sensitivity
+
+        const now = Date.now();
+        const deltaTime = now - lastMoveTime;
+
+        if (deltaTime > 0) {
+            velocity = walk / deltaTime; // Calculate velocity for momentum
+        }
+        lastMoveTime = now;
+
+        // Update targetScrollX based on current drag, but don't snap yet
+        targetScrollX = clamp(scrollLeft - walk, 0, maxScrollX);
+        if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(animate); // Start animation for smooth dragging
+        }
+    }, { passive: false });
+
+    /**
+     * Handles touchend event for mobile swipe gestures.
+     * Applies momentum and snaps to the nearest slide.
+     */
+    container.addEventListener("touchend", () => {
+        isDown = false; // Touch ended
+
+        // If there was significant velocity, apply momentum
+        if (Math.abs(velocity) > 0.1) { // Adjusted sensitivity for momentum
+            let momentumTarget = targetScrollX - velocity * 100; // Apply momentum
+            // Round to the nearest slide after momentum
+            const nearestSlideIndex = Math.round(momentumTarget / slideWidth);
+            targetScrollX = clamp(nearestSlideIndex * slideWidth, 0, maxScrollX);
+        } else {
+            // If no significant momentum, snap to the nearest slide from the current position
+            const nearestSlideIndex = Math.round(currentScrollX / slideWidth);
+            targetScrollX = clamp(nearestSlideIndex * slideWidth, 0, maxScrollX);
+        }
+
+        // Ensure animation is started to smoothly transition to the snapped position
+        if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(animate);
+        }
+        restartAutoplayWithDelay(); // Resume autoplay after delay
+    });
+
+    // Initialize on window load
+    window.onload = () => {
+        recalculateWidths(); // Set initial slide widths
+        setupPagination(); // Create pagination dots
+        updateUI(); // Initial UI update (sets first slide active)
+        startAutoplay(); // Begin auto-scrolling
+    };
+
+    // Handle window resize event
+    window.addEventListener("resize", () => {
+        const scrollRatio = maxScrollX === 0 ? 0 : targetScrollX / maxScrollX; // Preserve scroll position ratio
+        recalculateWidths(); // Recalculate widths after resize
+        // Re-calculate targetScrollX based on the new slide width and preserved ratio, then snap
+        const newTargetIndex = Math.round(scrollRatio * (industrySlides.length - 1));
+        targetScrollX = clamp(newTargetIndex * slideWidth, 0, maxScrollX);
+        currentScrollX = clamp(targetScrollX, 0, maxScrollX); // Immediately set currentScrollX to new target
+        scroller.style.transform = `translateX(-${currentScrollX}px)`; // Apply immediately
+        stopAutoplay(); // Stop autoplay during resize
+        updateUI(); // Update UI
+        startAutoplay(); // Restart autoplay
+    });
+});
+</script>
+
+
+</body>
+</html>

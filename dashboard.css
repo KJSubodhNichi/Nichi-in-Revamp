@@ -1,0 +1,267 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color:  #1e293b;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+.site-header {
+  background: linear-gradient(90deg, #f0f4ff, #dbeafe, #c7d2fe);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}   
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+  height: 30px; /* Adjust as needed */
+  width: auto;
+  display: block;
+}
+
+/* Optional: style the link container */
+.logo {
+  display: inline-block;
+  /* margin or padding if needed */
+}
+
+.nav-links a {
+    margin-left: 1.5rem;
+    color: black;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #B4A7C7; /* A lighter, desaturated purple, hinting at the body color */
+}
+
+/* Slider Section */
+.slider {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: center;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 700px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.hero-title span {
+    color: #3b82f6;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #cbd5e1;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn.primary {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: #2563eb;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+}
+
+.btn.secondary:hover {
+    background-color: #1e40af;
+    color: #fff;
+    border-color: #1e40af;
+}
+
+/* Arrows */
+.nav-arrows {
+    position: absolute;
+    /* So you can position them over your slider */
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 1rem;
+    pointer-events: none;
+    /* Let clicks pass if buttons are hidden */
+}
+
+.nav-arrows button {
+    background: rgba(0, 0, 0, 0.5);
+    /* semi-transparent dark background */
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    pointer-events: auto;
+    /* enable clicks */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.nav-arrows button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.nav-arrows svg {
+    stroke: white;
+    /* white arrows */
+    width: 24px;
+    height: 24px;
+    user-select: none;
+    pointer-events: none;
+    /* prevent svg from intercepting clicks */
+}
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    background: #94a3b8;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dots span.active {
+    background: #3b82f6;
+}
+
+/* Footer */
+.site-footer {
+  background: linear-gradient(90deg, #e5ecff, #dbeafe, #c7d2fe);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.site-footer p {
+    font-weight: 600;
+}
+
+.footer-links {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-weight: 600;
+}
+
+.footer-links a {
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #1e3a8a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .site-header .logo {
+        font-size: 1.4rem;
+    }
+}

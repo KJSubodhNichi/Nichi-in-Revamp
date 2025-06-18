@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Testimonials Slider</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-blue: hsl(240, 38%, 20%);
+      --grayish-blue: hsl(240, 18%, 77%);
+      --background: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--dark-blue);
+      background-color: var(--background);
+      background-image: url('https://alcs-slider.netlify.app/images/pattern-curve.svg');
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      background-size: 280px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* New styles for section title and subtitle */
+    .section-title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 8px; /* Space below heading */
+      color: var(--dark-blue);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--grayish-blue);
+      margin-bottom: 40px; /* Space below subtitle, above slider */
+      font-size: 18px;
+    }
+
+.slider {
+  max-width: 1050px;
+  width: 100%;
+  position: relative;
+  height: 100%; /* required to handle overlapping slides */
+}
+
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95); /* slightly zoomed out */
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1); /* zoom in */
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+
+    .testimonial {
+      padding: 32px;
+      background-image: url('https://alcs-slider.netlify.app/images/pattern-quotes.svg');
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: 60px;
+    }
+
+    blockquote {
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .author {
+      font-weight: 700;
+    }
+
+    .author span {
+      display: block;
+      color: var(--grayish-blue);
+      font-weight: 500;
+    }
+
+    .slider-img {
+      padding: 30px;
+      background-image: url('https://alcs-slider.netlify.app/images/pattern-bg.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slider-img img {
+      /* Updated width to be smaller */
+      width: 200px; /* Base width for images */
+      border-radius: 10px;
+      box-shadow: 0px 16px 40px rgba(135, 105, 210, 0.4);
+    }
+
+    .buttons {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      background-color: white;
+      border-radius: 50px;
+      width: 80px;
+      height: 40px;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .previous,
+    .next {
+      width: 50%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .previous {
+      background-image: url('https://alcs-slider.netlify.app/images/icon-prev.svg');
+    }
+
+    .next {
+      background-image: url('https://alcs-slider.netlify.app/images/icon-next.svg');
+    }
+
+    .previous:hover,
+    .next:hover {
+      transform: scale(1.25);
+    }
+
+    @media screen and (min-width: 900px) {
+      .slide {
+        flex-direction: row;
+        text-align: left;
+        gap: 64px;
+      }
+
+      .testimonial {
+        background-size: 80px;
+        background-position: 0% 0%;
+      }
+
+      .slider-img img {
+        /* Updated width for larger screens */
+        width: 280px; /* Larger width for desktop views */
+      }
+
+      .buttons {
+        bottom: -50px;
+      }
+
+      .author span {
+        display: inline;
+        margin-left: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <!-- Added section title and subtitle -->
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-subtitle">Discover how Nichi-In has empowered global businesses with innovative IT solutions.</p>
+
+    <div class="slider">
+
+      <div class="buttons">
+        <div class="previous"></div>
+        <div class="next"></div>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="slide active">
+        <div class="testimonial">
+          <blockquote>“Nichi-In Software Solutions has been instrumental in our digital transformation journey.”</blockquote>
+          <p class="author">Fixer <span>Japan</span></p>
+        </div>
+        <div class="slider-img">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Fixer.jpg" alt="Fixer Logo">
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="testimonial">
+          <blockquote>“The team at Nichi-In provided exceptional cloud solutions that boosted our operations.”</blockquote>
+          <p class="author">Cosmos <span>Japan</span></p>
+        </div>
+        <div class="slider-img">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Cosmos.jpg" alt="Cosmos Logo">
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <div class="testimonial">
+          <blockquote>“We partnered with Nichi-In for AI analytics and the results exceeded expectations.”</blockquote>
+          <p class="author">Mitsubishi <span>Japan</span></p>
+        </div>
+        <div class="slider-img">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Mitsubishi.jpg" alt="Mitsubishi Logo">
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide">
+        <div class="testimonial">
+          <blockquote>“Their development team delivered a robust and scalable solution, on time.”</blockquote>
+          <p class="author">JAM <span>Japan</span></p>
+        </div>
+        <div class="slider-img">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_JAM.jpg" alt="JAM Logo">
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide">
+        <div class="testimonial">
+          <blockquote>“Strategic marketing support from Nichi-In expanded our brand reach significantly.”</blockquote>
+          <p class="author">Sony <span>Japan</span></p>
+        </div>
+        <div class="slider-img">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Sony.jpg" alt="Sony Logo">
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="slide">
+        <div class="testimonial">
+          <blockquote>“Nichi-In’s automotive solutions are highly reliable and efficient.”</blockquote>
+          <p class="author">Toyota <span>Japan</span></p>
+        </div>
+        <div class="slider-img">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Toyota.jpg" alt="Toyota Logo">
+        </div>
+      </div>
+
+      <!-- Slide 7 -->
+      <div class="slide">
+          <div class="testimonial">
+            <blockquote>“We are extremely satisfied with the comprehensive IT services provided by Nichi-In. Their team is highly skilled and responsive.”</blockquote>
+            <p class="author">Toshiba <span>Japan</span></p>
+          </div>
+          <div class="slider-img">
+            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Toshiba-logo.png" alt="Client Toshiba Logo" />
+          </div>
+      </div>
+
+      <!-- Slide 8 -->
+      <div class="slide">
+          <div class="testimonial">
+            <blockquote>“Their innovative solutions and professional approach have made a significant positive impact on our business operations.”</blockquote>
+            <p class="author">Telenet <span>Belgium</span></p>
+          </div>
+          <div class="slider-img">
+            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Telenet.png" alt="Client Telenet Logo" />
+          </div>
+      </div>
+
+      <!-- Slide 9 -->
+      <div class="slide">
+          <div class="testimonial">
+            <blockquote>“Nichi-In provided excellent technology consulting, guiding us through complex decisions with clear, actionable advice.”</blockquote>
+            <p class="author">Nomura Research Institute (NRI) <span>Japan</span></p>
+          </div>
+          <div class="slider-img">
+            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_NRI.jpg" alt="Client NRI Logo" />
+          </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const next = document.querySelector(".next");
+    const prev = document.querySelector(".previous");
+    const slides = document.querySelectorAll(".slide");
+    const sliderContainer = document.querySelector(".slider"); // Get the slider container
+    let index = 0;
+    let interval;
+
+    function showSlide(i) {
+      // Calculate the new index, ensuring it wraps around from end to start or start to end
+      index = (i + slides.length) % slides.length;
+
+      // Remove the 'active' class from all slides and reset their z-index
+      slides.forEach(slide => {
+        slide.classList.remove("active");
+        slide.style.zIndex = 0; // Reset z-index for inactive slides
+      });
+
+      // Add the 'active' class to the current slide and bring it to the front
+      slides[index].classList.add("active");
+      slides[index].style.zIndex = 1; // Set z-index for the active slide
+    }
+
+    function nextSlide() {
+      showSlide(index + 1);
+    }
+
+    function prevSlide() {
+      showSlide(index - 1);
+    }
+
+    function startAutoplay() {
+      stopAutoplay(); // Clear any existing interval before starting a new one
+      interval = setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
+    }
+
+    function stopAutoplay() {
+      clearInterval(interval); // Clear the interval timer
+    }
+
+    next.addEventListener("click", () => {
+      stopAutoplay(); // Stop auto-sliding on manual interaction
+      nextSlide();
+      startAutoplay(); // Restart auto-sliding after manual interaction
+    });
+
+    prev.addEventListener("click", () => {
+      stopAutoplay(); // Stop auto-sliding on manual interaction
+      prevSlide();
+      startAutoplay(); // Restart auto-sliding after manual interaction
+    });
+
+    // Pause/resume autoplay on hover
+    sliderContainer.addEventListener('mouseenter', stopAutoplay);
+    sliderContainer.addEventListener('mouseleave', startAutoplay);
+
+    // Initialize the slider: show the first slide and start auto-sliding on load
+    window.onload = function() {
+      showSlide(index); // Display the initial slide
+      startAutoplay(); // Begin the automatic slideshow
+    };
+  </script>
+
+</body>
+</html>

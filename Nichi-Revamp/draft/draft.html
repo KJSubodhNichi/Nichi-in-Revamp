@@ -1,0 +1,331 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nichi-In Software Solutions Revamp</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"> <!--Custom Font used for giving Modern Feel-->
+
+        <!-- Tailwind CSS, used for the translate button on the header -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0x30z6J0R0JkF5x3t5n0P4v3/i6/Vq7E3s/o0A/3K2z/A0Q2p4J8X2B4F5g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="draft.css">
+    </head>
+
+    <body>
+        <!-- Header Section -->
+        <header class="main-header" id="main-header">
+            <div class="header-content container">
+                <div class="logo">
+                    <a href="#hero">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Nichi-logo.png"
+                            alt="IT Solutions Inc. Logo">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                        <li><a href="#about" data-section="about">About Us</a></li>
+                        <li><a href="#services" data-section="services">Services</a></li>
+                        <li><a href="#products" data-section="products">Products</a></li>
+                        <li><a href="#careers" data-section="careers">Careers</a></li>
+                        <li><a href="#contact" data-section="contact">Contact Us</a></li>
+                        <li>
+                            <button id="translate-btn" class="translate" aria-label="Translate">
+                                <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/translation.png"
+                                    alt="Translate" width="24" height="24">
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <!-- Hamburger Menu Button -->
+                    <button id="hamburger-menu" class="hamburger-menu" aria-label="Open mobile menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
+
+                <!-- Mobile Nav Overlay -->
+                <div id="mobile-nav-overlay" class="mobile-nav-overlay">
+                    <nav class="mobile-nav">
+                        <ul class="mobile-nav-links">
+                        <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                        <li><a href="#about" data-section="about">About Us</a></li>
+                        <li><a href="#services" data-section="services">Services</a></li>
+                        <li><a href="#products" data-section="products">Products</a></li>
+                        <li><a href="#careers" data-section="careers">Careers</a></li>
+                        <li><a href="#contact" data-section="contact">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation Overlay (Full Screen) -->
+        <div id="mobile-nav-overlay" class="mobile-nav-overlay">
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#partnerships-showcase">Partnerships</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><button class="cta-button primary-cta full-width-cta">Book a Demo</button></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- Services Section -->
+            <section class="our-services-section" id="our-services">
+                <div class="services-container">
+                    <h2 class="services-title">Our Services</h2>
+
+                    <div class="services-grid">
+
+                    <div class="service-card">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/dashboard_11009247.png" alt="Enterprise Business Applications" />
+                        <h3>Enterprise Business Applications</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ai-assistant_14379375.png" alt="AI/ML Solutions" />
+                        <h3>AI / ML Solutions</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/cloud-computing_9768183.png" alt="Industrial Automation / IoT" />
+                        <h3>Industrial Automation / IoT</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/digital-transformation_11689265.png" alt="Digital Transformation" />
+                        <h3>Digital Transformation</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/system-administration.png" alt="Managed IT Services" />
+                        <h3>Managed IT Services</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/projects_6213784.png" alt="Testing and Migration" />
+                        <h3>Testing & Migration</h3>
+                    </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Industries Section -->
+            <section class="industry-focus-section" id="industry-focus">
+                <h2 class="section-title">Industry Focus</h2>
+                <div class="industry-carousel" id="industryCarousel">
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/14331.jpg" alt="Manufacturing" />
+                    <div class="industry-overlay">
+                        <h3>Manufacturing</h3>
+                        <p>Smart factory systems and supply chain automation.</p>
+                    </div>
+                    </div>
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/vendor-weighting-fresh-produce-buyer.jpg" alt="Retail" />
+                    <div class="industry-overlay">
+                        <h3>Retail</h3>
+                        <p>E-commerce, retail POS, and consumer analytics.</p>
+                    </div>
+                    </div>
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5044.jpg" alt="Automotive" />
+                    <div class="industry-overlay">
+                        <h3>Automotive</h3>
+                        <p>Connected vehicles and mobility software.</p>
+                    </div>
+                    </div>
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2237.jpg" alt="Healthcare" />
+                    <div class="industry-overlay">
+                        <h3>Healthcare</h3>
+                        <p>Hospital systems, diagnostics & wearable tech.</p>
+                    </div>
+                    </div>
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/41092.jpg" alt="Fintech" />
+                    <div class="industry-overlay">
+                        <h3>Fintech</h3>
+                        <p>Banking tech, payments, and fraud detection.</p>
+                    </div>
+                    </div>
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/60360.jpg" alt="Education" />
+                    <div class="industry-overlay">
+                        <h3>Education</h3>
+                        <p>Edtech platforms and virtual learning systems.</p>
+                    </div>
+                    </div>
+
+                    <div class="industry-card">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2149153256.jpg" alt="Travel & Tourism" />
+                    <div class="industry-overlay">
+                        <h3>Travel & Tourism</h3>
+                        <p>Travel portals and itinerary automation.</p>
+                    </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Members Section -->
+            <section id="our-members" class="our-members-section module-section content-reveal">
+                <div class="container">
+                    <h2 class="section-title text-center">Our Esteemed Memberships</h2>
+                    <p class="section-subtitle text-center">Proudly affiliated with leading industry organizations,
+                        fostering innovation and excellence.</p>
+                    <div class="logo-carousel-container">
+                        <div class="logo-carousel-track">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2-1.png"
+                                alt="Member Logo 1">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1-2.png"
+                                alt="Member Logo 2">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/3-1.png"
+                                alt="Member Logo 3">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/4-1.png"
+                                alt="Member Logo 4">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ESC.png"
+                                alt="Member Logo 5">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5-1.png"
+                                alt="Member Logo 6">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ITPNCN-Logo-1.png"
+                                alt="Member Logo 7">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/IACC.png"
+                                alt="Member Logo 8">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/JCCIC.png"
+                                alt="Member Logo 9">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/jccib.png"
+                                alt="Member Logo 10">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/NASSCOM_Certificate.png"
+                                alt="Member Logo 11">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2-1.png"
+                                alt="Member Logo 1">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1-2.png"
+                                alt="Member Logo 2">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/3-1.png"
+                                alt="Member Logo 3">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/4-1.png"
+                                alt="Member Logo 4">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ESC.png"
+                                alt="Member Logo 5">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5-1.png"
+                                alt="Member Logo 6">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ITPNCN-Logo-1.png"
+                                alt="Member Logo 7">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/IACC.png"
+                                alt="Member Logo 8">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/JCCIC.png"
+                                alt="Member Logo 9">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/jccib.png"
+                                alt="Member Logo 10">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/NASSCOM_Certificate.png"
+                                alt="Member Logo 11">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="main-footer">
+            <div class="footer-content container">
+
+                <div class="footer-column sitemap">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                        <li><a href="#about" data-section="about">About</a></li>
+                        <li><a href="#services" data-section="services">Services</a></li>
+                        <li><a href="#products" data-section="products">Products</a></li>
+                        <li><a href="#careers" data-section="careers">Careers</a></li>
+                        <li><a href="#contact" data-section="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column about-company">
+                    <h4>About the Company</h4>
+                    <p>Empowering businesses through cutting-edge software, cloud, AI, and marketing strategies. Your
+                        trusted partner for digital transformation.</p>
+                    <div class="social-icons">
+                        <!-- Updated Social Media Icons with Font Awesome -->
+                        <a href="https://in.linkedin.com/company/nichi-in-software-solutions-pvt-ltd" target="_blank" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin social-icon"></i></a>
+                        <a href="https://x.com/nichiinsoft" target="_blank" aria-label="Twitter"><i
+                                class="fab fa-twitter social-icon"></i></a>
+                        <a href="https://www.facebook.com/people/Nichi-In-Software-Solutions-Pvt-Ltd/100072343385812/#"
+                            target="_blank" aria-label="Facebook"><i class="fab fa-facebook social-icon"></i></a>
+                        <a href="https://instagram.com/youritsolutions" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram social-icon"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column resources">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column newsletter">
+                    <h4>Corporate Office​</h4>
+                    <p>#813, Dr.Puneeth Rajkumar Road,
+                        Hosakerehalli, Banashankari 3rd Stage,
+                        Bengaluru – 560085, India</p>
+
+                    <h4>Development Center 2</h4>
+                    <p>#812, 1st Floor, Dr.Puneeth Rajkumar Road,<br>
+                        Hosakerehalli, Banashankari 3rd Stage,<br>
+                        Bengaluru – 560085, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nichi-In Software Solutions Inc. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top" class="back-to-top-button" aria-label="Back to top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+
+        <script src="draft.js"></script>
+
+    </body>
+
+    </html>

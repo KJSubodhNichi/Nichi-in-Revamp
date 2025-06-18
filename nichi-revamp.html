@@ -1,0 +1,239 @@
+  <!-- Header -->
+<header class="site-header">
+  <div class="logo-nav">
+    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Nichi-logo.png" alt="Nichi-In Logo" class="logo">
+
+    <!-- Hamburger Button -->
+  <button class="hamburger" aria-label="Toggle Menu" onclick="document.getElementById('mainNav').classList.toggle('active')">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Services</a>
+      <a href="#">Products</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('mainNav');
+
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+      });
+    }
+  });
+</script>
+
+    <footer class="site-footer">
+    <div class="footer-grid">
+      <!-- Site Map -->
+      <div class="footer-section">
+        <h2>Site Map</h2>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Services</a>
+        <a href="#">Products</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <!-- About -->
+      <div class="footer-section">
+        <h2>About the Company</h2>
+        <p>Nichi-In Software Solutions Pvt. Ltd., a joint venture company with NDR Co. Ltd., Osaka, Japan, specializes in providing innovative & cost effective IT solutions and services customized to our global customers.</p>
+      </div>
+
+      <!-- Corporate Office -->
+      <div class="footer-section">
+        <h2>Corporate Office</h2>
+        <p>
+          #813, Dr. Puneeth Rajkumar Road,<br>
+          Hosakerehalli, Banashankari 3rd Stage,<br>
+          Bengaluru – 560 085, India
+        </p>
+      </div>
+
+      <!-- Development Center -->
+      <div class="footer-section">
+        <h2>Development Center 2</h2>
+        <p>
+          #812, 1st Floor, Dr. Puneeth Rajkumar Road,<br>
+          Hosakerehalli, Banashankari 3rd Stage,<br>
+          Bengaluru – 560 085, India
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Nichi-In Software Solutions Pvt. Ltd. – All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+<section class="hero-slider">
+  <div class="slide active" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/SF2135X1500.png');">
+    <div class="overlay">
+      <h2>Salesforce Solutions</h2>
+      <p>Empower your enterprise with world-class CRM implementations that streamline workflows, enhance customer engagement, and drive measurable business growth through customized Salesforce strategies.</p>
+      <button>Learn More</button>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/OD1920X828.png');">
+    <div class="overlay">
+      <h2>Odoo ERP</h2>
+      <p>Boost operational efficiency and decision-making with Odoo — a robust ERP suite designed to unify your sales, finance, inventory, and HR processes in one scalable platform.</p>
+      <button>Explore Odoo</button>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5210.jpg');">
+    <div class="overlay">
+      <h2>Offshore Services</h2>
+      <p>Access top-tier talent at competitive rates. Our offshore development model combines cost savings, productivity, and high-quality deliverables tailored to your time zone and workflow preferences.</p>
+      <button>View Services</button>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2148924741.jpg');">
+    <div class="overlay">
+      <h2>Onsite Consulting</h2>
+      <p>Gain direct access to our seasoned consultants who collaborate closely with your teams to architect, integrate, and optimize IT systems that support your business objectives on the ground.</p>
+      <button>Get a Consultant</button>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150062008.jpg');">
+    <div class="overlay">
+      <h2>Managed IT Services</h2>
+      <p>Leave your IT headaches to us. Our end-to-end managed services ensure infrastructure stability, security, and performance — all while you focus on growing your business.</p>
+      <button>Learn How</button>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150010125.jpg');">
+    <div class="overlay">
+      <h2>Product Development</h2>
+      <p>Transform ideas into reality. From concept and prototyping to launch and scaling, our agile product development services accelerate your time-to-market with confidence and clarity.</p>
+      <button>See Our Work</button>
+    </div>
+  </div>
+
+  <!-- Arrow Controls -->
+  <button class="arrow prev">&#10094;</button>
+  <button class="arrow next">&#10095;</button>
+
+  <!-- Navigation Buttons -->
+  <div class="slider-nav">
+    <button data-index="0">Salesforce</button>
+    <button data-index="1">Odoo</button>
+    <button data-index="2">Offshore</button>
+    <button data-index="3">Onsite</button>
+    <button data-index="4">Managed IT</button>
+    <button data-index="5">Development</button>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+const navButtons = document.querySelectorAll('.slider-nav button');
+const prevBtn = document.querySelector('.arrow.prev');
+const nextBtn = document.querySelector('.arrow.next');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    navButtons[i].classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+      navButtons[i].classList.add('active');
+    }
+  });
+  currentSlide = index;
+}
+
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const index = parseInt(btn.getAttribute('data-index'));
+    showSlide(index);
+  });
+});
+
+prevBtn.addEventListener('click', () => {
+  let newIndex = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(newIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  let newIndex = (currentSlide + 1) % slides.length;
+  showSlide(newIndex);
+});
+
+// Auto-play (optional)
+// setInterval(() => {
+//   nextBtn.click();
+// }, 7000);
+
+// Initial display
+showSlide(currentSlide);
+
+</script>
+
+<section class="makes-us-different">
+  <h2>Why we are different from others?</h2>
+
+  <div class="difference-card">
+    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2149241262.jpg" alt="Adaptable Customer Solutions">
+    <div class="text-overlay">
+      <h3>Adaptable Customer Solutions</h3>
+      <p>Your unique challenges deserve unique answers. We craft solutions that perfectly fit your needs, evolving with you every step of the way.</p>
+    </div>
+  </div>
+
+  <div class="difference-card">
+    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Kaizen-Feature-p3f6elx5h0s7bj1y3sq3eeud379cea86u1yky4an8w.jpg" alt="KAIZEN: Always Evolving">
+    <div class="text-overlay">
+      <h3>改善 ("KAIZEN"): Always Evolving!</h3>
+      <p>Our core philosophy drives us. We believe in constant progress, meticulously refining our processes and innovating endlessly to deliver unparalleled excellence.</p>
+    </div>
+  </div>
+
+  <div class="difference-card">
+    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ind-jp.png" alt="Japan-India Market Access">
+    <div class="text-overlay">
+      <h3>Seamless Japan-India Market Access.</h3>
+      <p>Expand your horizons with confidence. We bridge the vibrant markets of Japan and India, offering you a strategic gateway for unparalleled growth and opportunity.</p>
+    </div>
+  </div>
+</section>
+
+<section class="expertise">
+  <h2>Solutions Powered by Proven Technological Acumen</h2>
+
+  <div class="expertise-content">
+    <div class="expertise-image">
+      <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2147656721.jpg" alt="About Nichi-In Software">
+    </div>
+
+    <div class="expertise-text">
+      <p>
+        For over 25 years, Nichi-In Software has mastered the art of delivering optimal IT solutions. 
+        By seamlessly integrating cutting-edge technologies, agile processes, and exceptional talent, 
+        we empower businesses—from dynamic SMEs to global enterprises—to revolutionize 
+        their operations and achieve sustained success worldwide.
+      </p>
+      <button>Get to know us more</button>
+    </div>
+  </div>
+</section>

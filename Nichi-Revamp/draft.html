@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Leading IT company offering software services, cloud transformation, AI solutions, and marketing strategy.">
+    <meta name="keywords" content="IT services, software development, cloud computing, AI solutions, digital marketing, technology consulting">
+    <meta name="author" content="IT Solutions Inc.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.facebook.com/people/Nichi-In-Software-Solutions-Pvt-Ltd/100072343385812/#">
+    <meta property="og:title" content="IT Solutions Inc. - Modern Technology & Digital Transformation">
+    <meta property="og:description" content="Leading IT company offering software services, cloud transformation, AI solutions, and marketing strategy.">
+    <meta property="og:image" content="https://placehold.co/1200x630/000000/FFFFFF?text=IT+Solutions+Inc+OG">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://x.com/nichiinsoft">
+    <meta property="twitter:title" content="IT Solutions Inc. - Modern Technology & Digital Transformation">
+    <meta property="twitter:description" content="Leading IT company offering software services, cloud transformation, AI solutions, and marketing strategy.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/000000/FFFFFF?text=IT+Solutions+Inc+Twitter">
+
+    <title>Nichi-In Software Solutions - Merged Site</title>
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts from sample5.html (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Fonts from industry-slider.html (Anton & Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts from sample9.html (Inter already covered) -->
+    <!-- Fonts from testimonials2.html (Inter already covered) -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Slick Carousel CSS (from sample9.html) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <!-- Font Awesome for social icons (from sample5.html) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0x30z6J0R0JkF5x3t5n0P4v3/i6/Vq7E3s/o0A/3K2z/A0Q2p4J8X2B4F5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- External CSS for sample5 (as requested) -->
+    <link rel="stylesheet" href="sample5.css">
+    <link rel="stylesheet" href="draft.css">
+</head>
+<body>
+    <!-- Header Section - Sticky, Glassmorphic, Animated Hamburger -->
+    <header class="main-header" id="main-header">
+        <div class="header-content container">
+            <div class="logo">
+                <a href="#hero">
+                    <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Nichi-logo.png" alt="IT Solutions Inc. Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                    <li><a href="#about" data-section="about">About</a></li>
+                    <li><a href="#services" data-section="services">Services</a></li>
+                    <li><a href="#industries" data-section="industries">Industries</a></li>
+                    <li><a href="#partnerships-showcase" data-section="partnerships-showcase">Partnerships</a></li>
+                    <li><a href="#blog" data-section="blog">Blog</a></li>
+                    <li><a href="#contact" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark and light theme">
+                    <span class="icon sun">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </span>
+                    <span class="icon moon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                </button>
+                <button class="cta-button primary-cta">Book a Demo</button>
+                <!-- Hamburger Menu Button -->
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Open mobile menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay (Full Screen) -->
+    <div id="mobile-nav-overlay" class="mobile-nav-overlay">
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#partnerships-showcase">Partnerships</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="cta-button primary-cta full-width-cta">Book a Demo</button></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Section - Full Height, Animated Headline, WebGL/SVG Background -->
+        <section id="hero" class="hero-section module-section">
+            <div id="hero-canvas-container" class="hero-canvas-container">
+                <!-- Three.js Canvas will be injected here -->
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-headline" aria-label="Empowering Your Digital Future with IT Solutions Inc.">
+                    <span class="word">Empowering</span> <span class="word">Your</span> <span class="word">Digital</span> <span class="word">Future</span>
+                    <br>
+                    <span class="word accent-text">with</span> <span class="word accent-text">Nichi-In</span> <span class="word accent-text">Software</span> <span class="word accent-text">Solutions</span>
+                </h1>
+                <p class="hero-subheadline">We transform businesses through innovative software, strategic cloud integration, cutting-edge AI, and data-driven marketing.</p>
+                <div class="hero-ctas">
+                    <button class="cta-button primary-cta hover-glow">Explore Services</button>
+                    <button class="cta-button secondary-cta hover-glow">Get a Free Consultation</button>
+                </div>
+            </div>
+        </section>
+
+                <!-- Partnerships Showcase (from sample9.html) - Full Viewport Height -->
+        <section id="partnerships-showcase" class="split-slideshow-section module-section">
+            <div class="split-slideshow">
+                <div class="slideshow slideshow-left">
+                    <div class="slider">
+                        <div class="item">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/SF2135X1500.png" alt="Salesforce Partner">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <p>Empower your enterprise with world-class CRM implementations that streamline workflows,
+                                    enhance customer engagement,
+                                    and drive measurable business growth through customized Salesforce strategies.</p>
+                                <button>Learn More</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/OD1920X828.png" alt="Odoo ERP Partnership">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <p>Boost operational efficiency and decision-making with Odoo — a robust
+                                    ERP suite designed to unify your sales, finance, inventory,
+                                    and HR processes in one scalable platform.</p>
+                                <button>Our Approach</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5210.jpg" alt="Offshore Services">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <p>Access top-tier talent at competitive rates. Our offshore development model combines cost savings,
+                                    productivity, and high-quality deliverables tailored to your
+                                    time zone and workflow preferences.</p>
+                                <button>Get Started</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2148924741.jpg" alt="Onsite Consulting">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <p>Gain direct access to our seasoned consultants who collaborate closely with your teams to
+                                    architect, integrate, and optimize IT systems that support your business objectives on the ground.</p>
+                                <button>Get Started</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150062008.jpg" alt="Managed IT Services">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <p>Leave your IT headaches to us. Our end-to-end managed services ensure infrastructure stability,
+                                    security, and performance — all while you focus on growing your business.</p>
+                                <button>Get Started</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150010125.jpg" alt="Product Development">
+                            <div class="overlay"></div>
+                            <div class="caption">
+                                <p>Transform ideas into reality. From concept and prototyping to launch and scaling,
+                                    our agile product development services accelerate
+                                    your time-to-market with confidence and clarity.</p>
+                                <button>Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slideshow slideshow-right">
+                    <div class="slider"></div>
+                </div>
+
+                <div class="slideshow-text">
+                    <div class="item">Salesforce Partner</div>
+                    <div class="item">Odoo ERP Partnership</div>
+                    <div class="item">Offshore Services</div>
+                    <div class="item">Onsite Consulting</div>
+                    <div class="item">Managed IT Services</div>
+                    <div class="item">Product Development</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section - Side-by-side grid with image + animated text on scroll -->
+        <section id="about" class="about-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">About Us</h2>
+                <p class="section-subtitle text-center">Pioneering Digital Excellence with a client-first approach.</p>
+                <div class="about-grid">
+                    <div class="about-text glassmorphism-panel">
+                        <h3>Our Mission & Values</h3>
+                        <p>At IT Solutions Inc., we are more than just a technology provider; we are your strategic partner in navigating the complexities of the digital landscape. Founded on principles of innovation, integrity, and client-centricity, we empower businesses to achieve unparalleled growth and efficiency.</p>
+                        <p>Our agile methodologies and deep industry expertise allow us to deliver bespoke solutions that are not just technologically advanced but also perfectly aligned with your unique business objectives. We believe in building lasting relationships, fostering a culture of continuous improvement, and pushing the boundaries of what's possible.</p>
+                        <button class="cta-button secondary-cta small">Learn More About Our Journey</button>
+                    </div>
+                    <div class="about-image content-reveal">
+                        <img src="https://placehold.co/600x400/00C2B8/FFFFFF?text=Our+Collaborative+Team" alt="IT Solutions Inc. Team collaboration" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section - Grid of interactive cards -->
+        <section id="services" class="services-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">Our Core Services</h2>
+                <p class="section-subtitle text-center">Driving innovation and efficiency across your entire technology stack.</p>
+                <div class="services-grid">
+                    <div class="service-card glassmorphism-panel">
+                        <div class="icon-wrapper">
+                            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M15 2H9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path></svg>
+                        </div>
+                        <h3>Software Services</h3>
+                        <p>Custom application development, enterprise software, and legacy system modernization.</p>
+                        <a href="#" class="read-more">Learn More &rarr;</a>
+                    </div>
+                    <div class="service-card glassmorphism-panel">
+                        <div class="icon-wrapper">
+                            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h4v7h-4V10z"></path><path d="M15 10H1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1z"></path><path d="M21 9V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v3"></path></svg>
+                        </div>
+                        <h3>Cloud Transformation</h3>
+                        <p>Cloud migration, infrastructure optimization, and scalable cloud solutions.</p>
+                        <a href="#" class="read-more">Learn More &rarr;</a>
+                    </div>
+                    <div class="service-card glassmorphism-panel">
+                        <div class="icon-wrapper">
+                            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12a4 4 0 0 1 8 0"></path><path d="M8 8a8 8 0 0 1 8 8"></path><path d="M12 2v20"></path><path d="M2 12h20"></path></svg>
+                        </div>
+                        <h3>AI & ML Solutions</h3>
+                        <p>Intelligent automation, predictive analytics, and machine learning models.</p>
+                        <a href="#" class="read-more">Learn More &rarr;</a>
+                    </div>
+                    <div class="service-card glassmorphism-panel">
+                        <div class="icon-wrapper">
+                            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path><circle cx="12" cy="18" r="1"></circle><path d="M7 6h10"></path></svg>
+                        </div>
+                        <h3>Digital Marketing Strategy</h3>
+                        <p>SEO, content marketing, social media, and performance advertising.</p>
+                        <a href="#" class="read-more">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries Section (from industry-slider.html) - Full Viewport Height -->
+        <section id="industries" class="industry-showcase-section module-section">
+            <div class="progress-bar"></div>
+            <div class="progress-counter">
+                <h1>0%</h1>
+            </div>
+
+            <div class="scroller">
+                <!-- Industry Slides -->
+                <section class="industry-slide" data-index="0"><h1>Manufacturing</h1></section>
+                <section class="industry-slide" data-index="1"><h1>Retail</h1></section>
+                <section class="industry-slide" data-index="2"><h1>Automotive</h1></section>
+                <section class="industry-slide" data-index="3"><h1>Healthcare</h1></section>
+                <section class="industry-slide" data-index="4"><h1>Fintech</h1></section>
+                <section class="industry-slide" data-index="5"><h1>Education</h1></section>
+                <section class="industry-slide" data-index="6"><h1>Travel & Tourism</h1></section>
+            </div>
+
+            <div class="pagination-dots">
+                <!-- Dots will be dynamically generated by JavaScript -->
+            </div>
+        </section>
+
+
+
+        <!-- Animated Metrics Section - Counters -->
+        <section id="metrics" class="metrics-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">Our Impact in Numbers</h2>
+                <p class="section-subtitle text-center">Quantifying our commitment to excellence and client success.</p>
+                <div class="metrics-grid">
+                    <div class="metric-item glassmorphism-panel">
+                        <span class="metric-number" data-target="300">0</span>+
+                        <p class="metric-label">Projects Completed</p>
+                    </div>
+                    <div class="metric-item glassmorphism-panel">
+                        <span class="metric-number" data-target="99.9">0.0</span>%
+                        <p class="metric-label">SLA Adherence</p>
+                    </div>
+                    <div class="metric-item glassmorphism-panel">
+                        <span class="metric-number" data-target="15">0</span>+
+                        <p class="metric-label">Years of Experience</p>
+                    </div>
+                    <div class="metric-item glassmorphism-panel">
+                        <span class="metric-number" data-target="50">0</span>M+
+                        <p class="metric-label">Users Impacted</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section - Cards with Modal Overlay View -->
+        <section id="case-studies" class="case-studies-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">Success Stories</h2>
+                <p class="section-subtitle text-center">Real-world results, powered by our expertise and innovative solutions.</p>
+                <div class="case-studies-grid">
+                    <div class="case-study-card glassmorphism-panel" data-modal-target="case-study-1">
+                        <img src="https://placehold.co/400x250/37D5BB/FFFFFF?text=Fintech+Platform" alt="Fintech Platform Case Study" loading="lazy">
+                        <div class="card-content">
+                            <h4>Revolutionizing Fintech with AI</h4>
+                            <p>Developed an AI-powered financial platform, increasing transaction efficiency by 40%.</p>
+                            <button class="cta-button small card-cta view-case-study">View Case Study</button>
+                        </div>
+                    </div>
+                    <div class="case-study-card glassmorphism-panel" data-modal-target="case-study-2">
+                        <img src="https://placehold.co/400x250/6F42C1/FFFFFF?text=Cloud+Migration" alt="Cloud Migration Case Study" loading="lazy">
+                        <div class="card-content">
+                            <h4>Seamless Cloud Migration for Enterprise</h4>
+                            <p>Migrated a large enterprise to the cloud, reducing operational costs by 25%.</p>
+                            <button class="cta-button small card-cta view-case-study">View Case Study</button>
+                        </div>
+                    </div>
+                    <div class="case-study-card glassmorphism-panel" data-modal-target="case-study-3">
+                        <img src="https://placehold.co/400x250/00C2B8/FFFFFF?text=E-commerce+Revamp" alt="E-commerce Revamp Case Study" loading="lazy">
+                        <div class="card-content">
+                            <h4>E-commerce Platform Redesign & Growth</h4>
+                            <p>Revamped an e-commerce site, leading to a 30% increase in conversion rates.</p>
+                            <button class="cta-button small card-cta view-case-study">View Case Study</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (from testimonials2.html) -->
+        <section id="testimonials" class="testimonials2-section module-section content-reveal">
+            <!-- Section title and subtitle are already added by sample5.html's base structure -->
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Discover how Nichi-In has empowered global businesses with innovative IT solutions.</p>
+
+            <div class="slider-container">
+
+                <div class="buttons">
+                    <div class="previous"></div>
+                    <div class="next"></div>
+                </div>
+
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <div class="testimonial">
+                        <blockquote>“Nichi-In Software Solutions has been instrumental in our digital transformation journey.”</blockquote>
+                        <p class="author">Fixer <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Fixer.jpg" alt="Fixer Logo">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“The team at Nichi-In provided exceptional cloud solutions that boosted our operations.”</blockquote>
+                        <p class="author">Cosmos <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Cosmos.jpg" alt="Cosmos Logo">
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“We partnered with Nichi-In for AI analytics and the results exceeded expectations.”</blockquote>
+                        <p class="author">Mitsubishi <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Mitsubishi.jpg" alt="Mitsubishi Logo">
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“Their development team delivered a robust and scalable solution, on time.”</blockquote>
+                        <p class="author">JAM <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_JAM.jpg" alt="JAM Logo">
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“Strategic marketing support from Nichi-In expanded our brand reach significantly.”</blockquote>
+                        <p class="author">Sony <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Sony.jpg" alt="Sony Logo">
+                    </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“Nichi-In’s automotive solutions are highly reliable and efficient.”</blockquote>
+                        <p class="author">Toyota <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Toyota.jpg" alt="Toyota Logo">
+                    </div>
+                </div>
+
+                <!-- Slide 7 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“We are extremely satisfied with the comprehensive IT services provided by Nichi-In. Their team is highly skilled and responsive.”</blockquote>
+                        <p class="author">Toshiba <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Toshiba-logo.png" alt="Client Toshiba Logo" />
+                    </div>
+                </div>
+
+                <!-- Slide 8 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“Their innovative solutions and professional approach have made a significant positive impact on our business operations.”</blockquote>
+                        <p class="author">Telenet <span>Belgium</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Telenet.png" alt="Client Telenet Logo" />
+                    </div>
+                </div>
+
+                <!-- Slide 9 -->
+                <div class="slide">
+                    <div class="testimonial">
+                        <blockquote>“Nichi-In provided excellent technology consulting, guiding us through complex decisions with clear, actionable advice.”</blockquote>
+                        <p class="author">Nomura Research Institute (NRI) <span>Japan</span></p>
+                    </div>
+                    <div class="slider-img">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_NRI.jpg" alt="Client NRI Logo" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-members" class="our-members-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">Our Esteemed Memberships</h2>
+                <p class="section-subtitle text-center">Proudly affiliated with leading industry organizations, fostering innovation and excellence.</p>
+                <div class="logo-carousel-container">
+                    <div class="logo-carousel-track">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2-1.png" alt="Member Logo 1">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1-2.png" alt="Member Logo 2">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/3-1.png" alt="Member Logo 3">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/4-1.png" alt="Member Logo 4">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ESC.png" alt="Member Logo 5">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5-1.png" alt="Member Logo 6">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ITPNCN-Logo-1.png" alt="Member Logo 7">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/IACC.png" alt="Member Logo 8">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/JCCIC.png" alt="Member Logo 9">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/jccib.png" alt="Member Logo 10">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/NASSCOM_Certificate.png" alt="Member Logo 11">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2-1.png" alt="Member Logo 1">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1-2.png" alt="Member Logo 2">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/3-1.png" alt="Member Logo 3">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/4-1.png" alt="Member Logo 4">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ESC.png" alt="Member Logo 5">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5-1.png" alt="Member Logo 6">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ITPNCN-Logo-1.png" alt="Member Logo 7">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/IACC.png" alt="Member Logo 8">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/JCCIC.png" alt="Member Logo 9">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/jccib.png" alt="Member Logo 10">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/NASSCOM_Certificate.png" alt="Member Logo 11">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Teaser Section - 3-post teaser grid -->
+        <section id="blog" class="blog-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">Latest Insights</h2>
+                <p class="section-subtitle text-center">Stay updated with our expert articles, industry trends, and technological breakthroughs.</p>
+                <div class="blog-grid">
+                    <div class="blog-post-card glassmorphism-panel">
+                        <div class="blog-image-wrapper">
+                            <img src="https://placehold.co/400x250/6F42C1/FFFFFF?text=AI+Future" alt="The Future of AI in Enterprise" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h4>The Future of AI in Enterprise: Beyond Hype</h4>
+                            <p class="post-meta"><span>&#128339; June 5, 2025</span> <span>&#128100; Tech Team</span></p>
+                            <p>Exploring practical applications and strategic implementations of artificial intelligence for business growth and efficiency.</p>
+                            <a href="#" class="read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="blog-post-card glassmorphism-panel">
+                        <div class="blog-image-wrapper">
+                            <img src="https://placehold.co/400x250/00C2B8/FFFFFF?text=Cloud+Security" alt="Cloud Security Best Practices" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h4>Cloud Security Best Practices for 2025</h4>
+                            <p class="post-meta"><span>&#128339; May 28, 2025</span> <span>&#128100; Security Experts</span></p>
+                            <p>Essential strategies to safeguard your data and infrastructure in an evolving cloud environment from emerging threats.</p>
+                            <a href="#" class="read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="blog-post-card glassmorphism-panel">
+                        <div class="blog-image-wrapper">
+                            <img src="https://placehold.co/400x250/37D5BB/FFFFFF?text=Marketing+ROI" alt="Maximizing Digital Marketing ROI" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h4>Maximizing Your Digital Marketing ROI: A Strategic Guide</h4>
+                            <p class="post-meta"><span>&#128339; May 20, 2025</span> <span>&#128100; Marketing Pros</span></p>
+                            <p>Unlock the full potential of your marketing spend with data-driven insights and targeted campaigns for maximum impact.</p>
+                            <a href="#" class="read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section - Custom form + embedded map -->
+        <section id="contact" class="contact-section module-section content-reveal">
+            <div class="container">
+                <h2 class="section-title text-center">Get In Touch</h2>
+                <p class="section-subtitle text-center">Let's discuss how we can elevate your business. Reach out today!</p>
+                <div class="contact-grid">
+                    <div class="contact-form glassmorphism-panel">
+                        <h3>Send Us a Message</h3>
+                        <form id="contact-form" action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required aria-label="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" required aria-label="Your Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required aria-label="Subject of your message">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="5" required aria-label="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="cta-button primary-cta full-width-cta hover-glow" id="contact-submit-btn">Send Message</button>
+                            <div id="form-message" class="form-message" style="display: none;"></div>
+                        </form>
+                    </div>
+                    <div class="contact-info glassmorphism-panel">
+                        <h3>Our Contact Details</h3>
+                        <p>Have questions or need assistance? Reach out to us through the details below or fill out the form, and we'll get back to you promptly.</p>
+                        <ul>
+                            <li><strong>Email:</strong> <a href="mailto:info@itsolutions.com">info@itsolutions.com</a></li>
+                            <li><strong>Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                            <li><strong>Address:</strong> 123 Tech Avenue, Suite 400, Innovation City, CA 90210</li>
+                        </ul>
+                        <div class="map-container">
+                            <!-- Embedded Google Map -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2568010839815!2d-122.08385!3d37.4219999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5b5d1e0c451%3A0x7d0a2d2e1c9e8e0!2sGoogleplex!5e0!3m2!1sen!2sus!4v1678888888888!5m2!1sen!2sus" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Location Map"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section - Multi-column layout -->
+    <footer class="main-footer">
+        <div class="footer-content container">
+
+            <div class="footer-column sitemap">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#partnerships-showcase">Partnerships</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column about-company">
+                <h4>About the Company</h4>
+                <p>Empowering businesses through cutting-edge software, cloud, AI, and marketing strategies. Your trusted partner for digital transformation.</p>
+                <div class="social-icons">
+                    <!-- Updated Social Media Icons with Font Awesome -->
+                    <a href="https://linkedin.com/company/youritsolutions" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin social-icon"></i></a>
+                    <a href="https://x.com/nichiinsoft" target="_blank" aria-label="Twitter"><i class="fab fa-twitter social-icon"></i></a>
+                    <a href="https://www.facebook.com/people/Nichi-In-Software-Solutions-Pvt-Ltd/100072343385812/#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook social-icon"></i></a>
+                    <a href="https://instagram.com/youritsolutions" target="_blank" aria-label="Instagram"><i class="fab fa-instagram social-icon"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column resources">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h4>Stay Connected</h4>
+                <p>Subscribe to our newsletter for the latest tech insights and company updates.</p>
+                <form action="#" method="POST" class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required aria-label="Enter your email for newsletter">
+                    <button type="submit" class="cta-button small">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nichi-In Software Solutions Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Marketing CTA Bar (Floats on scroll out of hero) -->
+    <div id="sticky-cta-bar" class="sticky-cta-bar">
+        <div class="container">
+            <p>Ready to transform your business? <span class="accent-text">Book a Free Audit!</span></p>
+            <button class="cta-button primary-cta small-on-mobile hover-glow">Book Audit Now</button>
+            <!-- Close button for sticky CTA bar -->
+            <button id="close-sticky-cta-btn" class="close-sticky-cta" aria-label="Close call to action bar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                    <path d="M18 6 6 18"/>
+                    <path d="m6 6 12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top-button" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <!-- Case Study Modals - Dynamically loaded content -->
+    <div id="case-study-modal-overlay" class="modal-overlay">
+        <div class="modal-content glassmorphism-panel">
+            <button class="close-modal-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-body" id="case-study-modal-body">
+                <!-- Content will be dynamically loaded here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Button (Toggle) -->
+    <button id="chatbot-toggle-btn" class="chatbot-toggle-btn glassmorphism-panel" aria-label="Open AI Chatbot">
+        <!-- Lucide Icons (or Font Awesome) for Chatbot icon -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <path d="M7 8h10"/>
+            <path d="M7 12h7"/>
+        </svg>
+    </button>
+
+    <!-- AI Chatbot Window -->
+    <div id="chatbot-window" class="chatbot-window glassmorphism-panel">
+        <div class="chatbot-header">
+            <h4>AI Assistant</h4>
+            <button class="close-chatbot-btn" aria-label="Close chatbot">&times;</button>
+        </div>
+        <div class="chatbot-body">
+            <div class="message bot">
+                <div class="avatar">🤖</div>
+                <div class="message-content">Hi there! I'm your AI assistant. How can I help you today?</div>
+            </div>
+            <div class="message bot prefilled-topics">
+                <div class="avatar">🤖</div>
+                <div class="message-content">
+                    <p>You can ask me about:</p>
+                    <ul>
+                        <li><button class="topic-btn" data-topic="services">Our Services</button></li>
+                        <li><button class="topic-btn" data-topic="contact">Contact Info</button></li>
+                        <li><button class="topic-btn" data-topic="audit">Free Audit</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-footer">
+            <div class="input-wrapper">
+                <label for="chatbot-input" class="floating-label">Type your message...</label>
+                <input type="text" id="chatbot-input" aria-label="Type your message to the chatbot">
+            </div>
+            <button id="chatbot-send-btn" aria-label="Send message">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send">
+                    <path d="m22 2-7 20-4-9-9-4 20-7z"/>
+                    <path d="M15 15l4-4"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- External JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- External JS for sample5 (as requested) -->
+    <script src="sample5.js"></script>
+
+
+    <!-- Combined and Inlined JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- General Website Functionality (from sample5.html) ---
+
+            // Hamburger menu functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+            if (hamburgerMenu && mobileNavOverlay && mobileNavLinks) {
+                hamburgerMenu.addEventListener('click', () => {
+                    hamburgerMenu.classList.toggle('open');
+                    mobileNavOverlay.classList.toggle('open');
+                });
+
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburgerMenu.classList.remove('open');
+                        mobileNavOverlay.classList.remove('open');
+                    });
+                });
+            }
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('light-theme');
+                    // Store preference in localStorage
+                    if (document.body.classList.contains('light-theme')) {
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+
+                // Apply saved theme on load
+                if (localStorage.getItem('theme') === 'light') {
+                    document.body.classList.add('light-theme');
+                } else {
+                    document.body.classList.remove('light-theme');
+                }
+            }
+
+
+            // Header sticky and active link logic
+            const mainHeader = document.getElementById('main-header');
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.main-nav .nav-links a');
+
+            window.addEventListener('scroll', () => {
+                // Sticky header
+                if (mainHeader) {
+                    if (window.scrollY > 50) {
+                        mainHeader.classList.add('scrolled');
+                    } else {
+                        mainHeader.classList.remove('scrolled');
+                    }
+                }
+
+
+                // Active navigation link highlighting
+                let current = '';
+                sections.forEach(section => {
+                    if (mainHeader) { // Ensure mainHeader exists before calculating offset
+                        const sectionTop = section.offsetTop - mainHeader.offsetHeight;
+                        const sectionHeight = section.clientHeight;
+                        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                            current = section.getAttribute('id');
+                        }
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === current) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Sticky CTA bar show/hide
+                const heroSection = document.getElementById('hero');
+                const stickyCtaBar = document.getElementById('sticky-cta-bar');
+                if (heroSection && stickyCtaBar) {
+                    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                    if (window.scrollY > heroBottom) {
+                        stickyCtaBar.classList.add('show');
+                    } else {
+                        stickyCtaBar.classList.remove('show');
+                    }
+                }
+
+                // Back to Top button show/hide
+                const backToTopButton = document.getElementById('back-to-top');
+                if (backToTopButton) {
+                    if (window.scrollY > 300) {
+                        backToTopButton.classList.add('show');
+                    } else {
+                        backToTopButton.classList.remove('show');
+                    }
+                }
+            });
+
+            // Smooth scroll for nav links and back-to-top
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const backToTopButton = document.getElementById('back-to-top');
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+
+            // Close sticky CTA bar
+            const closeStickyCtaBtn = document.getElementById('close-sticky-cta-btn');
+            if (closeStickyCtaBtn) {
+                closeStickyCtaBtn.addEventListener('click', () => {
+                    const stickyCtaBar = document.getElementById('sticky-cta-bar');
+                    if (stickyCtaBar) {
+                        stickyCtaBar.classList.remove('show');
+                    }
+                });
+            }
+
+
+            // Content Reveal (GSAP ScrollTrigger)
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+
+                document.querySelectorAll('.content-reveal').forEach((element) => {
+                    gsap.fromTo(element,
+                        { opacity: 0, y: 50 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: element,
+                                start: 'top 80%',
+                                end: 'bottom 20%',
+                                toggleActions: 'play none none reverse',
+                                once: true, // Only animate once
+                            }
+                        }
+                    );
+                });
+
+                // Hero Headline Animation (GSAP)
+                const heroHeadline = document.querySelector('.hero-headline');
+                const heroSubheadline = document.querySelector('.hero-subheadline');
+                const heroCtas = document.querySelector('.hero-ctas');
+
+                if (heroHeadline) {
+                    const words = heroHeadline.querySelectorAll('.word');
+                    gsap.fromTo(words,
+                        { opacity: 0, y: 20 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: 'power3.out',
+                            stagger: 0.1,
+                            delay: 0.5 // Delay start for hero content
+                        }
+                    );
+                    gsap.fromTo([heroSubheadline, heroCtas],
+                        { opacity: 0, y: 20 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: 'power3.out',
+                            delay: 1.5, // After words animate
+                            stagger: 0.2
+                        }
+                    );
+                }
+
+                // Animated Metrics Counters
+                const metricItems = document.querySelectorAll('.metric-number');
+                metricItems.forEach(item => {
+                    gsap.from(item, {
+                        textContent: 0,
+                        duration: 2,
+                        ease: "power1.out",
+                        snap: { textContent: 1 },
+                        stagger: 0.1,
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reset',
+                            once: true
+                        },
+                        onUpdate: function() {
+                            item.textContent = Math.round(this.targets()[0].textContent);
+                            if (item.dataset.target.includes('.')) { // Handle decimals for SLA
+                                item.textContent = parseFloat(item.textContent).toFixed(1);
+                            }
+                        }
+                    });
+                });
+            }
+
+
+            // Three.js Hero Background (Basic particle animation)
+            const heroCanvasContainer = document.getElementById('hero-canvas-container');
+            if (heroCanvasContainer && typeof THREE !== 'undefined') {
+                let scene, camera, renderer, particles, particleMaterial, particleSystem;
+                let mouseX = 0, mouseY = 0;
+                let windowHalfX = window.innerWidth / 2;
+                let windowHalfY = window.innerHeight / 2;
+
+                function initThreeJS() {
+                    scene = new THREE.Scene();
+                    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+                    camera.position.z = 1000;
+
+                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    renderer.setPixelRatio(window.devicePixelRatio);
+                    heroCanvasContainer.appendChild(renderer.domElement);
+
+                    // Create particles
+                    particles = new THREE.BufferGeometry();
+                    const particleCount = 2000;
+                    const positions = new Float32Array(particleCount * 3);
+                    const colors = new Float32Array(particleCount * 3);
+
+                    const color1 = new THREE.Color(0x00C2B8); // Primary color
+                    const color2 = new THREE.Color(0x6F42C1); // Secondary color
+                    const color3 = new THREE.Color(0xF4D35E); // Accent color
+
+                    for (let i = 0; i < particleCount; i++) {
+                        // Positions
+                        positions[i * 3] = Math.random() * 2000 - 1000;
+                        positions[i * 3 + 1] = Math.random() * 2000 - 1000;
+                        positions[i * 3 + 2] = Math.random() * 2000 - 1000;
+
+                        // Colors (interpolate between primary, secondary, accent)
+                        const rand = Math.random();
+                        let color;
+                        if (rand < 0.33) {
+                            color = color1;
+                        } else if (rand < 0.66) {
+                            color = color2;
+                        } else {
+                            color = color3;
+                        }
+                        colors[i * 3] = color.r;
+                        colors[i * 3 + 1] = color.g;
+                        colors[i * 3 + 2] = color.b;
+                    }
+
+                    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                    particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+                    particleMaterial = new THREE.PointsMaterial({
+                        size: 3,
+                        vertexColors: true,
+                        transparent: true,
+                        opacity: 0.7
+                    });
+
+                    particleSystem = new THREE.Points(particles, particleMaterial);
+                    scene.add(particleSystem);
+
+                    document.addEventListener('mousemove', onDocumentMouseMove, false);
+                    window.addEventListener('resize', onWindowResize, false);
+                    animateThreeJS();
+                }
+
+                function onDocumentMouseMove(event) {
+                    mouseX = event.clientX - windowHalfX;
+                    mouseY = event.clientY - windowHalfY;
+                }
+
+                function onWindowResize() {
+                    windowHalfX = window.innerWidth / 2;
+                    windowHalfY = window.innerHeight / 2;
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                }
+
+                function animateThreeJS() {
+                    requestAnimationFrame(animateThreeJS);
+
+                    // Move camera with mouse
+                    camera.position.x += (mouseX * 0.05 - camera.position.x) * 0.05;
+                    camera.position.y += (-mouseY * 0.05 - camera.position.y) * 0.05;
+                    camera.lookAt(scene.position);
+
+                    // Animate particles
+                    particleSystem.rotation.x += 0.0005;
+                    particleSystem.rotation.y += 0.001;
+
+                    renderer.render(scene, camera);
+                }
+
+                initThreeJS();
+            }
+
+            // Case Study Modal functionality
+            const viewCaseStudyButtons = document.querySelectorAll('.view-case-study');
+            const caseStudyModalOverlay = document.getElementById('case-study-modal-overlay');
+            const closeCaseStudyModalBtn = document.querySelector('#case-study-modal-overlay .close-modal-btn');
+            const caseStudyModalBody = document.getElementById('case-study-modal-body');
+
+            const caseStudyContent = {
+                'case-study-1': {
+                    title: 'Revolutionizing Fintech with AI',
+                    image: 'https://placehold.co/800x500/37D5BB/FFFFFF?text=AI+Fintech+Platform',
+                    paragraphs: [
+                        "Our client, a leading fintech startup, needed to enhance their transaction processing capabilities and detect fraud more efficiently. We developed a bespoke AI-powered platform that integrated machine learning models for anomaly detection and predictive analytics.",
+                        "The solution led to a remarkable 40% increase in transaction efficiency, significantly reduced manual intervention, and improved fraud detection accuracy by 25%. This innovation positioned our client as a leader in secure and efficient financial operations."
+                    ]
+                },
+                'case-study-2': {
+                    title: 'Seamless Cloud Migration for Enterprise',
+                    image: 'https://placehold.co/800x500/6F42C1/FFFFFF?text=Enterprise+Cloud+Migration',
+                    paragraphs: [
+                        "A large enterprise with complex legacy systems faced challenges in scalability, maintenance, and operational costs. We devised a comprehensive cloud migration strategy, moving their entire infrastructure to a robust and secure cloud environment.",
+                        "The migration resulted in a 25% reduction in operational costs, enhanced system reliability, and significantly improved scalability, allowing the client to adapt quickly to market demands and new business opportunities."
+                    ]
+                },
+                'case-study-3': {
+                    title: 'E-commerce Platform Redesign & Growth',
+                    image: 'https://placehold.co/800x500/00C2B8/FFFFFF?text=E-commerce+Redesign',
+                    paragraphs: [
+                        "Our e-commerce client sought to improve user experience and increase conversion rates. We undertook a complete redesign of their platform, focusing on intuitive navigation, mobile responsiveness, and a streamlined checkout process.",
+                        "This strategic overhaul led to a 30% increase in conversion rates, a 50% reduction in bounce rate, and a significant boost in customer satisfaction, driving substantial revenue growth for the client."
+                    ]
+                }
+            };
+
+            if (viewCaseStudyButtons && caseStudyModalOverlay && closeCaseStudyModalBtn && caseStudyModalBody) {
+                viewCaseStudyButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const targetId = button.closest('.case-study-card').dataset.modalTarget;
+                        const content = caseStudyContent[targetId];
+
+                        if (content) {
+                            caseStudyModalBody.innerHTML = `
+                                <img src="${content.image}" alt="${content.title}">
+                                <h4>${content.title}</h4>
+                                ${content.paragraphs.map(p => `<p>${p}</p>`).join('')}
+                            `;
+                            caseStudyModalOverlay.classList.add('open');
+                            document.body.style.overflow = 'hidden'; // Prevent body scroll
+                        }
+                    });
+                });
+
+                closeCaseStudyModalBtn.addEventListener('click', () => {
+                    caseStudyModalOverlay.classList.remove('open');
+                    document.body.style.overflow = ''; // Restore body scroll
+                });
+
+                caseStudyModalOverlay.addEventListener('click', (e) => {
+                    if (e.target === caseStudyModalOverlay) {
+                        caseStudyModalOverlay.classList.remove('open');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+
+            // Chatbot functionality
+            const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const closeChatbotBtn = document.querySelector('.close-chatbot-btn');
+            const chatbotInput = document.getElementById('chatbot-input');
+            const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+            const chatbotBody = document.querySelector('.chatbot-body');
+            const topicButtons = document.querySelectorAll('.topic-btn');
+
+            if (chatbotToggleBtn && chatbotWindow && closeChatbotBtn && chatbotInput && chatbotSendBtn && chatbotBody && topicButtons) {
+                chatbotToggleBtn.addEventListener('click', () => {
+                    chatbotWindow.classList.toggle('open');
+                });
+
+                closeChatbotBtn.addEventListener('click', () => {
+                    chatbotWindow.classList.remove('open');
+                });
+
+                // Function to add a message to the chatbot body
+                function addMessage(sender, text) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', sender);
+                    messageDiv.innerHTML = `
+                        <div class="avatar">${sender === 'user' ? '👤' : '🤖'}</div>
+                        <div class="message-content">${text}</div>
+                    `;
+                    chatbotBody.appendChild(messageDiv);
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight; // Scroll to bottom
+                }
+
+                // Simulate bot response (replace with actual API call later)
+                function getBotResponse(message) {
+                    const lowerCaseMessage = message.toLowerCase();
+                    if (lowerCaseMessage.includes('services')) {
+                        return "We offer Software Services, Cloud Transformation, AI & ML Solutions, and Digital Marketing Strategy. What interests you the most?";
+                    } else if (lowerCaseMessage.includes('contact')) {
+                        return "You can reach us via email at info@itsolutions.com or call us at +1 (234) 567-890.";
+                    } else if (lowerCaseMessage.includes('audit')) {
+                        return "Great! To book a free audit, please visit our 'Contact' section or click the 'Book a Demo' button in the header.";
+                    } else if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+                        return "Hello! How can I assist you today?";
+                    } else {
+                        return "I'm still learning! Can you please rephrase or ask about our services, contact info, or free audit?";
+                    }
+                }
+
+                chatbotSendBtn.addEventListener('click', () => {
+                    const messageText = chatbotInput.value.trim();
+                    if (messageText) {
+                        addMessage('user', messageText);
+                        chatbotInput.value = ''; // Clear input
+                        setTimeout(() => {
+                            addMessage('bot', getBotResponse(messageText));
+                        }, 500); // Simulate bot typing delay
+                    }
+                });
+
+                chatbotInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        chatbotSendBtn.click();
+                    }
+                });
+
+                topicButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const topic = button.dataset.topic;
+                        addMessage('user', button.textContent);
+                        setTimeout(() => {
+                            addMessage('bot', getBotResponse(topic));
+                        }, 500);
+                    });
+                });
+            }
+
+
+            // --- Industry Slider Functionality (from industry-slider.html) ---
+            const industryShowcaseSection = document.getElementById("industries"); // Updated ID to match section
+            if (industryShowcaseSection) {
+                const scroller = industryShowcaseSection.querySelector(".scroller");
+                const progressCounter = industryShowcaseSection.querySelector(".progress-counter h1");
+                const progressBar = industryShowcaseSection.querySelector(".progress-bar");
+                const paginationDotsContainer = industryShowcaseSection.querySelector(".pagination-dots");
+                const industrySlides = Array.from(industryShowcaseSection.querySelectorAll(".industry-slide"));
+
+                const smoothFactor = 0.08;
+                const touchSensitivity = 2.5;
+                const autoplayDelay = 2000;
+                const pauseAutoplayDuration = 2000;
+
+                let targetScrollX = 0;
+                let currentScrollX = 0;
+                let isAnimating = false;
+                let currentProgressScale = 0;
+                let targetProgressScale = 0;
+                let autoplayInterval;
+                let autoplayTimeoutId;
+
+                let slideWidth;
+                let maxScrollX;
+
+                const recalculateWidths = () => {
+                    slideWidth = window.innerWidth;
+                    scroller.style.width = `calc(${industrySlides.length} * 100vw + 1px)`;
+                    maxScrollX = (industrySlides.length - 1) * slideWidth;
+                };
+
+                const lerp = (start, end, factor) => start + (end - start) * factor;
+
+                const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
+
+                const setupPagination = () => {
+                    if (!paginationDotsContainer) return; // Add null check
+                    paginationDotsContainer.innerHTML = "";
+                    industrySlides.forEach((_, index) => {
+                        const dot = document.createElement("div");
+                        dot.classList.add("pagination-dot");
+                        dot.dataset.index = index;
+                        dot.addEventListener("click", () => {
+                            stopAutoplay();
+                            targetScrollX = clamp(index * slideWidth, 0, maxScrollX);
+                            if (!isAnimating) {
+                                isAnimating = true;
+                                requestAnimationFrame(animateIndustrySlider);
+                            }
+                            restartAutoplayWithDelay();
+                        });
+                        paginationDotsContainer.appendChild(dot);
+                    });
+                };
+
+                const updateUI = () => {
+                    if (!progressCounter || !progressBar || !paginationDotsContainer) return; // Add null checks
+                    const percentage = maxScrollX === 0 ? 0 : (currentScrollX / maxScrollX) * 100;
+                    targetProgressScale = percentage / 100;
+                    progressCounter.textContent = `${Math.round(percentage)}%`;
+
+                    currentProgressScale = lerp(currentProgressScale, targetProgressScale, smoothFactor);
+                    progressBar.style.transform = `scaleX(${currentProgressScale})`;
+
+                    const dots = Array.from(paginationDotsContainer.children);
+                    const activeIndex = Math.round(currentScrollX / slideWidth);
+                    dots.forEach((dot, index) =>
+                        dot.classList.toggle("is-active", index === activeIndex)
+                    );
+
+                    industrySlides.forEach((slide, index) =>
+                        slide.classList.toggle("is-active", index === activeIndex)
+                    );
+                };
+
+                const animateIndustrySlider = () => {
+                    currentScrollX = lerp(currentScrollX, targetScrollX, smoothFactor);
+                    currentScrollX = clamp(currentScrollX, 0, maxScrollX);
+
+                    scroller.style.transform = `translateX(-${currentScrollX}px)`;
+                    updateUI();
+
+                    if (Math.abs(targetScrollX - currentScrollX) > 0.1) {
+                        requestAnimationFrame(animateIndustrySlider);
+                    } else {
+                        currentScrollX = targetScrollX;
+                        scroller.style.transform = `translateX(-${currentScrollX}px)`;
+                        isAnimating = false;
+                    }
+                };
+
+                const startAutoplay = () => {
+                    stopAutoplay();
+                    autoplayInterval = setInterval(() => {
+                        let nextIndex = Math.round(targetScrollX / slideWidth) + 1;
+                        if (nextIndex >= industrySlides.length) {
+                            nextIndex = 0;
+                        }
+                        targetScrollX = clamp(nextIndex * slideWidth, 0, maxScrollX);
+                        if (!isAnimating) {
+                            isAnimating = true;
+                            requestAnimationFrame(animateIndustrySlider);
+                        }
+                    }, autoplayDelay);
+                };
+
+                const stopAutoplay = () => {
+                    clearInterval(autoplayInterval);
+                    clearTimeout(autoplayTimeoutId);
+                };
+
+                const restartAutoplayWithDelay = () => {
+                    stopAutoplay();
+                    autoplayTimeoutId = setTimeout(startAutoplay, pauseAutoplayDuration);
+                };
+
+                industryShowcaseSection.addEventListener("wheel", (e) => {
+                    e.preventDefault();
+                    stopAutoplay();
+
+                    const currentSlideIndex = Math.round(targetScrollX / slideWidth);
+                    let nextIndex = currentSlideIndex;
+
+                    if (e.deltaY > 0) {
+                        nextIndex = Math.min(industrySlides.length - 1, currentSlideIndex + 1);
+                    } else if (e.deltaY < 0) {
+                        nextIndex = Math.max(0, currentSlideIndex - 1);
+                    }
+
+                    targetScrollX = clamp(nextIndex * slideWidth, 0, maxScrollX);
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        requestAnimationFrame(animateIndustrySlider);
+                    }
+                    restartAutoplayWithDelay();
+                }, { passive: false });
+
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+                let velocity = 0;
+                let lastMoveTime = 0;
+
+                industryShowcaseSection.addEventListener("touchstart", (e) => {
+                    stopAutoplay();
+                    isDown = true;
+                    startX = e.touches[0].clientX;
+                    scrollLeft = currentScrollX;
+                    velocity = 0;
+                    lastMoveTime = Date.now();
+                    cancelAnimationFrame(animateIndustrySlider); // Stop ongoing animation
+                }, { passive: false });
+
+                industryShowcaseSection.addEventListener("touchmove", (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+
+                    const x = e.touches[0].clientX;
+                    const deltaX = x - startX;
+                    const walk = deltaX * touchSensitivity;
+
+                    const now = Date.now();
+                    const deltaTime = now - lastMoveTime;
+
+                    if (deltaTime > 0) {
+                        velocity = walk / deltaTime;
+                    }
+                    lastMoveTime = now;
+
+                    targetScrollX = clamp(scrollLeft - walk, 0, maxScrollX);
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        requestAnimationFrame(animateIndustrySlider);
+                    }
+                }, { passive: false });
+
+                industryShowcaseSection.addEventListener("touchend", () => {
+                    isDown = false;
+
+                    if (Math.abs(velocity) > 0.1) {
+                        let momentumTarget = targetScrollX - velocity * 100;
+                        const nearestSlideIndex = Math.round(momentumTarget / slideWidth);
+                        targetScrollX = clamp(nearestSlideIndex * slideWidth, 0, maxScrollX);
+                    } else {
+                        const nearestSlideIndex = Math.round(currentScrollX / slideWidth);
+                        targetScrollX = clamp(nearestSlideIndex * slideWidth, 0, maxScrollX);
+                    }
+
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        requestAnimationFrame(animateIndustrySlider);
+                    }
+                    restartAutoplayWithDelay();
+                });
+
+                // Initial setup for industry slider
+                recalculateWidths();
+                setupPagination();
+                updateUI();
+                startAutoplay();
+
+                // Handle window resize event for industry slider
+                window.addEventListener("resize", () => {
+                    const scrollRatio = maxScrollX === 0 ? 0 : targetScrollX / maxScrollX;
+                    recalculateWidths();
+                    const newTargetIndex = Math.round(scrollRatio * (industrySlides.length - 1));
+                    targetScrollX = clamp(newTargetIndex * slideWidth, 0, maxScrollX);
+                    currentScrollX = clamp(targetScrollX, 0, maxScrollX);
+                    scroller.style.transform = `translateX(-${currentScrollX}px)`;
+                    stopAutoplay();
+                    updateUI();
+                    startAutoplay();
+                });
+            }
+
+
+            // --- Partnerships Showcase (Slick Carousel) Functionality (from sample9.html) ---
+            // Ensure jQuery and Slick are loaded before initializing
+            if (typeof jQuery !== 'undefined' && typeof jQuery.fn.slick !== 'undefined') {
+                const $mainSlider = $('#partnerships-showcase .slideshow-left .slider');
+                const $textSlider = $('#partnerships-showcase .slideshow-text');
+                const $mirrorSlider = $('#partnerships-showcase .slideshow-right .slider');
+
+                if ($mainSlider.length && $textSlider.length && $mirrorSlider.length) {
+                    // Capture original slides from the main slider
+                    const $slides = $mainSlider.html();
+                    // Populate the mirror slider with the captured slides
+                    $mirrorSlider.html($slides);
+                    // Reverse the items for the mirror slider effect
+                    const mirrorItems = $mirrorSlider.children().toArray().reverse();
+                    $mirrorSlider.html(mirrorItems);
+
+                    const totalSlides = mirrorItems.length;
+
+                    // Initialize the main slider (left side)
+                    $mainSlider.slick({
+                        vertical: true,        // Enable vertical sliding
+                        verticalSwiping: true, // Enable vertical swiping
+                        infinite: true,        // Loop slides infinitely
+                        arrows: false,         // Hide navigation arrows
+                        dots: true,            // Show navigation dots (pagination)
+                        speed: 1000,           // Animation speed in milliseconds
+                        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)', // Custom easing function for smooth transitions
+                        autoplay: true,        // Enable autoplay
+                        autoplaySpeed: 4000,   // Autoplay speed (3 seconds for readability)
+                        pauseOnHover: false,   // Continue autoplay even on hover
+                        pauseOnFocus: false    // Continue autoplay even when focused
+                    }).on('beforeChange', function (event, slick, current, next) {
+                        // Synchronize mirror and text sliders before the main slider changes
+                        $mirrorSlider.slick('slickGoTo', totalSlides - 1 - next); // Go to the reversed index for mirror
+                        $textSlider.slick('slickGoTo', next); // Go to the same index for text
+                    });
+
+                    // Handle click on the main slider to advance to the next slide
+                    // Ensure clicks on buttons inside captions are not intercepted
+                    $mainSlider.on('click', function(e) {
+                        // Check if the click target is a button or a descendant of a button
+                        if (!$(e.target).is('button') && !$(e.target).closest('button').length) {
+                            $mainSlider.slick('slickNext');
+                        }
+                    });
+
+                    // Initialize the mirror slider (right side)
+                    $mirrorSlider.slick({
+                        swipe: false,          // Disable swipe as it's controlled by the main slider
+                        vertical: true,        // Enable vertical sliding
+                        arrows: false,         // Hide navigation arrows
+                        infinite: true,        // Loop slides infinitely
+                        speed: 950,            // Animation speed
+                        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)', // Custom easing
+                        initialSlide: totalSlides - 1 // Start at the last slide for the reversed effect
+                    });
+
+                    // Initialize the text overlay slider
+                    $textSlider.slick({
+                        swipe: false,
+                        vertical: true,
+                        arrows: false,
+                        infinite: true,
+                        speed: 900,
+                        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+                    });
+                }
+            }
+
+
+            // --- Testimonials Slider Functionality (from testimonials2.html) ---
+            const testimonialsSection = document.querySelector(".testimonials2-section");
+            if (testimonialsSection) {
+                const nextBtn = testimonialsSection.querySelector(".next");
+                const prevBtn = testimonialsSection.querySelector(".previous");
+                const testimonialSlides = testimonialsSection.querySelectorAll(".slide");
+                const testimonialSliderContainer = testimonialsSection.querySelector(".slider-container");
+                let testimonialIndex = 0;
+                let testimonialInterval;
+
+                function showTestimonialSlide(i) {
+                    testimonialIndex = (i + testimonialSlides.length) % testimonialSlides.length;
+
+                    testimonialSlides.forEach(slide => {
+                        slide.classList.remove("active");
+                        slide.style.zIndex = 0;
+                    });
+
+                    if (testimonialSlides[testimonialIndex]) {
+                        testimonialSlides[testimonialIndex].classList.add("active");
+                        testimonialSlides[testimonialIndex].style.zIndex = 1;
+                    }
+                }
+
+                function nextTestimonialSlide() {
+                    showTestimonialSlide(testimonialIndex + 1);
+                }
+
+                function prevTestimonialSlide() {
+                    showTestimonialSlide(testimonialIndex - 1);
+                }
+
+                function startTestimonialAutoplay() {
+                    stopTestimonialAutoplay();
+                    testimonialInterval = setInterval(nextTestimonialSlide, 5000);
+                }
+
+                function stopTestimonialAutoplay() {
+                    clearInterval(testimonialInterval);
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener("click", () => {
+                        stopTestimonialAutoplay();
+                        nextTestimonialSlide();
+                        startTestimonialAutoplay();
+                    });
+                }
+
+
+                if (prevBtn) {
+                    prevBtn.addEventListener("click", () => {
+                        stopTestimonialAutoplay();
+                        prevTestimonialSlide();
+                        startTestimonialAutoplay();
+                    });
+                }
+
+
+                if (testimonialSliderContainer) {
+                    testimonialSliderContainer.addEventListener('mouseenter', stopTestimonialAutoplay);
+                    testimonialSliderContainer.addEventListener('mouseleave', startTestimonialAutoplay);
+                }
+
+
+                // Initial load
+                showTestimonialSlide(testimonialIndex);
+                startTestimonialAutoplay();
+            }
+        });
+    </script>
+</body>
+</html>

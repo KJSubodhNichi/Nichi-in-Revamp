@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nichi-In Software Solutions Revamp</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS, used for the translate button on the header -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0x30z6J0R0JkF5x3t5n0P4v3/i6/Vq7E3s/o0A/3K2z/A0Q2p4J8X2B4F5g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="draft.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="main-header" id="main-header">
+        <div class="header-content container">
+            <div class="logo">
+                <a href="#hero">
+                    <!-- Updated placeholder logo to reflect a modern, clean design -->
+                    <img src="https://placehold.co/180x45/ffffff/000066?text=Nichi-In"
+                        alt="Nichi-In Software Solutions Inc. Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                    <li><a href="#about" data-section="about">About Us</a></li>
+                    <li><a href="#services" data-section="services">Services</a></li>
+                    <li><a href="#products" data-section="products">Products</a></li>
+                    <li><a href="#careers" data-section="careers">Careers</a></li>
+                    <li><a href="#contact" data-section="contact">Contact Us</a></li>
+                    <li>
+                        <button id="translate-btn" class="translate" aria-label="Translate">
+                            <!-- Using an SVG icon for translation, common in modern designs -->
+                            <svg class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 018.672 15H3m2.342-9.294A15.993 15.993 0 0012 18.53m-1.048-9.5H19m-2.342-9.294A15.993 15.993 0 0112 18.53C14.77 20.857 18 22 21 22h-1c-1.55 0-2.34-.413-2.924-1.238" />
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Hamburger Menu Button -->
+                <button id="hamburger-menu" class="hamburger-menu" aria-label="Open mobile menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Nav Overlay -->
+            <div id="mobile-nav-overlay" class="mobile-nav-overlay">
+                <nav class="mobile-nav">
+                    <ul class="mobile-nav-links">
+                        <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                        <li><a href="#about" data-section="about">About Us</a></li>
+                        <li><a href="#services" data-section="services">Services</a></li>
+                        <li><a href="#products" data-section="products">Products</a></li>
+                        <li><a href="#careers" data-section="careers">Careers</a></li>
+                        <li><a href="#contact" data-section="contact">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Slider Section -->
+        <section class="hero-slider-section" id="hero">
+            <div class="slider-container">
+                <div class="slide active">
+                    <img src="https://placehold.co/1920x800/2a3e5c/ffffff?text=Innovating+for+Your+Digital+Future"
+                        alt="Digital Transformation">
+                    <div class="slide-content">
+                        <h2>Innovating for Your Digital Future</h2>
+                        <p>Driving growth through cutting-edge software solutions.</p>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1920x800/4a69bd/ffffff?text=Unleashing+the+Power+of+AI"
+                        alt="AI and Machine Learning">
+                    <div class="slide-content">
+                        <h2>Unleashing the Power of AI</h2>
+                        <p>Intelligent solutions for a smarter tomorrow.</p>
+                        <button class="cta-button">Discover AI</button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1920x800/6a89cc/ffffff?text=Scalable+Cloud+Computing"
+                        alt="Cloud Solutions">
+                    <div class="slide-content">
+                        <h2>Scalable Cloud Computing</h2>
+                        <p>Flexible and secure infrastructure for your business.</p>
+                        <button class="cta-button">Explore Cloud</button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1920x800/8a9bcc/ffffff?text=Protecting+Your+Digital+Assets"
+                        alt="Cybersecurity">
+                    <div class="slide-content">
+                        <h2>Protecting Your Digital Assets</h2>
+                        <p>Robust security measures against evolving threats.</p>
+                        <button class="cta-button">Secure Your Business</button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1920x800/acbdd0/ffffff?text=Smart+Devices,+Seamless+Control"
+                        alt="IoT and Automation">
+                    <div class="slide-content">
+                        <h2>Smart Devices, Seamless Control</h2>
+                        <p>Connecting the world with intelligent automation.</p>
+                        <button class="cta-button">See IoT Solutions</button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1920x800/ced8e1/ffffff?text=Intuitive+Mobile+Experiences"
+                        alt="Mobile App Development">
+                    <div class="slide-content">
+                        <h2>Intuitive Mobile Experiences</h2>
+                        <p>Engaging apps for every platform.</p>
+                        <button class="cta-button">Build Your App</button>
+                    </div>
+                </div>
+            </div>
+            <button class="prev-slide arrow-button" aria-label="Previous slide">&#10094;</button>
+            <button class="next-slide arrow-button" aria-label="Next slide">&#10095;</button>
+            <div class="pagination-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+                <span class="dot" data-slide="4"></span>
+                <span class="dot" data-slide="5"></span>
+            </div>
+        </section>
+
+        <!-- "What Makes Us Different" Section -->
+        <section class="what-makes-us-different-section content-padding">
+            <h2 class="section-title text-center">What Makes Us Different</h2>
+            <div class="different-cards-grid">
+                <div class="different-card">
+                    <i class="fas fa-handshake card-icon"></i>
+                    <h3>Customer Centric & Flexible</h3>
+                    <p>We are receptive and empathetic in understanding the needs and expectations of our customers and
+                        adopt a flexible approach in terms of business model, processes, technologies and people. We
+                        strive to work collaboratively with the customer.</p>
+                </div>
+                <div class="different-card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3>"KAIZEN" Our Mantra</h3>
+                    <p>We strive for continuous development in our processes, abilities & attitudes through regular
+                        training, knowledge sharing & interactive workshops. We are nimble footed as far as adaptability
+                        is concerned.</p>
+                </div>
+                <div class="different-card">
+                    <i class="fas fa-globe-asia card-icon"></i>
+                    <h3>Japan-India Cross Market Advantage</h3>
+                    <p>Our Japanese language capabilities, our adoption of nuances of Japanese business culture & the
+                        strong business connections with SMEs and Enterprise Giants in Japan can be leveraged to
+                        localize your solutions/products to Japanese market.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- "Our Technology Expertise" Section -->
+        <section class="technology-expertise-section content-padding">
+            <h2 class="section-title text-center">Our Technology Expertise</h2>
+            <p class="section-subtitle text-center">By bringing together the right processes, technologies and people
+                together in a flexible manner has enabled Nichi-In Software for 25+ years to provide optimal IT
+                solutions and services to customers around the globe. Our diverse technological expertise covers wide
+                skill sets that transforms the way SMEs and Large Global Enterprises do business.</p>
+            <div class="text-center mt-8">
+                <a href="#contact" class="cta-button primary-cta">Know More</a>
+            </div>
+        </section>
+
+        <!-- Our Services Section -->
+        <section class="our-services-section" id="our-services">
+            <div class="services-container">
+                <h2 class="services-title">Our Services</h2>
+
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <img src="https://placehold.co/64x64/cccccc/2d3748?text=App" alt="Enterprise Business Applications" />
+                        <h3>Enterprise Business Applications</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://placehold.co/64x64/cccccc/2d3748?text=AI" alt="AI/ML Solutions" />
+                        <h3>AI / ML Solutions</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://placehold.co/64x64/cccccc/2d3748?text=IoT" alt="Industrial Automation / IoT" />
+                        <h3>Industrial Automation / IoT</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://placehold.co/64x64/cccccc/2d3748?text=Digital" alt="Digital Transformation" />
+                        <h3>Digital Transformation</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://placehold.co/64x64/cccccc/2d3748?text=IT" alt="Managed IT Services" />
+                        <h3>Managed IT Services</h3>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://placehold.co/64x64/cccccc/2d3748?text=Test" alt="Testing and Migration" />
+                        <h3>Testing & Migration</h3>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Focus Section -->
+        <section class="industry-focus-section" id="industry-focus">
+            <h2 class="section-title">Industry Focus</h2>
+            <div class="industry-carousel" id="industryCarousel">
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Manufacturing" alt="Manufacturing" />
+                    <div class="industry-overlay">
+                        <h3>Manufacturing</h3>
+                        <p>Smart factory systems and supply chain automation.</p>
+                    </div>
+                </div>
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Retail" alt="Retail" />
+                    <div class="industry-overlay">
+                        <h3>Retail</h3>
+                        <p>E-commerce, retail POS, and consumer analytics.</p>
+                    </div>
+                </div>
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Automotive" alt="Automotive" />
+                    <div class="industry-overlay">
+                        <h3>Automotive</h3>
+                        <p>Connected vehicles and mobility software.</p>
+                    </div>
+                </div>
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Healthcare" alt="Healthcare" />
+                    <div class="industry-overlay">
+                        <h3>Healthcare</h3>
+                        <p>Hospital systems, diagnostics & wearable tech.</p>
+                    </div>
+                </div>
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Fintech" alt="Fintech" />
+                    <div class="industry-overlay">
+                        <h3>Fintech</h3>
+                        <p>Banking tech, payments, and fraud detection.</p>
+                    </div>
+                </div>
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Education" alt="Education" />
+                    <div class="industry-overlay">
+                        <h3>Education</h3>
+                        <p>Edtech platforms and virtual learning systems.</p>
+                    </div>
+                </div>
+
+                <div class="industry-card">
+                    <img src="https://placehold.co/300x180/cccccc/2d3748?text=Travel" alt="Travel & Tourism" />
+                    <div class="industry-overlay">
+                        <h3>Travel & Tourism</h3>
+                        <p>Travel portals and itinerary automation.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Performance Metrics Section -->
+        <section class="performance-metrics-section content-padding">
+            <h2 class="section-title text-center">Our Achievements</h2>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-number" data-target="25">0+</div>
+                    <p class="metric-label">Years of Experience</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number" data-target="100">0+</div>
+                    <p class="metric-label">Satisfied Customers</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number" data-target="500">0+</div>
+                    <p class="metric-label">Software Projects</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number" data-target="150">0+</div>
+                    <p class="metric-label">Employees</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Testimonials Section -->
+        <section class="testimonials-section content-padding">
+            <h2 class="section-title text-center">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client1" alt="Client 1"
+                        class="client-image">
+                    <p class="quote">"Nichi-In Software delivered an outstanding solution that perfectly met our needs. Their team was incredibly professional and efficient."</p>
+                    <p class="client-info"><strong>Jane Doe</strong>, CEO of Innovate Corp</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client2" alt="Client 2"
+                        class="client-image">
+                    <p class="quote">"The expertise and dedication of Nichi-In's team are truly remarkable. They transformed our operations with their insightful approach."</p>
+                    <p class="client-info"><strong>John Smith</strong>, Director at Global Solutions</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client3" alt="Client 3"
+                        class="client-image">
+                    <p class="quote">"We're thrilled with the results! Nichi-In provided timely and high-quality service, exceeding our expectations."</p>
+                    <p class="client-info"><strong>Alice Brown</strong>, CTO of Tech Innovators</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client4" alt="Client 4"
+                        class="client-image">
+                    <p class="quote">"Their problem-solving skills are unmatched. Nichi-In helped us navigate complex challenges with ease."</p>
+                    <p class="client-info"><strong>Robert Green</strong>, Founder of Startup X</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client5" alt="Client 5"
+                        class="client-image">
+                    <p class="quote">"Exceptional customer service and technical prowess. Nichi-In is a partner we can truly rely on."</p>
+                    <p class="client-info"><strong>Emily White</strong>, Project Lead at Visionary Co.</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client6" alt="Client 6"
+                        class="client-image">
+                    <p class="quote">"Nichi-In's custom software significantly improved our workflow and efficiency. Highly recommended!"</p>
+                    <p class="client-info"><strong>David Black</strong>, Operations Manager at Unified Systems</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client7" alt="Client 7"
+                        class="client-image">
+                    <p class="quote">"A truly collaborative approach. Nichi-In worked closely with us to deliver exactly what we envisioned."</p>
+                    <p class="client-info"><strong>Sarah Grey</strong>, Product Manager at Creative Labs</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client8" alt="Client 8"
+                        class="client-image">
+                    <p class="quote">"Their innovative solutions have given us a competitive edge. Thank you, Nichi-In!"</p>
+                    <p class="client-info"><strong>Michael Blue</strong>, Marketing Director at Apex Corp</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://placehold.co/80x80/cccccc/2d3748?text=Client9" alt="Client 9"
+                        class="client-image">
+                    <p class="quote">"From concept to deployment, Nichi-In was a pleasure to work with. Professional, skilled, and reliable."</p>
+                    <p class="client-info"><strong>Olivia Red</strong>, HR Manager at Dynamic Solutions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnerships Section -->
+        <section class="partnerships-section content-padding">
+            <h2 class="section-title text-center">Our Valued Partnerships</h2>
+            <div class="partnerships-logos">
+                <img src="https://placehold.co/150x80/cccccc/2d3748?text=Partner+A" alt="Partner Logo A"
+                    class="partner-logo">
+                <img src="https://placehold.co/150x80/cccccc/2d3748?text=Partner+B" alt="Partner Logo B"
+                    class="partner-logo">
+                <img src="https://placehold.co/150x80/cccccc/2d3748?text=Partner+C" alt="Partner Logo C"
+                    class="partner-logo">
+            </div>
+        </section>
+
+        <!-- Members Section -->
+        <section id="our-members" class="our-members-section module-section content-padding">
+            <div class="container">
+                <h2 class="section-title text-center">Our Esteemed Memberships</h2>
+                <p class="section-subtitle text-center">Proudly affiliated with leading industry organizations,
+                    fostering innovation and excellence.</p>
+                <div class="logo-carousel-container">
+                    <div class="logo-carousel-track">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+1" alt="Member Logo 1">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+2" alt="Member Logo 2">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+3" alt="Member Logo 3">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+4" alt="Member Logo 4">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+5" alt="Member Logo 5">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+6" alt="Member Logo 6">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+7" alt="Member Logo 7">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+8" alt="Member Logo 8">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+9" alt="Member Logo 9">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+10" alt="Member Logo 10">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+11" alt="Member Logo 11">
+                        <!-- Clones for seamless loop -->
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+1" alt="Member Logo 1">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+2" alt="Member Logo 2">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+3" alt="Member Logo 3">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+4" alt="Member Logo 4">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+5" alt="Member Logo 5">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+6" alt="Member Logo 6">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+7" alt="Member Logo 7">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+8" alt="Member Logo 8">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+9" alt="Member Logo 9">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+10" alt="Member Logo 10">
+                        <img src="https://placehold.co/120x80/cccccc/2d3748?text=Membership+11" alt="Member Logo 11">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="certifications-section content-padding">
+            <h2 class="section-title text-center">Our Certifications</h2>
+            <div class="certifications-grid">
+                <img src="https://placehold.co/250x180/cccccc/2d3748?text=Certification+1" alt="Certification 1"
+                    class="certification-image">
+                <img src="https://placehold.co/250x180/cccccc/2d3748?text=Certification+2" alt="Certification 2"
+                    class="certification-image">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content container">
+
+            <div class="footer-column sitemap">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                    <li><a href="#about" data-section="about">About</a></li>
+                    <li><a href="#services" data-section="services">Services</a></li>
+                    <li><a href="#products" data-section="products">Products</a></li>
+                    <li><a href="#careers" data-section="careers">Careers</a></li>
+                    <li><a href="#contact" data-section="contact">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column about-company">
+                <h4>About the Company</h4>
+                <p>Empowering businesses through cutting-edge software, cloud, AI, and marketing strategies. Your
+                    trusted partner for digital transformation.</p>
+                <div class="social-icons">
+                    <!-- Updated Social Media Icons with Font Awesome -->
+                    <a href="https://in.linkedin.com/company/nichi-in-software-solutions-pvt-ltd" target="_blank"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin social-icon"></i></a>
+                    <a href="https://x.com/nichiinsoft" target="_blank" aria-label="Twitter"><i
+                            class="fab fa-twitter social-icon"></i></a>
+                    <a href="https://www.facebook.com/people/Nichi-In-Software-Solutions-Pvt-Ltd/100072343385812/#"
+                        target="_blank" aria-label="Facebook"><i class="fab fa-facebook social-icon"></i></a>
+                    <a href="https://instagram.com/youritsolutions" target="_blank" aria-label="Instagram"><i
+                            class="fab fa-instagram social-icon"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column resources">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h4>Corporate Office​</h4>
+                <p>#813, Dr.Puneeth Rajkumar Road,
+                    Hosakerehalli, Banashankari 3rd Stage,
+                    Bengaluru – 560085, India</p>
+
+                <h4>Development Center 2</h4>
+                <p>#812, 1st Floor, Dr.Puneeth Rajkumar Road,<br>
+                    Hosakerehalli, Banashankari 3rd Stage,<br>
+                    Bengaluru – 560085, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nichi-In Software Solutions Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top-button" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script src="draft.js"></script>
+
+</body>
+
+</html>

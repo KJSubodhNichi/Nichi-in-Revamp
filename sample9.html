@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Vertical Split Slideshow</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global reset for margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Set full height for html and body, hide overflow, define font and background */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    /* Main container for the split slideshow */
+    .split-slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Common slideshow container for both left and right */
+    .slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Slider styling */
+    .slider {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Individual slide item styling */
+    .slider .item {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Image within slide item */
+    .slider .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Caption styling for text and button overlays */
+    .caption {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: left;
+      width: 80%;
+      z-index: 5;
+      pointer-events: auto; /* Allow interaction with caption elements */
+    }
+
+    .caption p {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .caption button {
+      padding: 10px 25px;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .caption button:hover {
+      background: #eee;
+      transform: scale(1.05);
+    }
+
+    /* Right slideshow specific styling */
+    .slideshow-right {
+      width: 50vw;
+      pointer-events: none; /* Disallow interaction with right slideshow */
+      z-index: 1;
+    }
+
+    .slideshow-right .slider {
+      position: absolute;
+      left: 0;
+    }
+
+    /* Text overlay slideshow styling */
+    .slideshow-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      text-align: center;
+      font-size: 80px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 12px;
+      z-index: 100;
+      pointer-events: none; /* Disallow interaction with text overlay */
+      line-height: 0.8;
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media(max-width: 768px) {
+      .slideshow-text {
+        font-size: 40px;
+        letter-spacing: 5px;
+      }
+
+      .caption p {
+        font-size: 16px;
+      }
+
+      .caption button {
+        font-size: 14px;
+      }
+    }
+
+    /* Slick Dots Styling - Enhanced from sample6.html */
+    .slideshow .slick-dots {
+      position: fixed;
+      z-index: 100;
+      width: 40px; /* Fixed width for the dots container */
+      height: auto;
+      bottom: auto;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      left: auto;
+      color: #fff;
+      display: block;
+      padding-right: 10px; /* Padding from the right edge */
+    }
+
+    .slideshow .slick-dots li {
+      display: block; /* Each dot as a block element */
+      width: 100%; /* Full width within its container */
+      height: auto;
+      margin: 10px 0; /* Vertical spacing between dots */
+    }
+
+    .slideshow .slick-dots li button {
+      position: relative;
+      width: 20px; /* Width of the button itself */
+      height: 15px; /* Height of the button */
+      text-align: center;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .slideshow .slick-dots li button:before {
+      content: '';
+      background: #fff;
+      color: #fff;
+      height: 2px;
+      width: 20px; /* Default width of the dot line */
+      border-radius: 0;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      left: auto;
+      transform: translateY(-50%);
+      transition: all .3s ease-in-out;
+      opacity: 0.6;
+    }
+
+    .slideshow .slick-dots li.slick-active button:before {
+      width: 40px; /* Wider line for active dot */
+      opacity: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* 50% opaque black overlay */
+      z-index: 2; /* Ensure it's above the image but below text */
+    }
+  </style>
+</head>
+<body>
+  <div class="split-slideshow">
+    <div class="slideshow slideshow-left">
+      <div class="slider">
+        <div class="item">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/SF2135X1500.png" alt="Salesforce Partner">
+          <div class="overlay"></div>
+          <div class="caption">
+            <p>Empower your enterprise with world-class CRM implementations that streamline workflows,
+              enhance customer engagement,
+              and drive measurable business growth through customized Salesforce strategies.</p>
+            <button>Learn More</button>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/OD1920X828.png" alt="Odoo ERP Partnership">
+          <div class="overlay"></div>
+          <div class="caption">
+            <p>Boost operational efficiency and decision-making with Odoo — a robust
+              ERP suite designed to unify your sales, finance, inventory,
+              and HR processes in one scalable platform.</p>
+            <button>Our Approach</button>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5210.jpg" alt="Offshore Services">
+          <div class="overlay"></div>
+          <div class="caption">
+            <p>Access top-tier talent at competitive rates. Our offshore development model combines cost savings,
+              productivity, and high-quality deliverables tailored to your
+              time zone and workflow preferences.</p>
+            <button>Get Started</button>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2148924741.jpg" alt="Onsite Consulting">
+          <div class="overlay"></div>
+          <div class="caption">
+            <p>Gain direct access to our seasoned consultants who collaborate closely with your teams to
+              architect, integrate, and optimize IT systems that support your business objectives on the ground.</p>
+            <button>Get Started</button>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150062008.jpg" alt="Managed IT Services">
+          <div class="overlay"></div>
+          <div class="caption">
+            <p>Leave your IT headaches to us. Our end-to-end managed services ensure infrastructure stability,
+              security, and performance — all while you focus on growing your business.</p>
+            <button>Get Started</button>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150010125.jpg" alt="Product Development">
+          <div class="overlay"></div>
+          <div class="caption">
+            <p>Transform ideas into reality. From concept and prototyping to launch and scaling,
+              our agile product development services accelerate
+              your time-to-market with confidence and clarity.</p>
+            <button>Get Started</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slideshow slideshow-right">
+      <div class="slider"></div>
+    </div>
+
+    <div class="slideshow-text">
+      <div class="item">Salesforce Partner</div>
+      <div class="item">Odoo ERP Partnership</div>
+      <div class="item">Offshore Services</div>
+      <div class="item">Onsite Consulting</div>
+      <div class="item">Managed IT Services</div>
+      <div class="item">Product Development</div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      const $mainSlider = $('.slideshow-left .slider');
+      const $textSlider = $('.slideshow-text');
+      const $mirrorSlider = $('.slideshow-right .slider');
+
+      // Capture original slides from the main slider
+      const $slides = $mainSlider.html();
+      // Populate the mirror slider with the captured slides
+      $mirrorSlider.html($slides);
+      // Reverse the items for the mirror slider effect
+      const mirrorItems = $mirrorSlider.children().toArray().reverse();
+      $mirrorSlider.html(mirrorItems);
+
+      const totalSlides = mirrorItems.length;
+
+      // Initialize the main slider (left side)
+      $mainSlider.slick({
+        vertical: true,        // Enable vertical sliding
+        verticalSwiping: true, // Enable vertical swiping
+        infinite: true,        // Loop slides infinitely
+        arrows: false,         // Hide navigation arrows
+        dots: true,            // Show navigation dots (pagination)
+        speed: 1000,           // Animation speed in milliseconds
+        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)', // Custom easing function for smooth transitions
+        autoplay: true,        // Enable autoplay
+        autoplaySpeed: 4000,   // Autoplay speed (3 seconds for readability)
+        pauseOnHover: false,   // Continue autoplay even on hover
+        pauseOnFocus: false    // Continue autoplay even when focused
+      }).on('beforeChange', function (event, slick, current, next) {
+        // Synchronize mirror and text sliders before the main slider changes
+        $mirrorSlider.slick('slickGoTo', totalSlides - 1 - next); // Go to the reversed index for mirror
+        $textSlider.slick('slickGoTo', next); // Go to the same index for text
+      });
+
+      // Handle click on the main slider to advance to the next slide
+      // Ensure clicks on buttons inside captions are not intercepted
+      $mainSlider.on('click', function(e) {
+        // Check if the click target is a button or a descendant of a button
+        if (!$(e.target).is('button') && !$(e.target).closest('button').length) {
+          $mainSlider.slick('slickNext');
+        }
+      });
+
+      // Initialize the mirror slider (right side)
+      $mirrorSlider.slick({
+        swipe: false,          // Disable swipe as it's controlled by the main slider
+        vertical: true,        // Enable vertical sliding
+        arrows: false,         // Hide navigation arrows
+        infinite: true,        // Loop slides infinitely
+        speed: 950,            // Animation speed
+        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)', // Custom easing
+        initialSlide: totalSlides - 1 // Start at the last slide for the reversed effect
+      });
+
+      // Initialize the text overlay slider
+      $textSlider.slick({
+        swipe: false,          // Disable swipe as it's controlled by the main slider
+        vertical: true,        // Enable vertical sliding
+        arrows: false,         // Hide navigation arrows
+        infinite: true,        // Loop slides infinitely
+        speed: 900,            // Animation speed
+        cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)' // Custom easing
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nichi-in - Why Choose Us?</title>
+    <!-- Google Fonts: Modern and clean (Inter for all text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming and easy adjustments */
+        :root {
+            --primary-color: #0056b3; /* Nichi-in Blue */
+            --secondary-color: #333; /* Dark text */
+            --light-bg: #fdfdfd; /* Very light background */
+            --white: #ffffff;
+            --accent-color: #e67e22; /* Warm accent */
+            --border-radius-lg: 8px;
+            --border-radius-sm: 4px;
+            --shadow-light: 0 1px 6px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --spacing-unit: 1.5rem;
+        }
+
+        /* General Body & Typography */
+        body {
+            font-family: 'Inter', sans-serif; /* Uniform font */
+            color: var(--secondary-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 16px; /* Base font size */
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 2);
+        }
+
+        /* Section Specific Styles */
+        .why-choose-us-section {
+            padding: calc(var(--spacing-unit) * 6) 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .why-choose-us-section h2 {
+            font-family: 'Inter', sans-serif; /* Uniform font */
+            font-size: 3.5em; /* Adjusted for Inter, maintains impact */
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-unit);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .why-choose-us-section h2 .highlight {
+            color: var(--accent-color);
+            display: block;
+            font-size: 0.6em;
+            margin-top: 0.2em;
+            letter-spacing: normal;
+        }
+
+        .why-choose-us-section .section-intro {
+            font-size: 1.15em; /* Adjusted for uniformity */
+            max-width: 800px;
+            margin: 0 auto calc(var(--spacing-unit) * 4) auto;
+            color: #555;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Features Blocks (Zigzag Layout) */
+        .features-sections-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 8);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .zigzag-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform, opacity;
+        }
+
+        .zigzag-section:nth-child(1) { transition-delay: 0s; }
+        .zigzag-section:nth-child(2) { transition-delay: 0.3s; }
+        .zigzag-section:nth-child(3) { transition-delay: 0.6s; }
+
+        .zigzag-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-sections-wrapper .zigzag-section:nth-child(odd) {
+            align-self: flex-start;
+        }
+
+        .features-sections-wrapper .zigzag-section:nth-child(even) {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .text-content-block {
+            padding: 0;
+            flex: 0 0 50%;
+            max-width: 550px;
+            box-sizing: border-box;
+            text-align: left;
+            transition: none;
+        }
+
+        .image-wrapper {
+            flex: 0 0 auto;
+            width: 500px;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Icon styling */
+        .icon-wrapper {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .feature-icon {
+            color: var(--accent-color);
+            width: 40px;
+            height: 40px;
+        }
+
+        .text-content-block h3 {
+            font-family: 'Inter', sans-serif; /* Uniform font */
+            font-size: 2em; /* Adjusted for uniformity */
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .text-content-block p {
+            font-size: 1.05em; /* Adjusted for uniformity */
+            color: #555;
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
+
+        .text-content-block p strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1100px) {
+            .features-sections-wrapper {
+                max-width: 900px;
+            }
+            .zigzag-section {
+                padding: 0 var(--spacing-unit);
+            }
+            .text-content-block {
+                flex: 0 0 55%;
+                max-width: 480px;
+            }
+            .image-wrapper {
+                width: 300px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .why-choose-us-section h2 {
+                font-size: 2.8em;
+            }
+            .why-choose-us-section .section-intro {
+                font-size: 1em;
+            }
+            .features-sections-wrapper {
+                gap: calc(var(--spacing-unit) * 5);
+            }
+            .zigzag-section {
+                flex-direction: column;
+                text-align: center;
+                gap: calc(var(--spacing-unit) * 2);
+                align-self: center !important;
+            }
+            .zigzag-section.reverse {
+                flex-direction: column;
+            }
+            .text-content-block, .image-wrapper {
+                flex: auto;
+                width: 90%;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: calc(var(--spacing-unit) * 1.5);
+                box-shadow: var(--shadow-light);
+                border-radius: var(--border-radius-lg);
+            }
+            .text-content-block {
+                order: 2;
+            }
+            .image-wrapper {
+                order: 1;
+                height: 250px;
+                width: 90%;
+                max-width: 350px;
+            }
+            .icon-wrapper {
+                margin: 0 auto var(--spacing-unit) auto;
+            }
+            .text-content-block h3 {
+                font-size: 1.8em;
+            }
+            .text-content-block p {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px; /* Smaller base font for mobile */
+            }
+            .why-choose-us-section h2 {
+                font-size: 2.2em;
+            }
+            .why-choose-us-section h2 .highlight {
+                font-size: 0.8em;
+            }
+            .why-choose-us-section .section-intro {
+                font-size: 0.9em;
+            }
+            .features-sections-wrapper {
+                gap: calc(var(--spacing-unit) * 3);
+            }
+            .zigzag-section {
+                padding: 0 var(--spacing-unit);
+            }
+            .text-content-block, .image-wrapper {
+                width: 100%;
+                max-width: none;
+            }
+            .text-content-block {
+                padding: var(--spacing-unit);
+            }
+            .image-wrapper {
+                height: 200px;
+            }
+            .text-content-block h3 {
+                font-size: 1.5em;
+            }
+            .text-content-block p {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Technological Expertise Section */
+        .technological-expertise {
+            padding: 4rem 2rem;
+            background-color: #f7f9fc;
+            text-align: center;
+        }
+
+        .technological-expertise h2 {
+            font-family: 'Inter', sans-serif; /* Uniform font */
+            font-size: 2.2em; /* Adjusted for uniformity */
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Video Container - No arrows or dots */
+        .video-slideshow-container {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto 2rem auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            /* Add padding bottom to make space for the text overlay */
+            padding-bottom: 100px; /* Adjust as needed based on text content */
+        }
+
+        /* Video Styling with Fade Effect */
+        #tech-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #tech-video.visible {
+            opacity: 1;
+        }
+
+        /* Video Tag Styling */
+        .video-tag {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: var(--border-radius-sm); /* Slightly rounded corners */
+            font-family: 'Inter', sans-serif; /* Ensure uniform font */
+            font-size: 0.9em; /* Appropriate size */
+            font-weight: 600; /* Bold text for emphasis */
+            z-index: 10; /* Ensure it's above the video */
+            text-align: right; /* Text alignment inside the tag */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            backdrop-filter: blur(3px); /* Optional: subtle blur effect */
+            -webkit-backdrop-filter: blur(3px); /* For Safari */
+        }
+
+        /* Video Overlay Text Styling */
+        .video-overlay-text {
+            position: absolute;
+            bottom: 0; /* Position at the very bottom of the video container */
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)); /* Gradient fade-out effect */
+            color: var(--white);
+            padding: 20px 30px; /* Generous padding */
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1em; /* Slightly larger text */
+            line-height: 1.6;
+            text-align: right; /* Align text to the right */
+            z-index: 5; /* Below the tag, above the video */
+            transform: translateY(0); /* Initial position */
+            transition: transform 0.5s ease-out; /* Smooth transition for potential future animations */
+            text-align: right;
+        }
+
+        .video-overlay-text.hidden {
+            transform: translateY(100%); /* Slide out effect */
+        }
+
+        @media (max-width: 768px) {
+            .video-tag {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+            .video-overlay-text {
+                padding: 15px 20px;
+                font-size: 0.95em;
+            }
+            .video-slideshow-container {
+                padding-bottom: 80px; /* Adjust for smaller screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <section id="why-choose-us" class="why-choose-us-section">
+        <div class="container">
+            <h2>Why Clients Choose Us? <span class="highlight">Your Partner for Digital Excellence.</span></h2>
+            <p class="section-intro">
+                Discover the core principles and unique advantages that make Nichi-in the trusted choice for forward-thinking businesses worldwide.
+            </p>
+
+            <div class="features-sections-wrapper">
+
+                <!-- Feature Block 1: Customer Centric - Text Left, Image Right -->
+                <div class="zigzag-section">
+                    <div class="text-content-block">
+                        <div class="icon-wrapper">
+                            <!-- Icon for "strategic listening" or "vision" - Speech bubble/ear icon -->
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg>
+                        </div>
+                        <h3>Your Vision, Our Strategic Blueprint</h3>
+                        <p>
+                            Our process begins with <strong>strategic listening</strong> and deep alignment with your unique business needs, technical requirements, and overarching corporate vision. This enables us to craft bespoke IT services that consistently exceed expectations and deliver measurable value, ensuring your corporate priorities become our mission every step of the way.
+                        </p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2149241262.jpg" alt="Customer-Specific Approach">
+                    </div>
+                </div>
+
+                <!-- Feature Block 2: KAIZEN - Image Left, Text Right -->
+                <div class="zigzag-section reverse">
+                    <div class="text-content-block">
+                        <div class="icon-wrapper">
+                            <!-- Icon for "growth" or "continuous improvement" - Refresh/circular arrow icon -->
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path>
+                            </svg>
+                        </div>
+                        <h3>改善 (Kaizen): Relentless Pursuit of Perfection</h3>
+                        <p>
+                            <strong>改善 (Kaizen)</strong> is the driving force behind our operations and deeply embedded in every phase of our IT development. We relentlessly strive for continuous improvement, ensuring your digital solutions are not just built, but constantly refined for optimal performance, unparalleled efficiency, and future readiness. This unwavering dedication guarantees evolving excellence in every project we undertake.
+                        </p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/kaizen.jpg" alt="Kaizen Motto">
+                    </div>
+                </div>
+
+                <!-- Feature Block 3: Japan-India Business - Text Left, Image Right -->
+                <div class="zigzag-section">
+                    <div class="text-content-block">
+                        <div class="icon-wrapper">
+                            <!-- Icon for "global connection" or "bridge" - Bridge/global network icon -->
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm7 10h-4c0-3.31-2.69-6-6-6V5c4.42 0 8 3.58 8 8zm-11 0h4c0 3.31 2.69 6 6 6v2c-4.42 0-8-3.58-8-8z"></path>
+                            </svg>
+                        </div>
+                        <h3>Japan-India Bridge: Your Digital Edge</h3>
+                        <p>
+                            Our deep roots in <strong>Japan-India business</strong> are truly your competitive advantage. Our expert developers don't just build; they seamlessly bridge cultures, fluently handling Japanese clients in their native language, and intimately understanding their unique business culture and customs. This distinctive capability positions us as the ideal partner for Japanese companies seeking unparalleled web solutions with utmost cultural precision and technical excellence.
+                        </p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ind-jp.png" alt="Indo-Japanese Client Relationship">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="technological-expertise">
+        <h2>Technological Expertise</h2>
+
+        <div class="video-slideshow-container">
+            <video id="tech-video" autoplay muted playsinline></video>
+            <!-- Video Tag element -->
+            <!-- Video Overlay Text element -->
+            <p class="video-overlay-text">
+                In an era of rapid technological shifts, Nichi-In Software stands as a beacon of agile innovation.
+                With over 25 years of unparalleled experience in delivering cutting-edge IT solutions, we have
+                cultivated deep expertise across diverse industries and technologies. Our profound understanding
+                of both the Japanese and APAC markets positions us uniquely to provide tailored, high-impact
+                digital transformations that drive growth and efficiency for our clients globally.
+            </p>s
+        </div>
+
+    </section>
+
+    <script>
+        // JavaScript for "fade-in-on-scroll" animation for the blocks
+        document.addEventListener('DOMContentLoaded', () => {
+            // Target the zigzag sections for animation
+            const zigzagSections = document.querySelectorAll('.zigzag-section');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            zigzagSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const videoElement = document.getElementById('tech-video');
+        const videoSources = [
+            "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1114661_Using_Enterprise_1280x720.mp4",
+            "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1112987_Brainstorm_Teamwork_1280x720.mp4",
+            "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1106556_1080p_4k_1280x720.mp4",
+            "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1109599_1080p_Ethnicity_1280x720.mp4"
+        ];
+
+        let currentIndex = 0;
+
+        function switchToVideo(index) {
+            currentIndex = index;
+            fadeOutIn(() => {
+                videoElement.src = videoSources[currentIndex];
+                videoElement.load();
+                videoElement.play();
+            });
+        }
+
+        function fadeOutIn(callback) {
+            videoElement.classList.remove("visible");
+            // Give a small delay for the fade-out effect before changing source
+            setTimeout(() => {
+                callback();
+                videoElement.classList.add("visible");
+            }, 500);
+        }
+
+        // When video ends, go to next
+        videoElement.addEventListener("ended", () => {
+            currentIndex = (currentIndex + 1) % videoSources.length;
+            switchToVideo(currentIndex);
+        });
+
+        // Initial load
+        // Set an initial source to prevent potential issues on first play
+        videoElement.src = videoSources[currentIndex];
+        videoElement.load();
+        videoElement.play();
+        videoElement.classList.add("visible"); // Ensure it's visible after initial load
+    });
+</script>
+
+</body>
+</html>

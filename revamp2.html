@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nichi-In Software Solutions</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* Apply the chosen font globally */
+        body {
+            font-family: 'Inter', sans-serif; /* Primary font */
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+        /* All headings and body text will now strictly use 'Inter' */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Define custom Tailwind colors using CSS variables for consistency */
+        :root {
+            --primary-purple: #6F42C1;
+            --secondary-teal: #00C2B8;
+            --light-gray-bg: #f8f9fa;
+            --dark-blue: #1a202c;
+        }
+
+        /* Custom gradient utility classes for backgrounds and text */
+        .bg-gradient-primary {
+            background-image: linear-gradient(to right, var(--primary-purple), var(--secondary-teal));
+        }
+        .text-gradient-primary {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, var(--primary-purple), var(--secondary-teal));
+        }
+
+        /* Custom scrollbar for a polished look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-teal);
+        }
+
+        /* Hero section Three.js canvas */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 0; /* Behind content */
+            opacity: 0.8; /* Subtle transparency */
+            pointer-events: none; /* Crucial: Allows clicks/interactions on elements behind the canvas */
+        }
+
+        /* Hero Slider Specific Styling (now in a new section) */
+        .swiper-container {
+            width: 100%;
+            height: 50vh; /* Fixed height for the slider in its own section */
+            position: relative;
+            z-index: 1;
+            overflow: hidden; /* Ensure content inside swiper does not overflow */
+            border-radius: 1rem; /* Rounded corners for the slider container */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Subtle shadow */
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            height: 100%; /* Fill the swiper-container height */
+        }
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 1rem; /* Adjusted for smaller screens */
+        }
+        .slide-caption-title {
+            font-size: 1.75rem; /* Adjusted for smaller screens */
+            font-weight: 700;
+            margin-bottom: 0.5rem; /* Adjusted for smaller screens */
+        }
+        .slide-caption-text {
+            font-size: 1rem; /* Adjusted for smaller screens */
+            margin-bottom: 1rem; /* Adjusted for smaller screens */
+            line-height: 1.5;
+        }
+        /* Responsive adjustments for larger screens */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .slide-caption-title {
+                font-size: 2.25rem;
+                margin-bottom: 1rem;
+            }
+            .slide-caption-text {
+                font-size: 1.125rem;
+                margin-bottom: 1.5rem;
+            }
+            .slide-content {
+                padding: 2rem;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .slide-caption-title {
+                font-size: 2.5rem;
+            }
+            .slide-caption-text {
+                font-size: 1.25rem;
+            }
+        }
+
+        .slide-cta {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-purple);
+            padding: 0.75rem 2rem;
+            border-radius: 9999px; /* Tailwind: rounded-full */
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+        }
+        .slide-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Swiper Navigation and Pagination Styling */
+        .swiper-button-prev, .swiper-button-next {
+            color: white;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .swiper-button-prev:hover, .swiper-button-next:hover {
+            opacity: 1;
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+
+        /* Logo Train Animation */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .logo-train-container:hover .logo-train {
+            animation-play-state: paused; /* Pause animation on hover */
+        }
+        .logo-train {
+            display: flex;
+            white-space: nowrap; /* Keep all logos on one line */
+            animation: scroll-left 40s linear infinite; /* Adjust duration for desired speed */
+            will-change: transform; /* Optimize animation performance */
+        }
+        .logo-item {
+            flex-shrink: 0; /* Prevent logos from shrinking */
+            width: 150px; /* Fixed width for each logo container */
+            margin-right: 40px; /* Space between logos */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-item img {
+            max-width: 100%; /* Ensure images fit within their container */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Styling for Industry Cards with background images */
+        .industry-card {
+            background-size: cover;
+            background-position: center;
+            color: white; /* Ensure text is readable on top of background image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 250px; /* Ensure cards have a decent height */
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            transition: transform 0.3s ease-out; /* Smooth transition for hover scale */
+        }
+        /* Overlay for better text readability on background images */
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            transition: background 0.3s ease;
+            z-index: 1;
+        }
+        .industry-card:hover::before {
+            background: rgba(0, 0, 0, 0.6); /* Darker on hover */
+        }
+        .industry-card h3 {
+            position: relative;
+            z-index: 2;
+            padding: 1rem; /* Add some padding around text */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <!-- Fixed header that changes background and applies glassmorphism on scroll -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <nav class="container mx-auto px-6 flex items-center justify-between">
+            <!-- Company Logo/Name -->
+            <a href="#" class="flex items-center">
+  <img src="https://nichi.com/wp-content/uploads/2021/03/Nichi-logo.png" alt="Nichi-In Logo" class="h-10 w-auto object-contain transition-opacity duration-300 hover:opacity-80">
+</a>
+
+                        <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="text-white hover:text-gray-200 transition-colors duration-300">Home</a>
+                <a href="#about" class="text-white hover:text-gray-200 transition-colors duration-300">About Us</a>
+                <a href="#services" class="text-white hover:text-gray-200 transition-colors duration-300">Services</a>
+                <a href="#products" class="text-white hover:text-gray-200 transition-colors duration-300">Products</a>
+                <a href="#careers" class="text-white hover:text-gray-200 transition-colors duration-300">Careers</a>
+                <a href="#contact" class="text-white hover:text-gray-200 transition-colors duration-300">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button (Hamburger Icon) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu (initially hidden, toggled by JS) -->
+        <div id="mobile-menu" class="md:hidden bg-gradient-primary w-full py-4 px-6 text-center transition-all duration-300 hidden">
+            <a href="#hero" class="block text-white py-3 hover:bg-white hover:bg-opacity-20 rounded-md text-lg">Home</a>
+            <a href="#about" class="block text-white py-3 hover:bg-white hover:bg-opacity-20 rounded-md text-lg">About Us</a>
+            <a href="#services" class="block text-white py-3 hover:bg-white hover:bg-opacity-20 rounded-md text-lg">Services</a>
+            <a href="#expertise" class="block text-white py-3 hover:bg-white hover:bg-opacity-20 rounded-md text-lg">Expertise</a>
+            <a href="#contact" class="block text-white py-3 hover:bg-white hover:bg-opacity-20 rounded-md text-lg">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen bg-gradient-to-br from-purple-700 to-teal-500 flex items-center justify-center text-center text-white p-6 overflow-hidden">
+        <!-- Three.js Canvas for background animation -->
+        <canvas id="hero-canvas"></canvas>
+
+        <!-- Main Hero Content -->
+        <div class="relative z-10 max-w-4xl mx-auto hero-content">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 leading-tight hero-heading">
+                Building Smart, Scalable & Secure Solutions
+            </h1>
+            <p class="text-lg sm:text-xl lg:text-2xl mb-8 opacity-90 hero-subheading">
+                Your trusted partner in digital innovation, delivering excellence for over two decades.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <button class="bg-white text-purple-700 px-8 py-3 rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hero-cta-btn">
+                    Explore Services
+                </button>
+                <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-purple-700 transition-all duration-300 shadow-lg hero-cta-btn">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Solutions Section (New Section for Slider) -->
+    <section id="featured-solutions" class="py-16 md:py-20 bg-gray-100 px-6">
+        <div class="container mx-auto"> <!-- Removed hidden-onload-animated here -->
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-900 section-title hidden-onload-animated">Our Featured Solutions</h2>
+            <div class="swiper-container w-full max-w-screen-xl mx-auto hidden-onload-animated"> <!-- Added hidden-onload-animated here -->
+                <div class="swiper-wrapper">
+                    <!-- Slide 1: Salesforce CRM Consulting -->
+                    <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/6F42C1/FFFFFF?text=Salesforce+CRM+Consulting');">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <h3 class="slide-caption-title">Salesforce CRM Consulting</h3>
+                            <p class="slide-caption-text">Empower your enterprise with world-class CRM implementations that streamline workflows, enhance customer engagement, and drive measurable business growth through customized Salesforce strategies.</p>
+                            <a href="#" class="slide-cta">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Odoo ERP Integration -->
+                    <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/00C2B8/FFFFFF?text=Odoo+ERP+Integration');">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <h3 class="slide-caption-title">Odoo ERP Integration</h3>
+                            <p class="slide-caption-text">Boost operational efficiency and decision-making with Odoo — a robust ERP suite designed to unify your sales, finance, inventory, and HR processes in one scalable platform.</p>
+                            <a href="#" class="slide-cta">Our Approach</a>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Offshore Development Services -->
+                    <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/4299E1/FFFFFF?text=Offshore+Development');">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <h3 class="slide-caption-title">Offshore Development Services</h3>
+                            <p class="slide-caption-text">Access top-tier talent at competitive rates. Our offshore development model combines cost savings, productivity, and high-quality deliverables tailored to your time zone and workflow preferences.</p>
+                            <a href="#" class="slide-cta">Get Started</a>
+                        </div>
+                    </div>
+                    <!-- Slide 4: Onsite Consulting -->
+                    <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/F6AD55/FFFFFF?text=Onsite+Consulting');">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <h3 class="slide-caption-title">Onsite Consulting</h3>
+                            <p class="slide-caption-text">Gain direct access to our seasoned consultants who collaborate closely with your teams to architect, integrate, and optimize IT systems that support your business objectives on the ground.</p>
+                            <a href="#" class="slide-cta">Get Started</a>
+                        </div>
+                    </div>
+                    <!-- Slide 5: Managed IT Services -->
+                    <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/2F855A/FFFFFF?text=Managed+IT+Services');">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <h3 class="slide-caption-title">Managed IT Services</h3>
+                            <p class="slide-caption-text">Leave your IT headaches to us. Our end-to-end managed services ensure infrastructure stability, security, and performance — all while you focus on growing your business.</p>
+                            <a href="#" class="slide-cta">Get Started</a>
+                        </div>
+                    </div>
+                    <!-- Slide 6: Product Development -->
+                    <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/D53F8C/FFFFFF?text=Product+Development');">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <h3 class="slide-caption-title">Product Development</h3>
+                            <p class="slide-caption-text">Transform ideas into reality. From concept and prototyping to launch and scaling, our agile product development services accelerate your time-to-market with confidence and clarity.</p>
+                            <a href="#" class="slide-cta">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes Us Different Section -->
+    <section id="about" class="py-20 bg-gray-50 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 section-title hidden-onload-animated">What Makes Us Different</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1: Customer Centric & Flexible -->
+                <div class="bg-white rounded-xl shadow-xl p-8 card-reveal hidden-onload-animated">
+                    <div class="bg-purple-100 text-purple-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for Customer Centric (Lucide: Users) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-5v-9H4L2 12V4h14l4 4v12h-7M12 18H5"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Customer Centric & Flexible</h3>
+                    <p class="text-gray-600">We are receptive and empathetic in understanding the needs and expectations of our customers and adopt a flexible approach in terms of business model, processes, technologies and people. We strive to work collaboratively with the customer.</p>
+                </div>
+
+                <!-- Card 2: “KAIZEN” Our Mantra -->
+                <div class="bg-white rounded-xl shadow-xl p-8 card-reveal hidden-onload-animated">
+                    <div class="bg-teal-100 text-teal-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for Kaizen (Lucide: Zap) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">“KAIZEN” Our Mantra</h3>
+                    <p class="text-gray-600">We strive for continuous development in our processes, abilities & attitudes through regular training, knowledge sharing & interactive workshops. We are nimble footed as far as adaptability is concerned.</p>
+                </div>
+
+                <!-- Card 3: Japan-India Cross Market Advantage -->
+                <div class="bg-white rounded-xl shadow-xl p-8 card-reveal hidden-onload-animated">
+                    <div class="bg-blue-100 text-blue-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for Global (Lucide: Globe) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-11h2m-2 4h2m4-4h2m-2 4h2"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Japan-India Cross Market Advantage</h3>
+                    <p class="text-gray-600">Our Japanese language capabilities, our adoption of nuances of Japanese business culture & the strong business connections with SMEs and Enterprise Giants in Japan can be leveraged to localize your solutions/products to Japanese market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Technology Expertise Section -->
+    <section id="expertise" class="py-20 bg-gray-100 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900 section-title hidden-onload-animated">Our Technology Expertise</h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto expertise-intro hidden-onload-animated">
+                With 25+ years of delivering global IT solutions, we align the right people, technology, and processes to drive your business forward.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12 technology-grid">
+                <!-- Technology Logos/Chips (using placeholder images for demonstration) -->
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/6F42C1/FFFFFF?text=PY" alt="Python Logo" class="h-16 w-16 object-contain rounded-full bg-purple-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">Python</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/00C2B8/FFFFFF?text=JA" alt="Java Logo" class="h-16 w-16 object-contain rounded-full bg-teal-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">Java</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/4299E1/FFFFFF?text=RE" alt="React Logo" class="h-16 w-16 object-contain rounded-full bg-blue-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">React</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/F6AD55/FFFFFF?text=AWS" alt="AWS Logo" class="h-16 w-16 object-contain rounded-full bg-orange-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">AWS</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/2F855A/FFFFFF?text=AZ" alt="Azure Logo" class="h-16 w-16 object-contain rounded-full bg-green-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">Azure</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/D53F8C/FFFFFF?text=DO" alt="Docker Logo" class="h-16 w-16 object-contain rounded-full bg-pink-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">Docker</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/319795/FFFFFF?text=NO" alt="Node.js Logo" class="h-16 w-16 object-contain rounded-full bg-cyan-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">Node.js</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/9F7AEA/FFFFFF?text=GCP" alt="GCP Logo" class="h-16 w-16 object-contain rounded-full bg-indigo-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">GCP</span>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/ED8936/FFFFFF?text=SQL" alt="SQL Logo" class="h-16 w-16 object-contain rounded-full bg-yellow-100 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">SQL</span>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center tech-item hidden-onload-animated">
+                    <img src="https://placehold.co/80x80/4FD1C5/FFFFFF?text=K8S" alt="Kubernetes Logo" class="h-16 w-16 object-contain rounded-full bg-teal-200 p-2 mb-2">
+                    <span class="font-semibold text-gray-800 text-sm">Kubernetes</span>
+                </div>
+            </div>
+
+            <button class="bg-gradient-primary text-white px-10 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg expertise-cta hidden-onload-animated">
+                Know More
+            </button>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section id="services" class="py-20 bg-gray-50 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 section-title hidden-onload-animated">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Service Card 1: Enterprise App Development -->
+                <div class="bg-white rounded-xl shadow-xl p-8 service-card hidden-onload-animated">
+                    <div class="bg-purple-100 text-purple-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for App Development (Lucide: Smartphone) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1l-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Enterprise App Development</h3>
+                    <p class="text-gray-600">Development of Enterprise Business applications</p>
+                </div>
+
+                <!-- Service Card 2: AI/ML Solutions -->
+                <div class="bg-white rounded-xl shadow-xl p-8 service-card hidden-onload-animated">
+                    <div class="bg-teal-100 text-teal-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for AI/ML (Lucide: Brain) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">AI/ML Solutions</h3>
+                    <p class="text-gray-600">Development of AI/ML solutions</p>
+                </div>
+
+                <!-- Service Card 3: Industrial IoT/Automation -->
+                <div class="bg-white rounded-xl shadow-xl p-8 service-card hidden-onload-animated">
+                    <div class="bg-blue-100 text-blue-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for IoT (Lucide: Wifi) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V3m0 3a10.025 10.025 0 014.134 1.258A10.06 10.06 0 0120.356 12C18.676 16.591 14.717 20 10 20v0-3.375C4.035 15.688 2 13.013 2 10a10.025 10.025 0 014.134-1.258A10.06 10.06 0 0110 3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Industrial IoT/Automation</h3>
+                    <p class="text-gray-600">Development of Industrial Automation/IoT applications</p>
+                </div>
+
+                <!-- Service Card 4: Digital Transformation (DX) -->
+                <div class="bg-white rounded-xl shadow-xl p-8 service-card hidden-onload-animated">
+                    <div class="bg-orange-100 text-orange-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for Digital Transformation (Lucide: Repeat) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Digital Transformation (DX)</h3>
+                    <p class="text-gray-600">DX (Digital Transformation) Services</p>
+                </div>
+
+                <!-- Service Card 5: Managed IT Services -->
+                <div class="bg-white rounded-xl shadow-xl p-8 service-card hidden-onload-animated">
+                    <div class="bg-green-100 text-green-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for Managed Services (Lucide: ShieldCheck) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c.048.907.156 1.805.318 2.684a11.94 11.94 0 00-.594 3.197c.28.649.927 1.01 1.637 1.01h.23c1.782.022 3.551-.157 5.253-.518.577-.122 1.155-.262 1.73-.414a11.973 11.973 0 003.504.607c.71 0 1.357-.36 1.637-1.01.272-.63.39-1.288.39-1.956.002-.668-.117-1.326-.39-1-1.956a11.94 11.94 0 00-.594-3.197c.162-.879.27-1.777.318-2.684a12.001 12.001 0 00-3.04-8.618z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Managed IT Services</h3>
+                    <p class="text-gray-600">Managed IT Services</p>
+                </div>
+
+                <!-- Service Card 6: Software Testing & Migration -->
+                <div class="bg-white rounded-xl shadow-xl p-8 service-card hidden-onload-animated">
+                    <div class="bg-pink-100 text-pink-700 p-4 rounded-full inline-block mb-6">
+                        <!-- Icon for Testing (Lucide: Terminal) -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Software Testing & Migration</h3>
+                    <p class="text-gray-600">Software Testing and Migration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="py-20 bg-gray-100 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 section-title hidden-onload-animated">Industries We Serve</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Industry Card 1: Manufacturing -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/6F42C1/E0E0E0/Manufacturing');">
+                    <h3 class="text-2xl font-bold relative z-20">Manufacturing</h3>
+                </div>
+
+                <!-- Industry Card 2: Retail -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/00C2B8/E0E0E0/Retail');">
+                    <h3 class="text-2xl font-bold relative z-20">Retail</h3>
+                </div>
+
+                <!-- Industry Card 3: Automotive -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/4299E1/E0E0E0/Automotive');">
+                    <h3 class="text-2xl font-bold relative z-20">Automotive</h3>
+                </div>
+
+                <!-- Industry Card 4: Healthcare -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/F6AD55/E0E0E0/Healthcare');">
+                    <h3 class="text-2xl font-bold relative z-20">Healthcare</h3>
+                </div>
+
+                <!-- Industry Card 5: Fintech -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/2F855A/E0E0E0/Fintech');">
+                    <h3 class="text-2xl font-bold relative z-20">Fintech</h3>
+                </div>
+
+                <!-- Industry Card 6: Education -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/D53F8C/E0E0E0/Education');">
+                    <h3 class="text-2xl font-bold relative z-20">Education</h3>
+                </div>
+
+                <!-- Industry Card 7: Travel & Tourism -->
+                <div class="rounded-xl shadow-xl p-6 industry-card hidden-onload-animated" style="background-image: url('https://placehold.co/600x400/319795/E0E0E0/Travel%20%26%20Tourism');">
+                    <h3 class="text-2xl font-bold relative z-20">Travel & Tourism</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memberships Section (Logo Train) -->
+    <section class="py-20 bg-gray-50 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 section-title hidden-onload-animated">Our Esteemed Memberships</h2>
+            <div class="logo-train-container overflow-hidden relative py-8">
+                <div class="logo-train">
+                    <!-- Logos - Duplicated to create a seamless infinite loop -->
+                    <!-- Placeholder images with vibrant backgrounds as requested -->
+                    <div class="logo-item"><img src="https://placehold.co/150x80/6F42C1/FFFFFF/Client1" alt="Client Logo 1" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/00C2B8/FFFFFF/Client2" alt="Client Logo 2" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/4299E1/FFFFFF/Client3" alt="Client Logo 3" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/F6AD55/FFFFFF/Client4" alt="Client Logo 4" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/2F855A/FFFFFF/Client5" alt="Client Logo 5" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/D53F8C/FFFFFF/Client6" alt="Client Logo 6" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/319795/FFFFFF/Client7" alt="Client Logo 7" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/9F7AEA/FFFFFF/Client8" alt="Client Logo 8" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/ED8936/FFFFFF/Client9" alt="Client Logo 9" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/4FD1C5/FFFFFF/Client10" alt="Client Logo 10" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/5A67D8/FFFFFF/Client11" alt="Client Logo 11" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <!-- Duplicates for seamless looping -->
+                    <div class="logo-item"><img src="https://placehold.co/150x80/6F42C1/FFFFFF/Client1" alt="Client Logo 1" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/00C2B8/FFFFFF/Client2" alt="Client Logo 2" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/4299E1/FFFFFF/Client3" alt="Client Logo 3" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/F6AD55/FFFFFF/Client4" alt="Client Logo 4" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/2F855A/FFFFFF/Client5" alt="Client Logo 5" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/D53F8C/FFFFFF/Client6" alt="Client Logo 6" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/319795/FFFFFF/Client7" alt="Client Logo 7" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/9F7AEA/FFFFFF/Client8" alt="Client Logo 8" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/ED8936/FFFFFF/Client9" alt="Client Logo 9" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/4FD1C5/FFFFFF/Client10" alt="Client Logo 10" class="h-20 object-contain mx-4 rounded-md"></div>
+                    <div class="logo-item"><img src="https://placehold.co/150x80/5A67D8/FFFFFF/Client11" alt="Client Logo 11" class="h-20 object-contain mx-4 rounded-md"></div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-6" id="contact">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Site Map Column -->
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-6">Site Map</h3>
+                <ul class="space-y-3">
+                    <li><a href="#hero" class="hover:text-white transition-colors duration-200">Home</a></li>
+                    <li><a href="#about" class="hover:text-white transition-colors duration-200">About Us</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors duration-200">Services</a></li>
+                    <li><a href="#expertise" class="hover:text-white transition-colors duration-200">Products</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-200">Careers</a></li>
+                    <li><a href="#contact" class="hover:text-white transition-colors duration-200">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- About the Company Column -->
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-6">About the Company</h3>
+                <p>Nichi-In Software Solutions Pvt. Ltd., a joint venture company with NDR Co. Ltd., Osaka, Japan, specializes in providing innovative & cost effective IT solutions and services customized to our global customers.</p>
+            </div>
+
+            <!-- Contact Information Column -->
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-6">Contact Information</h3>
+                <address class="not-italic mb-4">
+                    <span class="font-semibold">Corporate Office:</span><br>
+                    #813, Dr.Puneeth Rajkumar Road,<br>
+                    Hosakerehalli, Banashankari 3rd Stage,<br>
+                    Bengaluru – 560 085, India
+                </address>
+                <address class="not-italic">
+                    <span class="font-semibold">Development Center 2:</span><br>
+                    #812, 1st Floor, Dr.Puneeth Rajkumar Road,<br>
+                    Hosakerehalli, Banashankari 3rd Stage,<br>
+                    Bengaluru – 560 085, India
+                </address>
+            </div>
+        </div>
+
+        <!-- Copyright Information -->
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500">
+            <p>&copy; 2025 Nichi-In Software Solutions Pvt. Ltd. – All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP Libraries for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Three.js for 3D hero background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        // Register the ScrollTrigger plugin with GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Utility function to set initial state and allow GSAP to take over
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply initial GSAP settings to elements with hidden-onload-animated class
+            gsap.set(".hidden-onload-animated", { opacity: 0, y: 20 });
+            // Apply initial GSAP settings to hero content
+            gsap.set(".hero-heading, .hero-subheading, .hero-cta-btn", { opacity: 0, y: 50 });
+        });
+
+        // Header animation: Change background and apply shadow/blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Add classes for solid background, shadow, opacity, and backdrop blur
+                navbar.classList.add('bg-gray-900', 'shadow-lg', 'bg-opacity-90', 'backdrop-blur-md');
+                navbar.classList.remove('bg-transparent'); // Remove transparent background
+            } else {
+                // Revert to transparent background when scrolled to top
+                navbar.classList.remove('bg-gray-900', 'shadow-lg', 'bg-opacity-90', 'backdrop-blur-md');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden'); // Toggle visibility of the mobile menu
+        });
+
+        // GSAP Animations for Hero Section elements - these now animate FROM the gsap.set state
+        gsap.to(".hero-heading", {
+            opacity: 1, // Animate TO visible
+            y: 0,      // Animate TO final position
+            duration: 1, // Animation duration
+            ease: "power3.out" // Easing function for smooth animation
+        });
+        gsap.to(".hero-subheading", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.3, // Delay after heading animation
+            ease: "power3.out"
+        });
+        gsap.to(".hero-cta-btn", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.6,
+            stagger: 0.2, // Stagger effect for multiple buttons
+            ease: "power2.out"
+        });
+
+
+        // GSAP ScrollTrigger Animations for general section titles and intros
+        gsap.utils.toArray(".section-title, .expertise-intro").forEach(el => {
+            gsap.from(el, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                }
+            });
+        });
+
+        // GSAP ScrollTrigger Animation for the new slider section content
+        // This targets the h2 and swiper-container directly now that they have hidden-onload-animated
+        gsap.utils.toArray("#featured-solutions .section-title, #featured-solutions .swiper-container").forEach(el => {
+            gsap.from(el, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                }
+            });
+        });
+
+
+        // GSAP ScrollTrigger Animations for "What Makes Us Different" cards (fade-up with subtle zoom)
+        gsap.utils.toArray(".card-reveal").forEach(card => {
+            gsap.from(card, {
+                y: 100,      // Start 100px below
+                opacity: 0,  // Start invisible
+                scale: 0.95,  // Start slightly scaled down for zoom effect
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: card,         // Element that triggers the animation
+                    start: "top 80%",      // When top of card enters 80% of viewport
+                    toggleActions: "play none none none",
+                }
+            });
+        });
+
+        // GSAP ScrollTrigger Animations for "Our Technology Expertise" grid items
+        gsap.utils.toArray(".tech-item").forEach(item => {
+            gsap.from(item, {
+                opacity: 0,
+                scale: 0.5, // Start very small
+                duration: 0.8,
+                ease: "back.out(1.7)", // Bounce effect
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                }
+            });
+        });
+
+        // GSAP ScrollTrigger Animation for the "Expertise" CTA button
+        gsap.from(".expertise-cta", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".expertise-cta",
+                start: "top 90%",
+                toggleActions: "play none none none",
+            }
+        });
+
+
+        // GSAP ScrollTrigger Animations for "Our Services" cards with staggered effect
+        gsap.utils.toArray(".service-card").forEach((card, i) => {
+            gsap.from(card, {
+                y: 100,
+                opacity: 0,
+                scale: 0.95,
+                duration: 1,
+                ease: "power3.out",
+                delay: i * 0.1, // Stagger animation for each card
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            });
+        });
+
+        // GSAP ScrollTrigger Animations for Industries cards with staggered fade-in and subtle zoom
+        gsap.utils.toArray(".industry-card").forEach((card, i) => {
+            gsap.from(card, {
+                y: 100,
+                opacity: 0,
+                scale: 0.95,
+                duration: 1,
+                ease: "power3.out",
+                delay: i * 0.1, // Stagger animation for each card
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            });
+        });
+
+
+        // --- Three.js for Hero Section Background ---
+        let scene, camera, renderer, particles, mouseX = 0, mouseY = 0;
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        function initThreeJS() {
+            const canvas = document.getElementById('hero-canvas');
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); // alpha for transparent background
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio); // Improve rendering quality on high-DPI screens
+
+            // Create colorful abstract shapes (particles)
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const colorPalette = [
+                new THREE.Color(0x6F42C1), // Primary Purple
+                new THREE.Color(0x00C2B8), // Secondary Teal
+                new THREE.Color(0x9370DB), // Lighter Purple
+                new THREE.Color(0x40E0D0), // Lighter Teal
+                new THREE.Color(0xFF6347)  // Accent color (e.g., Tomato)
+            ];
+
+            // Using spheres for a soft, abstract look
+            const numParticles = 200;
+            for (let i = 0; i < numParticles; i++) {
+                const x = Math.random() * 2000 - 1000;
+                const y = Math.random() * 2000 - 1000;
+                const z = Math.random() * 2000 - 1000;
+                vertices.push(x, y, z);
+
+                const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 15, // Size of each point/sphere
+                vertexColors: true, // Use vertex colors defined above
+                transparent: true,
+                opacity: 0.6,
+                sizeAttenuation: true // Makes points appear smaller further away
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            camera.position.z = 500;
+
+            // Mouse interaction for camera rotation
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            document.addEventListener('touchstart', onDocumentTouchStart, false);
+            document.addEventListener('touchmove', onDocumentTouchMove, false);
+            document.addEventListener('touchend', onDocumentTouchEnd, false);
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onDocumentMouseMove(event) {
+            mouseX = event.clientX - windowHalfX;
+            mouseY = event.clientY - windowHalfY;
+        }
+
+        let isDragging = false;
+        let previousMouseX = 0;
+        let previousMouseY = 0;
+
+        function onDocumentTouchStart(event) {
+            if (event.touches.length === 1) {
+                event.preventDefault();
+                isDragging = true;
+                previousMouseX = event.touches[0].pageX;
+                previousMouseY = event.touches[0].pageY;
+            }
+        }
+
+        function onDocumentTouchMove(event) {
+            if (isDragging) {
+                event.preventDefault();
+                mouseX = (event.touches[0].pageX - previousMouseX) * 2; // Scale sensitivity for touch
+                mouseY = (event.touches[0].pageY - previousMouseY) * 2;
+                previousMouseX = event.touches[0].pageX;
+                previousMouseY = event.touches[0].pageY;
+            }
+        }
+
+        function onDocumentTouchEnd(event) {
+            isDragging = false;
+            // Optionally, reset mouseX/mouseY or slowly decay them to stop rotation after touch ends
+            mouseX = 0;
+            mouseY = 0;
+        }
+
+        function animateThreeJS() {
+            requestAnimationFrame(animateThreeJS);
+
+            // Subtle rotation and mouse-based camera movement
+            camera.position.x += (mouseX * 0.1 - camera.position.x) * .05;
+            camera.position.y += (-mouseY * 0.1 - camera.position.y) * .05;
+            camera.lookAt(scene.position);
+
+            if (particles) {
+                particles.rotation.x += 0.0005;
+                particles.rotation.y += 0.001;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        // Initialize Swiper
+        let heroSwiper; // Declare globally so it can be accessed
+        function initSwiper() {
+            heroSwiper = new Swiper('.swiper-container', {
+                loop: true, // Infinite loop
+                autoplay: {
+                    delay: 5000, // 5 seconds
+                    disableOnInteraction: false, // Keep autoplaying even after user interaction
+                },
+                effect: 'fade', // Smooth fade transition
+                fadeEffect: {
+                    crossFade: true,
+                },
+                speed: 1000, // Transition speed
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: true,
+                },
+                // Animate caption content on slide change
+                on: {
+                    init: function () {
+                        // Initial animation for the first slide
+                        animateSlideContent(this.slides[this.activeIndex]);
+                    },
+                    slideChangeTransitionStart: function () {
+                        // Fade out content of the previous slide
+                        const prevSlide = this.slides[this.previousIndex];
+                        if (prevSlide) {
+                            gsap.to(prevSlide.querySelector('.slide-caption-title'), { opacity: 0, y: -20, duration: 0.3 });
+                            gsap.to(prevSlide.querySelector('.slide-caption-text'), { opacity: 0, y: -20, duration: 0.3, delay: 0.05 });
+                            gsap.to(prevSlide.querySelector('.slide-cta'), { opacity: 0, y: -20, duration: 0.3, delay: 0.1 });
+                        }
+                    },
+                    slideChangeTransitionEnd: function () {
+                        // Animate in content of the new active slide
+                        const activeSlide = this.slides[this.activeIndex];
+                        animateSlideContent(activeSlide);
+                    },
+                }
+            });
+        }
+
+        function animateSlideContent(slideElement) {
+            // Ensure elements are initially hidden before animating in
+            gsap.set(slideElement.querySelector('.slide-caption-title'), { opacity: 0, y: 20 });
+            gsap.set(slideElement.querySelector('.slide-caption-text'), { opacity: 0, y: 20 });
+            gsap.set(slideElement.querySelector('.slide-cta'), { opacity: 0, y: 20 });
+
+            gsap.to(slideElement.querySelector('.slide-caption-title'), { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
+            gsap.to(slideElement.querySelector('.slide-caption-text'), { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: "power2.out" });
+            gsap.to(slideElement.querySelector('.slide-cta'), { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: "power2.out" });
+        }
+
+
+        // Initialize Three.js and Swiper when the window loads
+        window.onload = function() {
+            initThreeJS();
+            animateThreeJS(); // Start the Three.js animation loop
+
+            initSwiper(); // Initialize Swiper after Three.js
+
+            // Ensure ScrollTrigger refreshes after all content and Three.js are loaded
+            // This is important because the Swiper adds/changes elements affecting layout.
+            ScrollTrigger.refresh();
+        };
+    </script>
+</body>
+</html>

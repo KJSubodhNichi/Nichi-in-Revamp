@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Testimonials Slider</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Root variables for consistent theming */
+    :root {
+      --dark-blue: hsl(240, 38%, 20%);
+      --grayish-blue: hsl(240, 18%, 77%);
+      --background: #ffffff;
+    }
+
+    /* Universal box-sizing and margin/padding reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styles for overall page layout and typography */
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--dark-blue);
+      background-color: var(--background);
+      background-image: url('https://alcs-slider.netlify.app/images/pattern-curve.svg'); /* Background pattern */
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      background-size: 280px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Full viewport height */
+      padding: 20px;
+    }
+
+    /* Section title and subtitle styles for headings */
+    .section-title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--dark-blue);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--grayish-blue);
+      margin-bottom: 40px; /* Spacing before the testimonial container */
+      font-size: 18px;
+    }
+
+    /* Main container for the testimonial slider */
+    .testimonial-container {
+      width: 100%;
+      max-width: 56rem; /* Max width for content, equivalent to 896px */
+      padding: 2rem; /* Inner padding, equivalent to 32px */
+    }
+
+    /* Grid layout for testimonial content and image */
+    .testimonial-grid {
+      display: grid;
+      gap: 5rem; /* Gap between grid items, equivalent to 80px */
+    }
+
+    /* Image container for client logos/photos */
+    .image-container {
+      position: relative; /* Crucial for absolute positioning of testimonial images */
+      width: 100%;
+      height: 24rem; /* Ensures a consistent height for the container, equivalent to 384px */
+      perspective: 1000px; /* Establishes 3D space for transformations */
+    }
+
+    /* Testimonial image styling for circular motion */
+    .testimonial-image {
+      position: absolute; /* Allows images to overlap and move freely */
+      width: 100%; /* Image fills its container initially */
+      object-fit: cover; /* Ensures image covers the area without distortion */
+      border-radius: 1.5rem; /* Rounded corners for modern feel */
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition for all transforms */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Glassmorphic shadow effect */
+      /* Initial state for images when they are first added to the DOM */
+      opacity: 0;
+      transform: translateY(0) scale(0) rotateY(0deg); /* Start invisible and scaled down */
+    }
+
+    /* Testimonial content (quote, name, designation) styling */
+    .testimonial-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Pushes buttons to bottom on mobile */
+    }
+
+    /* Name and designation styling */
+    .name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 0.25rem;
+    }
+
+    .designation {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 2rem;
+    }
+
+    /* Quote text styling */
+    .quote {
+      font-size: 1.125rem;
+      color: #4b5563;
+      line-height: 1.75;
+    }
+
+    /* Animated words within the quote */
+    .quote .word {
+      display: inline-block; /* Allows individual word animation */
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(10px);
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    }
+
+    /* Arrow navigation buttons container */
+    .arrow-buttons {
+      display: flex;
+      gap: 1rem;
+      padding-top: 3rem; /* Spacing above buttons on smaller screens */
+    }
+
+    /* Individual arrow button styling */
+    .arrow-button {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%; /* Circular buttons */
+      background-color: #141414; /* Dark background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border: none; /* Remove default button border */
+    }
+
+    .arrow-button:hover {
+      background-color: #00a6fb; /* Blue hover effect */
+    }
+
+    .arrow-button svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: #f1f1f7; /* Light icon color */
+      transition: transform 0.3s;
+    }
+
+    .arrow-button:hover svg {
+      fill: #ffffff; /* White icon on hover */
+    }
+
+    .prev-button:hover svg {
+      transform: rotate(-12deg); /* Subtle rotation on hover */
+    }
+
+    .next-button:hover svg {
+      transform: rotate(12deg); /* Subtle rotation on hover */
+    }
+
+    /* Media query for larger screens (e.g., tablets and desktops) */
+    @media (min-width: 768px) {
+      .testimonial-grid {
+        grid-template-columns: 1fr 1fr; /* Two-column layout: image and content side-by-side */
+      }
+
+      .arrow-buttons {
+        padding-top: 0; /* Remove top padding when side-by-side */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <!-- Section title and subtitle -->
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-subtitle">Discover how Nichi-In has empowered global businesses with innovative IT solutions.</p>
+
+    <div class="testimonial-container" id="testimonial-container">
+      <div class="testimonial-grid">
+        <div class="image-container" id="image-container">
+          <!-- Testimonial images will be dynamically loaded and managed by JavaScript -->
+        </div>
+        <div class="testimonial-content">
+          <div>
+            <h3 class="name" id="name"></h3>
+            <p class="designation" id="designation"></p>
+            <p class="quote" id="quote"></p>
+          </div>
+          <div class="arrow-buttons">
+            <button class="arrow-button prev-button" id="prev-button" aria-label="Previous Testimonial">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <button class="arrow-button next-button" id="next-button" aria-label="Next Testimonial">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Array of testimonial data
+    const testimonials = [
+      {
+        quote:
+          "Nichi-In Software Solutions has been instrumental in our digital transformation journey. Their expertise and dedication are truly commendable.",
+        name: "Fixer",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Fixer.jpg"
+      },
+      {
+        quote:
+          "The team at Nichi-In provided exceptional cloud solutions that significantly boosted our operational efficiency. Highly recommended!",
+        name: "Cosmos",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Cosmos.jpg"
+      },
+      {
+        quote:
+          "We partnered with Nichi-In for AI-driven analytics, and the results exceeded our expectations. A truly innovative and reliable partner.",
+        name: "Mitsubishi",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Mitsubishi.jpg"
+      },
+      {
+        quote:
+          "Nichi-In's software development services were top-notch. They delivered a robust and scalable application on time and within budget.",
+        name: "JAM",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_JAM.jpg"
+      },
+      {
+        quote:
+          "Their strategic marketing insights helped us reach a wider audience and significantly increase our brand visibility. An invaluable partner.",
+        name: "Sony",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Sony.jpg"
+      },
+      {
+        quote:
+          "Nichi-In’s automotive solutions are highly reliable and efficient.",
+        name: "Toyota",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_Toyota.jpg"
+      },
+      {
+        quote:
+          "We are extremely satisfied with the comprehensive IT services provided by Nichi-In. Their team is highly skilled and responsive.",
+        name: "Toshiba",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Toshiba-logo.png"
+      },
+      {
+        quote:
+          "Their innovative solutions and professional approach have made a significant positive impact on our business operations.",
+        name: "Telenet",
+        designation: "Belgium",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Telenet.png"
+      },
+      {
+        quote:
+          "Nichi-In provided excellent technology consulting, guiding us through complex decisions with clear, actionable advice.",
+        name: "Nomura Research Institute (NRI)",
+        designation: "Japan",
+        src:
+          "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Client_NRI.jpg"
+      }
+    ];
+
+    let activeIndex = 0;
+    const imageContainer = document.getElementById("image-container");
+    const nameElement = document.getElementById("name");
+    const designationElement = document.getElementById("designation");
+    const quoteElement = document.getElementById("quote");
+    const prevButton = document.getElementById("prev-button");
+    const nextButton = document.getElementById("next-button");
+    const testimonialContainer = document.getElementById("testimonial-container");
+    let autoplayInterval;
+
+    /**
+     * Calculates the dynamic gap between images based on container width.
+     * This function helps adjust the visual spacing for the 3D-like image stack.
+     * @param {number} width - The current width of the image container.
+     * @returns {number} The calculated gap in pixels.
+     */
+    function calculateGap(width) {
+      const minWidth = 1024;
+      const maxWidth = 1456;
+      const minGap = 60;
+      const maxGap = 86;
+
+      if (width <= minWidth) return minGap;
+      if (width >= maxWidth)
+        return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
+
+      return (
+        minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth))
+      );
+    }
+
+    /**
+     * Updates the displayed testimonial content and animates the images.
+     * This is the core function for the slider's interactive and visual logic,
+     * creating and transforming multiple image elements to achieve the circular motion.
+     * @param {number} direction - The direction to move (1 for next, -1 for previous).
+     */
+    function updateTestimonial(direction) {
+      // Calculate the new active index, ensuring it loops around the array
+      activeIndex = (activeIndex + direction + testimonials.length) % testimonials.length;
+
+      // Iterate through all testimonials to create or update their image elements
+      testimonials.forEach((testimonial, index) => {
+        let img = imageContainer.querySelector(`[data-index="${index}"]`);
+        if (!img) {
+          // If the image element doesn't exist, create it and append to the container
+          img = document.createElement("img");
+          img.src = testimonial.src;
+          img.alt = testimonial.name;
+          img.classList.add("testimonial-image");
+          img.dataset.index = index; // Store the original index as a data attribute
+          imageContainer.appendChild(img);
+        }
+
+        // Calculate the offset of the current image relative to the active image
+        // This determines its position and transformation in the circular layout.
+        const offset = (index - activeIndex + testimonials.length) % testimonials.length;
+
+        // Determine z-index to ensure correct layering (active image on top)
+        const zIndex = testimonials.length - Math.abs(offset);
+        // All images are visible, but transformed
+        const opacity = 1;
+        // Active image is full size, others are scaled down
+        const scale = index === activeIndex ? 1 : 0.85;
+
+        let translateX, translateY, rotateY;
+
+        // Apply transformations based on the calculated offset
+        if (offset === 0) {
+          // Active image: centered, full size, no rotation
+          translateX = "0%";
+          translateY = "0%";
+          rotateY = "0deg";
+        } else if (offset === 1 || offset === -2) {
+          // Next image (or the one that wraps around to be next): positioned to the right, slightly up, and rotated.
+          // maxStickUp determines the vertical displacement for side images.
+          const maxStickUp = calculateGap(imageContainer.offsetWidth) * 0.8;
+          translateX = "20%";
+          translateY = `-${(maxStickUp / img.offsetHeight) * 100}%`;
+          rotateY = "-15deg";
+        } else {
+          // Previous image (or the one that wraps around to be previous): positioned to the left, slightly up, and rotated.
+          const maxStickUp = calculateGap(imageContainer.offsetWidth) * 0.8;
+          translateX = "-20%";
+          translateY = `-${(maxStickUp / img.offsetHeight) * 100}%`;
+          rotateY = "15deg";
+        }
+
+        // Apply the calculated styles to the image element
+        img.style.zIndex = zIndex;
+        img.style.opacity = opacity;
+        img.style.transform = `translate(${translateX}, ${translateY}) scale(${scale}) rotateY(${rotateY})`;
+      });
+
+      // Update the textual content of the testimonial
+      nameElement.textContent = testimonials[activeIndex].name;
+      designationElement.textContent = testimonials[activeIndex].designation;
+
+      // Split the quote into words and wrap each in a span for the animation effect
+      quoteElement.innerHTML = testimonials[activeIndex].quote
+        .split(" ")
+        .map((word) => `<span class="word">${word}</span>`)
+        .join(" ");
+
+      animateWords(); // Trigger the word animation
+    }
+
+    /**
+     * Animates words in the quote element with a subtle fade-in and movement.
+     */
+    function animateWords() {
+      const words = quoteElement.querySelectorAll(".word");
+      words.forEach((word, index) => {
+        // Reset initial state for the animation
+        word.style.opacity = "0";
+        word.style.transform = "translateY(10px)";
+        word.style.filter = "blur(10px)";
+        // Apply final state with a staggered delay for each word
+        setTimeout(() => {
+          word.style.transition =
+            "opacity 0.2s ease-in-out, transform 0.2s ease-in-out, filter 0.2s ease-in-out";
+          word.style.opacity = "1";
+          word.style.transform = "translateY(0)";
+          word.style.filter = "blur(0)";
+        }, index * 20); // 20ms delay per word
+      });
+    }
+
+    /**
+     * Advances to the next testimonial.
+     */
+    function handleNext() {
+      updateTestimonial(1);
+    }
+
+    /**
+     * Moves to the previous testimonial.
+     */
+    function handlePrev() {
+      updateTestimonial(-1);
+    }
+
+    /**
+     * Starts the automatic testimonial rotation.
+     */
+    function startAutoplay() {
+      stopAutoplay(); // Clear any existing interval to prevent multiple timers
+      autoplayInterval = setInterval(handleNext, 5000); // Advance every 5 seconds
+    }
+
+    /**
+     * Stops the automatic testimonial rotation.
+     */
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    // Event listeners for manual navigation buttons
+    prevButton.addEventListener("click", () => {
+      handlePrev();
+      startAutoplay(); // Restart autoplay after manual interaction
+    });
+    nextButton.addEventListener("click", () => {
+      handleNext();
+      startAutoplay(); // Restart autoplay after manual interaction
+    });
+
+    // Event listeners to pause/resume autoplay on hover over the testimonial container
+    testimonialContainer.addEventListener('mouseenter', stopAutoplay);
+    testimonialContainer.addEventListener('mouseleave', startAutoplay);
+
+    // Initialize the slider when the window loads
+    window.onload = function() {
+      updateTestimonial(0); // Display the first testimonial
+      startAutoplay(); // Start automatic rotation
+    };
+
+    // Recalculate and re-render testimonial layout on window resize to ensure responsiveness
+    window.addEventListener("resize", () => updateTestimonial(0));
+  </script>
+</body>
+</html>

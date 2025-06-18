@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nichi-In Software Solutions</title>
+    <!-- Google Fonts: Modern and clean (Inter for all text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming and easy adjustments */
+        :root {
+            --primary-color: #0056b3; /* Nichi-in Blue */
+            --secondary-color: #333; /* Dark text */
+            --light-bg: #fdfdfd; /* Very light background */
+            --white: #ffffff;
+            --accent-color: #e67e22; /* Warm accent */
+            --border-radius-lg: 8px;
+            --border-radius-sm: 4px;
+            --shadow-light: 0 1px 6px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --spacing-unit: 1.5rem;
+        }
+
+        /* Reset some defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif; /* Changed to Inter for consistency */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--secondary-color);
+            background-color: var(--light-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 16px; /* Base font size */
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 2);
+        }
+
+        /* Header styles */
+        .site-header {
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem 2rem;
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Adjusted for grid on desktop, flex on mobile for hamburger */
+        @media (min-width: 769px) {
+            .logo-nav {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .logo {
+            max-height: 60px;
+            width: auto;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end; /* Align right on desktop */
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: #0073aa;
+        }
+
+        /* Hamburger Button (hidden on desktop) */
+        .hamburger {
+            display: none; /* Hidden by default on desktop */
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 3px;
+            background: #333;
+            display: block;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Responsive Layout for ≤768px (Mobile) */
+        @media (max-width: 768px) {
+            .logo-nav {
+                grid-template-columns: auto auto; /* Logo and hamburger */
+                grid-template-rows: auto auto; /* Two rows for logo/hamburger and nav */
+                display: flex; /* Use flex for initial layout before nav expands */
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .main-nav {
+                grid-column: 1 / -1; /* Span full width below logo/hamburger */
+                display: none; /* Hidden by default on mobile */
+                flex-direction: column;
+                gap: 1rem;
+                background-color: #fff;
+                padding: 1rem 0;
+                width: 100%; /* Take full width when active */
+                text-align: center;
+            }
+
+            .main-nav.active {
+                display: flex; /* Show when active */
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger button on mobile */
+                justify-self: end;
+            }
+        }
+
+
+        /* Footer styles */
+        .site-footer {
+            background-color: #1a1a1a;
+            color: #eee;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin: 0.3rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        /* Footer bottom */
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #aaa;
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+        }
+
+        /* Responsive tweaks for footer */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Hero Slider Section */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Individual Slide */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        /* --- Overlay Modern Design --- */
+        .overlay {
+            position: absolute;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(15, 15, 15, 0.6);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: left;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            animation: fadeInUp 0.8s ease-out;
+            max-width: 600px; /* Limit overlay width */
+        }
+
+        .overlay h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .overlay p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        .overlay button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .overlay button:hover {
+            background: linear-gradient(135deg, #0056b3, #003c82);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+        }
+
+        /* --- Navigation Buttons (Bottom Row) --- */
+        .slider-nav {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adaptive columns */
+            gap: 0.75rem;
+            z-index: 3;
+            padding: 0 2rem;
+            box-sizing: border-box;
+        }
+
+        .slider-nav button {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            border-radius: 0.5rem;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+        }
+
+        .slider-nav button:hover,
+        .slider-nav button.active {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        /* --- Arrow Controls --- */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 0, 0, 0.65);
+            transform: scale(1.1) translateY(-50%); /* Maintain vertical center */
+            border-color: #007bff;
+        }
+
+        .arrow.prev {
+            left: 1rem;
+        }
+
+        .arrow.next {
+            right: 1rem;
+        }
+
+        /* --- Animation --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsive Adjustments for Slider --- */
+        @media (max-width: 768px) {
+            .overlay {
+                left: 1rem;
+                right: 1rem;
+                padding: 1.5rem;
+            }
+
+            .overlay h2 {
+                font-size: 2rem;
+            }
+
+            .overlay p {
+                font-size: 1rem;
+            }
+
+            .overlay button {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .arrow {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.5rem;
+            }
+
+            .slider-nav {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+                bottom: 1rem;
+                gap: 0.5rem;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Why Choose Us Section */
+        .makes-us-different {
+            padding: 3rem 2rem;
+            background-color: #f9f9f9;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .makes-us-different h2 {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        /* Card Layout */
+        .difference-card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+        }
+
+        .difference-card img {
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+            border-radius: 1rem;
+            filter: brightness(0.9);
+        }
+
+        /* Overlay Styling */
+        .text-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .text-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .text-overlay p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        /* Responsive Layout for Why Choose Us */
+        @media (max-width: 768px) {
+            .makes-us-different {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+
+            .makes-us-different h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .text-overlay {
+                padding: 1.5rem;
+            }
+
+            .text-overlay h3 {
+                font-size: 1.3rem;
+            }
+
+            .text-overlay p {
+                font-size: 0.9rem;
+            }
+
+            /* Adjust aspect ratio for smaller screens */
+            .difference-card {
+                aspect-ratio: 3 / 2;
+            }
+        }
+
+        /* ===== Expertise Section ===== */
+        .expertise {
+            padding: 4rem 2rem;
+            background-color: #f9f9f9;
+        }
+
+        /* Heading Styling */
+        .expertise h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            text-align: center;
+            color: #222;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        /* Flex container for image + text */
+        .expertise-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap; /* Allows vertical stacking on smaller screens */
+            margin-top: 2rem;
+        }
+
+        /* Left image container */
+        .expertise-image {
+            flex: 1 1 45%;
+            max-width: 600px;
+        }
+
+        .expertise-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        /* Right content (text + button) */
+        .expertise-text {
+            flex: 1 1 50%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Paragraph */
+        .expertise-text p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Button */
+        .expertise-text button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .expertise-text button:hover {
+            background: linear-gradient(135deg, #0056b3, #003c82);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+        }
+
+        /* ===== Responsive Design for Expertise Section ===== */
+        @media (max-width: 768px) {
+            .expertise {
+                padding: 3rem 1rem;
+            }
+
+            .expertise h2 {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .expertise-content {
+                flex-direction: column;
+            }
+
+            .expertise-image,
+            .expertise-text {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            .expertise-text p {
+                font-size: 1rem;
+            }
+
+            .expertise-text button {
+                font-size: 0.95rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        /* Why Choose Us Section (from sample.html) */
+        .why-choose-us-section {
+            padding: calc(var(--spacing-unit) * 6) 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .why-choose-us-section h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-unit);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .why-choose-us-section h2 .highlight {
+            color: var(--accent-color);
+            display: block;
+            font-size: 0.6em;
+            margin-top: 0.2em;
+            letter-spacing: normal;
+        }
+
+        .why-choose-us-section .section-intro {
+            font-size: 1.15em;
+            max-width: 800px;
+            margin: 0 auto calc(var(--spacing-unit) * 4) auto;
+            color: #555;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Features Blocks (Zigzag Layout) */
+        .features-sections-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 8);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .zigzag-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform, opacity;
+        }
+
+        .zigzag-section:nth-child(1) { transition-delay: 0s; }
+        .zigzag-section:nth-child(2) { transition-delay: 0.3s; }
+        .zigzag-section:nth-child(3) { transition-delay: 0.6s; }
+
+        .zigzag-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-sections-wrapper .zigzag-section:nth-child(odd) {
+            align-self: flex-start;
+        }
+
+        .features-sections-wrapper .zigzag-section:nth-child(even) {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .text-content-block {
+            padding: 0;
+            flex: 0 0 50%;
+            max-width: 550px;
+            box-sizing: border-box;
+            text-align: left;
+            transition: none;
+        }
+
+        .image-wrapper {
+            flex: 0 0 auto;
+            width: 500px;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Icon styling */
+        .icon-wrapper {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .feature-icon {
+            color: var(--accent-color);
+            width: 40px;
+            height: 40px;
+        }
+
+        .text-content-block h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2em;
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .text-content-block p {
+            font-size: 1.05em;
+            color: #555;
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
+
+        .text-content-block p strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Responsive Adjustments for Why Choose Us Sections */
+        @media (max-width: 1100px) {
+            .features-sections-wrapper {
+                max-width: 900px;
+            }
+            .zigzag-section {
+                padding: 0 var(--spacing-unit);
+            }
+            .text-content-block {
+                flex: 0 0 55%;
+                max-width: 480px;
+            }
+            .image-wrapper {
+                width: 300px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .why-choose-us-section h2 {
+                font-size: 2.8em;
+            }
+            .why-choose-us-section .section-intro {
+                font-size: 1em;
+            }
+            .features-sections-wrapper {
+                gap: calc(var(--spacing-unit) * 5);
+            }
+            .zigzag-section {
+                flex-direction: column;
+                text-align: center;
+                gap: calc(var(--spacing-unit) * 2);
+                align-self: center !important;
+            }
+            .zigzag-section.reverse {
+                flex-direction: column;
+            }
+            .text-content-block, .image-wrapper {
+                flex: auto;
+                width: 90%;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: calc(var(--spacing-unit) * 1.5);
+                box-shadow: var(--shadow-light);
+                border-radius: var(--border-radius-lg);
+            }
+            .text-content-block {
+                order: 2;
+            }
+            .image-wrapper {
+                order: 1;
+                height: 250px;
+                width: 90%;
+                max-width: 350px;
+            }
+            .icon-wrapper {
+                margin: 0 auto var(--spacing-unit) auto;
+            }
+            .text-content-block h3 {
+                font-size: 1.8em;
+            }
+            .text-content-block p {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px;
+            }
+            .why-choose-us-section h2 {
+                font-size: 2.2em;
+            }
+            .why-choose-us-section h2 .highlight {
+                font-size: 0.8em;
+            }
+            .why-choose-us-section .section-intro {
+                font-size: 0.9em;
+            }
+            .features-sections-wrapper {
+                gap: calc(var(--spacing-unit) * 3);
+            }
+            .zigzag-section {
+                padding: 0 var(--spacing-unit);
+            }
+            .text-content-block, .image-wrapper {
+                width: 100%;
+                max-width: none;
+            }
+            .text-content-block {
+                padding: var(--spacing-unit);
+            }
+            .image-wrapper {
+                height: 200px;
+            }
+            .text-content-block h3 {
+                font-size: 1.5em;
+            }
+            .text-content-block p {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Technological Expertise Section */
+        .technological-expertise {
+            padding: 4rem 2rem;
+            background-color: #f7f9fc;
+            text-align: center;
+        }
+
+        .technological-expertise h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.2em;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Video Container - No arrows or dots */
+        .video-slideshow-container {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto 2rem auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding-bottom: 100px; /* Space for text overlay */
+        }
+
+        /* Video Styling with Fade Effect */
+        #tech-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #tech-video.visible {
+            opacity: 1;
+        }
+
+        /* Video Overlay Text Styling */
+        .video-overlay-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            color: var(--white);
+            padding: 20px 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: right;
+            z-index: 5;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+        }
+
+        .video-overlay-text.hidden {
+            transform: translateY(100%);
+        }
+
+        @media (max-width: 768px) {
+            .video-overlay-text {
+                padding: 15px 20px;
+                font-size: 0.95em;
+            }
+            .video-slideshow-container {
+                padding-bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo-nav">
+            <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/Nichi-logo.png" alt="Nichi-In Logo" class="logo">
+
+            <!-- Hamburger Button -->
+            <button class="hamburger" aria-label="Toggle Menu" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Products</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/SF2135X1500.png');">
+            <div class="overlay">
+                <h2>Salesforce Solutions</h2>
+                <p>Empower your enterprise with world-class CRM implementations that streamline workflows, enhance customer engagement, and drive measurable business growth through customized Salesforce strategies.</p>
+                <button>Learn More</button>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/OD1920X828.png');">
+            <div class="overlay">
+                <h2>Odoo ERP</h2>
+                <p>Boost operational efficiency and decision-making with Odoo — a robust ERP suite designed to unify your sales, finance, inventory, and HR processes in one scalable platform.</p>
+                <button>Explore Odoo</button>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5210.jpg');">
+            <div class="overlay">
+                <h2>Offshore Services</h2>
+                <p>Access top-tier talent at competitive rates. Our offshore development model combines cost savings, productivity, and high-quality deliverables tailored to your time zone and workflow preferences.</p>
+                <button>View Services</button>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2148924741.jpg');">
+            <div class="overlay">
+                <h2>Onsite Consulting</h2>
+                <p>Gain direct access to our seasoned consultants who collaborate closely with your teams to architect, integrate, and optimize IT systems that support your business objectives on the ground.</p>
+                <button>Get a Consultant</button>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150062008.jpg');">
+            <div class="overlay">
+                <h2>Managed IT Services</h2>
+                <p>Leave your IT headaches to us. Our end-to-end managed services ensure infrastructure stability, security, and performance — all while you focus on growing your business.</p>
+                <button>Learn How</button>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2150010125.jpg');">
+            <div class="overlay">
+                <h2>Product Development</h2>
+                <p>Transform ideas into reality. From concept and prototyping to launch and scaling, our agile product development services accelerate your time-to-market with confidence and clarity.</p>
+                <button>See Our Work</button>
+            </div>
+        </div>
+
+        <!-- Arrow Controls -->
+        <button class="arrow prev">&#10094;</button>
+        <button class="arrow next">&#10095;</button>
+
+        <!-- Navigation Buttons -->
+        <div class="slider-nav">
+            <button data-index="0">Salesforce</button>
+            <button data-index="1">Odoo</button>
+            <button data-index="2">Offshore</button>
+            <button data-index="3">Onsite</button>
+            <button data-index="4">Managed IT</button>
+            <button data-index="5">Development</button>
+        </div>
+    </section>
+
+    <section id="why-choose-us" class="why-choose-us-section">
+        <div class="container">
+            <h2>Why Clients Choose Us? <span class="highlight">Your Partner for Digital Excellence.</span></h2>
+            <p class="section-intro">
+                Discover the core principles and unique advantages that make Nichi-in the trusted choice for forward-thinking businesses worldwide.
+            </p>
+
+            <div class="features-sections-wrapper">
+
+                <!-- Feature Block 1: Customer Centric - Text Left, Image Right -->
+                <div class="zigzag-section">
+                    <div class="text-content-block">
+                        <div class="icon-wrapper">
+                            <!-- Icon for "strategic listening" or "vision" - Speech bubble/ear icon -->
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg>
+                        </div>
+                        <h3>Your Vision, Our Strategic Blueprint</h3>
+                        <p>
+                            Our process begins with <strong>strategic listening</strong> and deep alignment with your unique business needs, technical requirements, and overarching corporate vision. This enables us to craft bespoke IT services that consistently exceed expectations and deliver measurable value, ensuring your corporate priorities become our mission every step of the way.
+                        </p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2149241262.jpg" alt="Customer-Specific Approach">
+                    </div>
+                </div>
+
+                <!-- Feature Block 2: KAIZEN - Image Left, Text Right -->
+                <div class="zigzag-section reverse">
+                    <div class="text-content-block">
+                        <div class="icon-wrapper">
+                            <!-- Icon for "growth" or "continuous improvement" - Refresh/circular arrow icon -->
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path>
+                            </svg>
+                        </div>
+                        <h3>改善 (Kaizen): Relentless Pursuit of Perfection</h3>
+                        <p>
+                            <strong>改善 (Kaizen)</strong> is the driving force behind our operations and deeply embedded in every phase of our IT development. We relentlessly strive for continuous improvement, ensuring your digital solutions are not just built, but constantly refined for optimal performance, unparalleled efficiency, and future readiness. This unwavering dedication guarantees evolving excellence in every project we undertake.
+                        </p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/kaizen.jpg" alt="Kaizen Motto">
+                    </div>
+                </div>
+
+                <!-- Feature Block 3: Japan-India Business - Text Left, Image Right -->
+                <div class="zigzag-section">
+                    <div class="text-content-block">
+                        <div class="icon-wrapper">
+                            <!-- Icon for "global connection" or "bridge" - Bridge/global network icon -->
+                            <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm7 10h-4c0-3.31-2.69-6-6-6V5c4.42 0 8 3.58 8 8zm-11 0h4c0 3.31 2.69 6 6 6v2c-4.42 0-8-3.58-8-8z"></path>
+                            </svg>
+                        </div>
+                        <h3>Japan-India Bridge: Your Digital Edge</h3>
+                        <p>
+                            Our deep roots in <strong>Japan-India business</strong> are truly your competitive advantage. Our expert developers don't just build; they seamlessly bridge cultures, fluently handling Japanese clients in their native language, and intimately understanding their unique business culture and customs. This distinctive capability positions us as the ideal partner for Japanese companies seeking unparalleled web solutions with utmost cultural precision and technical excellence.
+                        </p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/ind-jp.png" alt="Indo-Japanese Client Relationship">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="technological-expertise">
+        <h2>Technological Expertise</h2>
+
+        <div class="video-slideshow-container">
+            <video id="tech-video" autoplay muted playsinline></video>
+            <!-- Video Overlay Text element -->
+            <p class="video-overlay-text">
+                In an era of rapid technological shifts, Nichi-In Software stands as a beacon of agile innovation.
+                With over 25 years of unparalleled experience in delivering cutting-edge IT solutions, we have
+                cultivated deep expertise across diverse industries and technologies. Our profound understanding
+                of both the Japanese and APAC markets positions us uniquely to provide tailored, high-impact
+                digital transformations that drive growth and efficiency for our clients globally.
+            </p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <!-- Site Map -->
+            <div class="footer-section">
+                <h2>Site Map</h2>
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Products</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact Us</a>
+            </div>
+
+            <!-- About -->
+            <div class="footer-section">
+                <h2>About the Company</h2>
+                <p>Nichi-In Software Solutions Pvt. Ltd., a joint venture company with NDR Co. Ltd., Osaka, Japan, specializes in providing innovative & cost effective IT solutions and services customized to our global customers.</p>
+            </div>
+
+            <!-- Corporate Office -->
+            <div class="footer-section">
+                <h2>Corporate Office</h2>
+                <p>
+                    #813, Dr. Puneeth Rajkumar Road,<br>
+                    Hosakerehalli, Banashankari 3rd Stage,<br>
+                    Bengaluru – 560 085, India
+                </p>
+            </div>
+
+            <!-- Development Center -->
+            <div class="footer-section">
+                <h2>Development Center 2</h2>
+                <p>
+                    #812, 1st Floor, Dr. Puneeth Rajkumar Road,<br>
+                    Hosakerehalli, Banashankari 3rd Stage,<br>
+                    Bengaluru – 560 085, India
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Nichi-In Software Solutions Pvt. Ltd. – All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const mainNav = document.getElementById('mainNav');
+
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+
+        // Hero Slider Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const navButtons = document.querySelectorAll('.slider-nav button');
+            const prevBtn = document.querySelector('.arrow.prev');
+            const nextBtn = document.querySelector('.arrow.next');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    navButtons[i].classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                        navButtons[i].classList.add('active');
+                    }
+                });
+                currentSlide = index;
+            }
+
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = parseInt(btn.getAttribute('data-index'));
+                    showSlide(index);
+                });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                let newIndex = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(newIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                let newIndex = (currentSlide + 1) % slides.length;
+                showSlide(newIndex);
+            });
+
+            // Auto-play (optional)
+            // setInterval(() => {
+            //   nextBtn.click();
+            // }, 7000);
+
+            // Initial display
+            showSlide(currentSlide);
+        });
+
+
+        // JavaScript for "fade-in-on-scroll" animation for the zigzag blocks
+        document.addEventListener('DOMContentLoaded', () => {
+            const zigzagSections = document.querySelectorAll('.zigzag-section');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            zigzagSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // JavaScript for video slideshow
+        document.addEventListener("DOMContentLoaded", () => {
+            const videoElement = document.getElementById('tech-video');
+            const videoSources = [
+                "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1114661_Using_Enterprise_1280x720.mp4",
+                "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1112987_Brainstorm_Teamwork_1280x720.mp4",
+                "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1106556_1080p_4k_1280x720.mp4",
+                "http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/1109599_1080p_Ethnicity_1280x720.mp4"
+            ];
+
+            let currentIndex = 0;
+
+            function switchToVideo(index) {
+                currentIndex = index;
+                fadeOutIn(() => {
+                    videoElement.src = videoSources[currentIndex];
+                    videoElement.load();
+                    videoElement.play();
+                });
+            }
+
+            function fadeOutIn(callback) {
+                videoElement.classList.remove("visible");
+                // Give a small delay for the fade-out effect before changing source
+                setTimeout(() => {
+                    callback();
+                    videoElement.classList.add("visible");
+                }, 500);
+            }
+
+            // When video ends, go to next
+            videoElement.addEventListener("ended", () => {
+                currentIndex = (currentIndex + 1) % videoSources.length;
+                switchToVideo(currentIndex);
+            });
+
+            // Initial load
+            // Set an initial source to prevent potential issues on first play
+            videoElement.src = videoSources[currentIndex];
+            videoElement.load();
+            videoElement.play();
+            videoElement.classList.add("visible"); // Ensure it's visible after initial load
+        });
+    </script>
+
+</body>
+</html>

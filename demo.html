@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Focus Showcase</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN (used for base utilities, custom styles override where needed) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+            color: #fff;
+        }
+
+        /* Container for the entire scrollable area */
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100svh;
+            overflow: hidden; /* Important for horizontal scrolling */
+        }
+
+        /* Progress bar at the top */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 8px;
+            transform: scaleX(0%);
+            transform-origin: center left;
+            background-color: #f4d35e; /* Highlight color for progress bar */
+            will-change: transform;
+            z-index: 10; /* Above everything else */
+            box-shadow: 0 0 15px rgba(244, 211, 94, 0.4);
+        }
+
+        /* Progress counter at the bottom right */
+        .progress-counter {
+            position: fixed;
+            bottom: 1rem;
+            right: 2.5rem;
+            color: #fff;
+            z-index: 10;
+            text-shadow: 5px 5px 15px rgb(0 0 0 / 15%);
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+        }
+
+        /* Main scroller element */
+        .scroller {
+            display: flex;
+            height: 100svh;
+            will-change: transform;
+            transform: translateX(0);
+        }
+
+        /* Individual industry sections/slides */
+        .industry-slide {
+            flex-shrink: 0; /* Prevent slides from shrinking */
+            width: 100vw; /* Each slide takes full viewport width */
+            height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-sizing: border-box; /* Include padding in width */
+            color: #fff;
+            text-align: center;
+            position: relative; /* For background image/icon positioning */
+            overflow: hidden; /* Ensure content doesn't overflow */
+        }
+
+        /* Industry title styling */
+        .industry-slide h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 8vw; /* Responsive font size */
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin: 0;
+            z-index: 2; /* Above background elements */
+            opacity: 0; /* Hidden by default for fade-in */
+            transform: scale(0.9); /* Slightly smaller for scale-in */
+            /* Enhanced easing for titles - slower */
+            transition: opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1), transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        /* Styling for the new 'Industry Focus' heading */
+        .industry-slide h2 {
+            font-family: 'Inter', sans-serif; /* Explicitly set to Inter */
+            font-size: 2.5vw; /* Reverted font size */
+            font-weight: 500; /* Reverted thickness */
+            color: #f4d35e; /* Highlight color */
+            margin-bottom: 1rem;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Slower transition for this heading */
+            transition-delay: 0.3s; /* Delay its appearance slightly */
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+
+        /* Styling for the new paragraph */
+        .industry-slide p {
+            font-family: 'Inter', sans-serif; /* Explicitly set to Inter */
+            font-size: 1.5vw; /* Reverted font size */
+            font-weight: 400; /* Reverted thickness */
+            max-width: 60vw; /* Limit width for readability */
+            margin-top: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Slower transition for paragraph */
+            transition-delay: 0.6s; /* Delay its appearance even more */
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+        }
+
+        /* Active slide entrance animation for title, heading, and paragraph */
+        .industry-slide.is-active h1 {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .industry-slide.is-active h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .industry-slide.is-active p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Background image styling */
+        .industry-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8; /* Slightly darker base image */
+            z-index: 0; /* Below the overlay and content */
+            /* Slower, smoother fade and brightness for image, plus subtle scale for parallax */
+            transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        filter 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: brightness(0.6); /* Even darker image for better text contrast */
+            transform: scale(1.05); /* Initial slight zoom for parallax effect */
+            /* Placeholder for background image error */
+            background-image: url('https://placehold.co/1920x1080/4a4a4a/ffffff?text=Image+Loading...');
+        }
+
+        /* Background overlay for better text contrast */
+        .industry-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Dark gradient from top and bottom */
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%);
+            z-index: 1; /* Below h1, above ::before */
+            pointer-events: none; /* Allows clicks to pass through */
+        }
+
+        /* Active slide background transition */
+        .industry-slide.is-active::before {
+            opacity: 1; /* Full opacity when active */
+            filter: brightness(1); /* Full brightness when active */
+            transform: scale(1); /* Zoom out to full size for parallax effect */
+        }
+
+        /* Define background images for each slide using the provided real links */
+        .industry-slide:nth-child(1)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/14331.jpg'); }
+        .industry-slide:nth-child(2)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/vendor-weighting-fresh-produce-buyer.jpg'); }
+        .industry-slide:nth-child(3)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/5044.jpg'); }
+        .industry-slide:nth-child(4)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2237.jpg'); }
+        .industry-slide:nth-child(5)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/41092.jpg'); }
+        .industry-slide:nth-child(6)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/60360.jpg'); }
+        .industry-slide:nth-child(7)::before { background-image: url('http://localhost/Nichi-in%20Revamp/wp-content/uploads/2025/06/2149153256.jpg'); }
+
+
+        /* Modern Pagination Indicators Container */
+        .pagination-indicators {
+            position: fixed;
+            bottom: 1.5rem; /* Slightly higher for better visibility */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem; /* Space between text labels */
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for the container */
+            padding: 0.75rem 1.5rem; /* More padding for text labels */
+            border-radius: 9999px; /* Fully rounded capsule shape */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+            backdrop-filter: blur(5px); /* Subtle blur effect */
+        }
+
+        /* Individual Pagination Item (Text Label) */
+        .pagination-item {
+            font-family: 'Inter', sans-serif; /* Poppins for labels */
+            font-size: 0.9rem; /* Slightly larger text */
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7); /* Muted white for inactive state */
+            cursor: pointer;
+            position: relative; /* For the animated underline */
+            padding-bottom: 5px; /* Space for the underline */
+            white-space: nowrap; /* Prevent text wrapping */
+            transition: color 0.6s ease; /* Smooth color transition */
+        }
+
+        /* Animated Underline for Pagination Item */
+        .pagination-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%; /* Start from center */
+            transform: translateX(-50%); /* Center the underline */
+            width: 0%; /* Initial width */
+            height: 2px;
+            background-color: #f4d35e; /* Highlight color */
+            border-radius: 9999px;
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                        background-color 0.6s ease; /* Slower, modern transition */
+            box-shadow: 0 0 10px rgba(244, 211, 94, 0.6); /* Subtle glow */
+        }
+
+        /* Active Pagination Item */
+        .pagination-item.is-active {
+            color: #f4d35e; /* Highlight color for active item */
+        }
+
+        /* Active Pagination Item Underline */
+        .pagination-item.is-active::after {
+            width: 100%; /* Expand to full width */
+            box-shadow: 0 0 18px rgba(244, 211, 94, 0.8), inset 0 0 5px rgba(244, 211, 94, 0.6); /* Enhanced glow */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .industry-slide h1 {
+                font-size: 10vw; /* Adjust for smaller screens */
+            }
+            .industry-slide h2 {
+                font-size: 4vw; /* Reverted for smaller screens */
+            }
+            .industry-slide p {
+                font-size: 3vw; /* Reverted for smaller screens */
+                max-width: 80vw;
+            }
+            .progress-counter {
+                font-size: 1.5rem;
+                right: 1.5rem;
+            }
+            /* Pagination adjustments for tablet */
+            .pagination-indicators {
+                padding: 0.5rem 1rem;
+                gap: 0.75rem;
+                bottom: 1rem;
+            }
+            .pagination-item {
+                font-size: 0.8rem;
+                padding-bottom: 4px;
+            }
+            .pagination-item::after {
+                height: 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .industry-slide h1 {
+                font-size: 12vw; /* Further adjust for mobile */
+            }
+            .industry-slide h2 {
+                font-size: 5vw; /* Reverted for mobile */
+            }
+            .industry-slide p {
+                font-size: 4vw; /* Reverted for mobile */
+                max-width: 90vw;
+            }
+            .progress-counter {
+                font-size: 1.2rem;
+                right: 1rem;
+            }
+            /* Pagination adjustments for mobile */
+            .pagination-indicators {
+                padding: 0.4rem 0.8rem;
+                gap: 0.5rem;
+                bottom: 0.8rem;
+            }
+            .pagination-item {
+                font-size: 0.7rem;
+                padding-bottom: 3px;
+            }
+            .pagination-item::after {
+                height: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar"></div>
+        <div class="progress-counter">
+            <h1>0%</h1>
+        </div>
+
+        <div class="scroller">
+            <!-- Industry Slides -->
+            <section class="industry-slide" data-index="0">
+                <h2>Industry Focus</h2>
+                <h1>Manufacturing</h1>
+                <p>Driving innovation and efficiency in manufacturing processes with cutting-edge technology solutions.</p>
+            </section>
+            <section class="industry-slide" data-index="1">
+                <h2>Industry Focus</h2>
+                <h1>Retail</h1>
+                <p>Enhancing customer experiences and optimizing supply chains for the modern retail landscape.</p>
+            </section>
+            <section class="industry-slide" data-index="2">
+                <h2>Industry Focus</h2>
+                <h1>Automotive</h1>
+                <p>Pioneering advancements in automotive technology, from smart vehicles to sustainable mobility.</p>
+            </section>
+            <section class="industry-slide" data-index="3">
+                <h2>Industry Focus</h2>
+                <h1>Healthcare</h1>
+                <p>Transforming healthcare delivery with secure, efficient, and patient-centric digital solutions.</p>
+            </section>
+            <section class="industry-slide" data-index="4">
+                <h2>Industry Focus</h2>
+                <h1>Fintech</h1>
+                <p>Innovating financial services with secure, scalable, and user-friendly fintech platforms.</p>
+            </section>
+            <section class="industry-slide" data-index="5">
+                <h2>Industry Focus</h2>
+                <h1>Education</h1>
+                <p>Empowering learning institutions with interactive and accessible educational technology.</p>
+            </section>
+            <section class="industry-slide" data-index="6">
+                <h2>Industry Focus</h2>
+                <h1>Travel & Tourism</h1>
+                <p>Revolutionizing travel experiences and optimizing operations for the dynamic tourism sector.</p>
+            </section>
+        </div>
+
+        <!-- Modern Pagination Indicators Container -->
+        <div class="pagination-indicators">
+            <!-- Indicators will be dynamically generated by JavaScript -->
+        </div>
+    </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".container");
+    const scroller = document.querySelector(".scroller");
+    const progressCounter = document.querySelector(".progress-counter h1");
+    const progressBar = document.querySelector(".progress-bar");
+    const paginationIndicatorsContainer = document.querySelector(".pagination-indicators");
+    const industrySlides = Array.from(document.querySelectorAll(".industry-slide"));
+
+    // Controls the easing of the scroll animation (smaller for slower, smoother)
+    const smoothFactor = 0.02;
+    // Autoplay interval in milliseconds (5 seconds for a slower automatic transition)
+    const autoplayDelay = 6000;
+    // Duration to pause autoplay after user interaction
+    const pauseAutoplayDuration = 2000;
+
+    let targetScrollX = 0; // The desired scroll position
+    let currentScrollX = 0; // The actual current scroll position
+    let isAnimating = false; // Flag to prevent multiple animation frames
+    let currentProgressScale = 0; // Current scale of the progress bar
+    let targetProgressScale = 0; // Target scale of the progress bar
+    let autoplayInterval; // Stores the autoplay interval ID
+    let autoplayTimeoutId; // Stores the timeout ID for resuming autoplay
+
+    let slideWidth; // Width of a single slide (viewport width)
+    let maxScrollX; // Maximum scrollable distance
+
+    /**
+     * Recalculates slide width and maximum scroll distance on resize or load.
+     * Ensures responsiveness by adapting to current viewport size.
+     */
+    const recalculateWidths = () => {
+        slideWidth = window.innerWidth;
+        // +1px to avoid potential rendering glitches on some browsers
+        scroller.style.width = `calc(${industrySlides.length} * 100vw + 1px)`;
+        maxScrollX = (industrySlides.length - 1) * slideWidth;
+    };
+
+    /**
+     * Linear interpolation function for smooth transitions.
+     * @param {number} start - Starting value.
+     * @param {number} end - Ending value.
+     * @param {number} factor - Interpolation factor (0-1).
+     * @returns {number} - Interpolated value.
+     */
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    /**
+     * Clamps a value within a specified range.
+     * @param {number} value - The value to clamp.
+     * @param {number} min - The minimum allowed value.
+     * @param {number} max - The maximum allowed value.
+     * @returns {number} - The clamped value.
+     */
+    const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
+
+    /**
+     * Sets up the pagination indicators dynamically based on the number of slides.
+     * Attaches click listeners to each indicator for direct navigation.
+     */
+    const setupPagination = () => {
+        paginationIndicatorsContainer.innerHTML = ""; // Clear existing indicators
+        industrySlides.forEach((slide, index) => { // Iterate through slides to get titles
+            // Use button for accessibility and semantic meaning
+            const indicator = document.createElement("button"); 
+            indicator.classList.add("pagination-item"); // New class name for modern pagination
+            indicator.dataset.index = index;
+            // Get text content from the h1 of each slide to use as the pagination label
+            indicator.textContent = slide.querySelector('h1').textContent; 
+            indicator.addEventListener("click", () => {
+                stopAutoplay(); // Pause autoplay on pagination click
+                // Set targetScrollX to the exact position of the clicked slide
+                targetScrollX = clamp(index * slideWidth, 0, maxScrollX);
+                // Start animation if not already running
+                if (!isAnimating) {
+                    isAnimating = true;
+                    requestAnimationFrame(animate);
+                }
+                restartAutoplayWithDelay(); // Resume autoplay after a delay
+            });
+            paginationIndicatorsContainer.appendChild(indicator);
+        });
+    };
+
+    /**
+     * Updates the UI elements: progress bar, progress counter, and pagination indicators.
+     * Applies 'is-active' class to the currently active slide for title and background animation.
+     */
+    const updateUI = () => {
+        // Calculate scroll percentage for progress bar and counter
+        const percentage = maxScrollX === 0 ? 0 : (currentScrollX / maxScrollX) * 100;
+        targetProgressScale = percentage / 100;
+        progressCounter.textContent = `${Math.round(percentage)}%`;
+
+        // Smoothly update progress bar scale
+        currentProgressScale = lerp(currentProgressScale, targetProgressScale, smoothFactor);
+        progressBar.style.transform = `scaleX(${currentProgressScale})`;
+
+        // Update active state of pagination indicators
+        const indicators = Array.from(paginationIndicatorsContainer.children);
+        // Determine the active slide index by rounding the current scroll position
+        const activeIndex = Math.round(currentScrollX / slideWidth);
+        indicators.forEach((indicator, index) =>
+            // Toggle 'is-active' class for styling the active pagination item
+            indicator.classList.toggle("is-active", index === activeIndex) 
+        );
+
+        // Apply 'is-active' class to the current slide for title and background animation
+        industrySlides.forEach((slide, index) =>
+            slide.classList.toggle("is-active", index === activeIndex)
+        );
+    };
+
+    /**
+     * The main animation loop for smooth scrolling.
+     * Uses linear interpolation to move currentScrollX towards targetScrollX.
+     */
+    const animate = () => {
+        // Interpolate currentScrollX towards targetScrollX with easing
+        currentScrollX = lerp(currentScrollX, targetScrollX, smoothFactor);
+        currentScrollX = clamp(currentScrollX, 0, maxScrollX); // Ensure within bounds
+
+        // Apply the transform directly to the scroller element
+        scroller.style.transform = `translateX(-${currentScrollX}px)`;
+        updateUI(); // Update UI elements based on new scroll position
+
+        // Continue animation if the difference between current and target is significant
+        if (Math.abs(targetScrollX - currentScrollX) > 0.1) {
+            requestAnimationFrame(animate);
+        } else {
+            // Snap to the exact target position to prevent minor discrepancies
+            currentScrollX = targetScrollX;
+            scroller.style.transform = `translateX(-${currentScrollX}px)`;
+            isAnimating = false; // Animation finished
+        }
+    };
+
+    /**
+     * Starts the autoplay interval.
+     */
+    const startAutoplay = () => {
+        stopAutoplay(); // Clear any existing autoplay interval
+        autoplayInterval = setInterval(() => {
+            let nextIndex = Math.round(targetScrollX / slideWidth) + 1; // Calculate next slide index
+            if (nextIndex >= industrySlides.length) {
+                nextIndex = 0; // Loop back to the first slide
+            }
+            targetScrollX = clamp(nextIndex * slideWidth, 0, maxScrollX); // Set snapped target position
+            if (!isAnimating) {
+                isAnimating = true;
+                requestAnimationFrame(animate); // Start animation if not running
+            }
+        }, autoplayDelay);
+    };
+
+    /**
+     * Stops the current autoplay interval and pending timeout.
+     */
+    const stopAutoplay = () => {
+        clearInterval(autoplayInterval);
+        clearTimeout(autoplayTimeoutId);
+    };
+
+    /**
+     * Restarts autoplay after a short delay. Used after user interaction.
+     */
+    const restartAutoplayWithDelay = () => {
+        stopAutoplay(); // Stop current autoplay and any pending restarts
+        autoplayTimeoutId = setTimeout(startAutoplay, pauseAutoplayDuration); // Set timeout to resume
+    };
+
+    // Removed mouse wheel scrolling and touch interaction event listeners as per request.
+    // The previous event listeners for "wheel", "touchstart", "touchmove", and "touchend"
+    // have been removed to ensure the slider is only navigable via autoplay and pagination clicks.
+
+    // Initialize on window load
+    window.onload = () => {
+        recalculateWidths(); // Set initial slide widths
+        setupPagination(); // Create pagination indicators
+        updateUI(); // Initial UI update (sets first slide active)
+        startAutoplay(); // Begin auto-scrolling
+    };
+
+    // Handle window resize event
+    window.addEventListener("resize", () => {
+        // Preserve scroll position ratio for seamless resizing
+        const scrollRatio = maxScrollX === 0 ? 0 : targetScrollX / maxScrollX;
+        recalculateWidths(); // Recalculate widths after resize
+        // Re-calculate targetScrollX based on the new slide width and preserved ratio, then snap
+        const newTargetIndex = Math.round(scrollRatio * (industrySlides.length - 1));
+        targetScrollX = clamp(newTargetIndex * slideWidth, 0, maxScrollX);
+        currentScrollX = clamp(targetScrollX, 0, maxScrollX); // Immediately set currentScrollX to new target
+        scroller.style.transform = `translateX(-${currentScrollX}px)`; // Apply immediately
+        stopAutoplay(); // Stop autoplay during resize
+        updateUI(); // Update UI
+        startAutoplay(); // Restart autoplay
+    });
+});
+</script>
+
+</body>
+</html>

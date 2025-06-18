@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nichi-In Software Solutions - Powering Your Digital Future</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="sample-style3.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="site-header">
+    <div class="container header-container">
+      <!-- Company Logo -->
+      <a href="#home" class="logo-link">
+        <img src="https://placehold.co/150x40/1a202c/ffffff?text=Nichi-In+Logo" alt="Nichi-In Logo" class="logo" />
+      </a>
+      
+      <!-- Main Navigation -->
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions: Theme Toggle and CTA -->
+      <div class="header-actions">
+        <button id="themeToggle" aria-label="Toggle Dark Mode" class="theme-toggle">🌓</button>
+        <button id="openBookingModal" class="btn btn-primary">Schedule Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Slider Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-slider">
+      <!-- Slide 1 -->
+      <div class="hero-slide active" style="background-image: url('https://placehold.co/1920x1080/0d131f/ffffff?text=AI+Cloud+Innovation');">
+        <div class="hero-content container">
+          <h1 class="animate-fade-in-up">Empowering Enterprises Through <span class="text-gradient">AI & Cloud</span> Innovation</h1>
+          <p class="animate-fade-in-up delay-1">We provide advanced IT and Marketing solutions, leveraging artificial intelligence and scalable cloud platforms to drive unprecedented growth and efficiency for your business.</p>
+          <div class="hero-actions animate-fade-in-up delay-2">
+            <a href="#services" class="btn btn-primary btn-large">Explore Services</a>
+            <a href="#case-studies" class="btn btn-secondary btn-large">View Case Studies</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="hero-slide" style="background-image: url('https://placehold.co/1920x1080/1a202c/ffffff?text=Digital+Transformation');">
+        <div class="hero-content container">
+          <h1 class="animate-fade-in-up">Accelerate Your <span class="text-gradient">Digital Transformation</span> Journey</h1>
+          <p class="animate-fade-in-up delay-1">From legacy system modernization to agile digital marketing strategies, we craft bespoke solutions that redefine operational excellence and customer engagement.</p>
+          <div class="hero-actions animate-fade-in-up delay-2">
+            <a href="#solutions" class="btn btn-primary btn-large">Discover Solutions</a>
+            <a href="#about" class="btn btn-secondary btn-large">Learn About Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero-slide" style="background-image: url('https://placehold.co/1920x1080/0a131f/ffffff?text=Cybersecurity+Excellence');">
+        <div class="hero-content container">
+          <h1 class="animate-fade-in-up">Fortify Your Business with <span class="text-gradient">Cybersecurity Excellence</span></h1>
+          <p class="animate-fade-in-up delay-1">Protect your critical assets and data with our state-of-the-art cybersecurity frameworks and proactive threat intelligence, ensuring business continuity.</p>
+          <div class="hero-actions animate-fade-in-up delay-2">
+            <a href="#services" class="btn btn-primary btn-large">Explore Security</a>
+            <a href="#contact" class="btn btn-secondary btn-large">Get a Consultation</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Navigation Arrows -->
+      <button class="slider-nav-btn prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-nav-btn next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+
+      <!-- Slider Pagination Dots -->
+      <div class="slider-dots">
+        <!-- Dots will be dynamically added by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview Section -->
+  <section id="services" class="section services-overview-section bg-gradient-light">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Our Core Services</h2>
+      <p class="section-description reveal-on-scroll delay-1">Delivering comprehensive IT and marketing solutions tailored to your unique business challenges. Our expertise spans a wide range of critical areas designed to elevate your operational efficiency and market presence.</p>
+      <div class="grid-layout service-grid">
+        <div class="card service-card reveal-on-scroll">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-brain service-icon"></i>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>Leverage cutting-edge AI for automation, predictive analytics, and enhanced decision-making. We develop intelligent systems that learn, adapt, and optimize your business processes, from advanced data analysis to automated customer interactions.</p>
+          <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card service-card reveal-on-scroll delay-1">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-cloud service-icon"></i>
+          </div>
+          <h3>Cloud Transformation</h3>
+          <p>Seamless migration and optimization of your infrastructure to scalable cloud environments. Our cloud strategies ensure agility, cost-efficiency, and robust performance, whether it's public, private, or hybrid cloud solutions.</p>
+          <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card service-card reveal-on-scroll delay-2">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-shield-alt service-icon"></i>
+          </div>
+          <h3>Cybersecurity Solutions</h3>
+          <p>Protect your assets with robust security frameworks and proactive threat intelligence. We implement multi-layered defenses, conduct vulnerability assessments, and ensure compliance to safeguard your digital ecosystem.</p>
+          <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card service-card reveal-on-scroll">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-chart-line service-icon"></i>
+          </div>
+          <h3>Digital Marketing Strategy</h3>
+          <p>Drive growth with data-driven SEO, SEM, content marketing, and social media campaigns. Our integrated approach maximizes your online visibility, engages your target audience, and converts leads into loyal customers.</p>
+          <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card service-card reveal-on-scroll delay-1">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-code service-icon"></i>
+          </div>
+          <h3>Custom Software Development</h3>
+          <p>Building bespoke applications that streamline operations and enhance user experiences. From enterprise-level platforms to mobile apps, we deliver scalable and intuitive software tailored to your specific business needs.</p>
+          <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card service-card reveal-on-scroll delay-2">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-project-diagram service-icon"></i>
+          </div>
+          <h3>IT Consulting & Advisory</h3>
+          <p>Strategic guidance to align your technology roadmap with business objectives. Our experienced consultants provide insights and actionable plans to optimize your IT investments and accelerate innovation.</p>
+          <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section id="about" class="section why-choose-us-section">
+    <div class="container content-split-grid">
+      <div class="content-text reveal-on-scroll">
+        <h2 class="section-title-small">Why Choose Nichi-In?</h2>
+        <p>At Nichi-In, we combine deep industry expertise with agile methodologies to deliver tangible results. Our client-centric approach ensures solutions are not just implemented, but truly integrated and impactful across your organization.</p>
+        <p>We pride ourselves on our commitment to innovation, transparent processes, and a global delivery model that ensures exceptional quality and cost-effectiveness. Partner with us to navigate the complexities of digital transformation with confidence.</p>
+        <ul class="checkmark-list">
+          <li><i class="fas fa-check-circle"></i> Proven Track Record & Expertise</li>
+          <li><i class="fas fa-check-circle"></i> Agile & Client-Centric Approach</li>
+          <li><i class="fas fa-check-circle"></i> Innovation-Driven Solutions</li>
+          <li><i class="fas fa-check-circle"></i> Global Delivery Model</li>
+        </ul>
+        <button id="openBookingModalTwo" class="btn btn-primary">Talk to an Expert</button>
+      </div>
+      <div class="content-image reveal-on-scroll delay-1">
+        <img src="https://placehold.co/800x600/007bff/ffffff?text=Why+Choose+Us+Team" alt="Team collaborating" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section id="solutions" class="section tech-stack-section bg-gradient-light">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Our Technology Expertise</h2>
+      <p class="section-description reveal-on-scroll delay-1">Leveraging leading-edge technologies to build future-ready solutions for your business. Our team is proficient in a diverse array of platforms, frameworks, and tools that drive innovation and ensure scalability.</p>
+      <div class="grid-layout tech-grid">
+        <div class="card tech-icon-card reveal-on-scroll">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=AWS" alt="AWS Logo" loading="lazy" />
+          <span>AWS Cloud</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-1">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=Azure" alt="Azure Logo" loading="lazy" />
+          <span>Microsoft Azure</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-2">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=GCP" alt="GCP Logo" loading="lazy" />
+          <span>Google Cloud</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-3">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=Python" alt="Python Logo" loading="lazy" />
+          <span>Python</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-4">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=React" alt="React Logo" loading="lazy" />
+          <span>React.js</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=Tensor" alt="TensorFlow Logo" loading="lazy" />
+          <span>TensorFlow</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-1">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=K8s" alt="Kubernetes Logo" loading="lazy" />
+          <span>Kubernetes</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-2">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=Sales" alt="Salesforce Logo" loading="lazy" />
+          <span>Salesforce</span>
+        </div>
+        <div class="card tech-icon-card reveal-on-scroll delay-3">
+          <img src="https://placehold.co/80x80/0d131f/ffffff?text=Odoo" alt="Odoo Logo" loading="lazy" />
+          <span>Odoo ERP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Configurator Section -->
+  <section id="configurator" class="section solution-configurator-section">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Customize Your Solution</h2>
+      <p class="section-description reveal-on-scroll delay-1">Use our interactive configurator to explore how our services can be tailored to your specific business needs. Select your industry and primary challenge to see a potential solution outline.</p>
+      <div class="card reveal-on-scroll delay-2">
+        <div class="configurator-controls">
+          <div class="form-group">
+            <label for="industrySelect">Select Your Industry:</label>
+            <select id="industrySelect" aria-label="Select Industry">
+              <option value="">-- Choose an Industry --</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="retail">Retail</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="education">Education</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="challengeSelect">Primary Business Challenge:</label>
+            <select id="challengeSelect" aria-label="Select Challenge">
+              <option value="">-- Choose a Challenge --</option>
+              <option value="data-security">Data Security & Compliance</option>
+              <option value="operational-efficiency">Operational Efficiency</option>
+              <option value="customer-engagement">Customer Engagement & Growth</option>
+              <option value="legacy-systems">Legacy System Modernization</option>
+              <option value="cost-reduction">IT Cost Reduction</option>
+            </select>
+          </div>
+        </div>
+        <div class="configurator-output" id="configuratorOutput">
+          Select an industry and a challenge to see a tailored solution.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section id="case-studies" class="section case-studies-section">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Transformative Case Studies</h2>
+      <p class="section-description reveal-on-scroll delay-1">See how we've delivered impactful results for our diverse clientele. Each case study highlights our innovative solutions and the measurable value we bring to businesses across various sectors.</p>
+      <div class="grid-layout case-grid">
+        <div class="card case-card reveal-on-scroll">
+          <div class="case-card-header">
+            <h3>AI Chatbot for Healthcare</h3>
+            <i class="fas fa-stethoscope case-icon"></i>
+          </div>
+          <p>Implemented an intelligent AI-powered chatbot system for a leading healthcare provider. This solution significantly decreased patient inquiry response times by <strong><span class="kpi-counter" data-target="40">0</span>%</strong> and enhanced overall patient satisfaction scores by <strong><span class="kpi-counter" data-target="25">0</span>%</strong>, improving operational efficiency and accessibility.</p>
+          <a href="#" class="link-arrow">Read Full Case <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card case-card reveal-on-scroll delay-1">
+          <div class="case-card-header">
+            <h3>ERP Rollout in Retail</h3>
+            <i class="fas fa-shopping-cart case-icon"></i>
+          </div>
+          <p>Successfully centralized over <strong><span class="kpi-counter" data-target="10">0</span>+ legacy systems</strong> into a unified Odoo ERP instance for a national retail chain. This comprehensive integration provided real-time reporting capabilities and improved operational efficiency by <strong><span class="kpi-counter" data-target="30">0</span>%</strong>, streamlining inventory, sales, and customer management.</p>
+          <a href="#" class="link-arrow">Explore <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="card case-card reveal-on-scroll delay-2">
+          <div class="case-card-header">
+            <h3>Cloud Migration for Finance</h3>
+            <i class="fas fa-cloud case-icon"></i>
+          </div>
+          <p>Executed a secure and seamless migration of critical financial infrastructure to a scalable cloud environment for a major fintech firm. This initiative achieved a remarkable <strong><span class="kpi-counter" data-target="99.99">0</span>% uptime</strong>, reduced infrastructure costs by <strong><span class="kpi-counter" data-target="15">0</span>%</strong>, and enhanced data security compliance.</p>
+          <a href="#" class="link-arrow">Discover <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="btn-group-center reveal-on-scroll delay-3">
+        <a href="#" class="btn btn-secondary">View All Case Studies</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Section -->
+  <section id="industries" class="section industries-section bg-gradient-light">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Industries We Empower</h2>
+      <p class="section-description reveal-on-scroll delay-1">Tailored IT and marketing solutions for diverse sectors, driving specific outcomes and ensuring industry-specific compliance and innovation. Our deep understanding of various markets allows us to create impactful strategies.</p>
+      <div class="grid-layout industry-grid">
+        <div class="card industry-card reveal-on-scroll">
+          <i class="fas fa-dollar-sign industry-icon"></i>
+          <h4>Finance</h4>
+          <p>AI-driven fraud detection, blockchain for secure transactions, and predictive analytics for market trends, ensuring unparalleled security, compliance, and real-time processing.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll delay-1">
+          <i class="fas fa-medkit industry-icon"></i>
+          <h4>Healthcare</h4>
+          <p>Secure, HIPAA-compliant patient data platforms, intelligent scheduling via AI, and advanced analytics for personalized treatment plans, enhancing care and streamlining operations.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll delay-2">
+          <i class="fas fa-shopping-bag industry-icon"></i>
+          <h4>Retail</h4>
+          <p>Omnichannel commerce with seamless ERP integration, AI for personalized shopping experiences, and automated inventory management for optimized supply chains.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll delay-3">
+          <i class="fas fa-industry industry-icon"></i>
+          <h4>Manufacturing</h4>
+          <p>Smart factory solutions with IoT integration, predictive maintenance, and supply chain optimization using AI for operational excellence and enhanced production efficiency.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll">
+          <i class="fas fa-building industry-icon"></i>
+          <h4>Real Estate</h4>
+          <p>AI-powered property valuation, immersive virtual tours, and data-driven market analytics for efficient property management and enhanced client experience.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll delay-1">
+          <i class="fas fa-graduation-cap industry-icon"></i>
+          <h4>Education</h4>
+          <p>AI-powered personalized learning paths, comprehensive administrative systems, and engaging virtual classroom tools for modern educational institutions.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll delay-2">
+          <i class="fas fa-car industry-icon"></i>
+          <h4>Automotive</h4>
+          <p>Solutions for autonomous systems, connected car platforms with real-time data, and AI-driven manufacturing optimization for next-gen automotive experiences.</p>
+        </div>
+        <div class="card industry-card reveal-on-scroll delay-3">
+          <i class="fas fa-utensils industry-icon"></i>
+          <h4>Food & Beverage</h4>
+          <p>Optimizing supply chain logistics with predictive AI, enhancing customer experience through digital ordering platforms, and improving operational efficiency for the food industry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <section class="section cta-banner bg-gradient-dark">
+    <div class="container text-center reveal-on-scroll">
+      <h2 class="section-title-inverted">Ready to Transform Your Business?</h2>
+      <p class="text-white-fade">Let's discuss how our expert team can help you achieve your digital goals. We offer personalized consultation to understand your unique challenges and propose tailored solutions that drive tangible results.</p>
+      <button id="openBookingModalThree" class="btn btn-primary btn-large btn-animated">Schedule a Free Consultation</button>
+    </div>
+  </section>
+
+  <!-- Resource Hub Section -->
+  <section id="resources" class="section resources-section">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Knowledge Hub & Insights</h2>
+      <p class="section-description reveal-on-scroll delay-1">Stay ahead with our latest whitepapers, webinars, and industry reports. Our resources provide valuable insights into emerging technologies, market trends, and best practices in IT and digital marketing.</p>
+      <div class="grid-layout resource-grid">
+        <div class="card resource-card reveal-on-scroll">
+          <span class="resource-meta"><i class="fas fa-file-alt"></i> Whitepaper</span>
+          <h3>“Modern IT Consulting Trends 2025”</h3>
+          <p>An in-depth analysis of emerging trends shaping the future of IT consulting, offering strategic perspectives on navigating the complex digital landscape and maximizing your technology investments.</p>
+          <a href="#" class="link-arrow download-resource" data-resource-name="Modern IT Consulting Trends 2025 Whitepaper">Download PDF <i class="fas fa-download"></i></a>
+        </div>
+        <div class="card resource-card reveal-on-scroll delay-1">
+          <span class="resource-meta"><i class="fas fa-video"></i> Webinar</span>
+          <h3>“Scaling with AI: Real Use Cases”</h3>
+          <p>Watch our expert panel discuss practical applications of AI for enterprise scalability, exploring how businesses are leveraging AI to automate processes, enhance decision-making, and achieve significant growth.</p>
+          <a href="#" class="link-arrow download-resource" data-resource-name="Scaling with AI Webinar">Watch Now <i class="fas fa-play-circle"></i></a>
+        </div>
+        <div class="card resource-card reveal-on-scroll delay-2">
+          <span class="resource-meta"><i class="fas fa-chart-pie"></i> Report</span>
+          <h3>“Digital Marketing ROI in 2025”</h3>
+          <p>Explore key metrics and strategies for maximizing your digital marketing return on investment, with insights into SEO, SEM, content, and social media tactics that drive measurable business outcomes.</p>
+          <a href="#" class="link-arrow download-resource" data-resource-name="Digital Marketing ROI 2025 Report">Get the Report <i class="fas fa-chart-bar"></i></a>
+        </div>
+      </div>
+      <div class="btn-group-center reveal-on-scroll delay-3">
+        <a href="#" class="btn btn-secondary">Browse All Resources</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel Section -->
+  <section class="section testimonials-section bg-gradient-light">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">What Our Clients Say</h2>
+      <p class="section-description reveal-on-scroll delay-1">Hear directly from our satisfied clients about the transformative impact of our IT and marketing solutions on their businesses. Their success stories are a testament to our commitment to excellence.</p>
+      <div class="testimonial-carousel">
+        <div class="testimonial active">
+          <p class="testimonial-text">“Nichi-In transformed our entire IT infrastructure with their cloud expertise. We now operate 3x faster and more securely. Truly a game-changer for our business.”</p>
+          <strong class="testimonial-author">— John D., CTO, FinCore Technologies</strong>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">“The Odoo ERP integration was seamless and remarkably efficient. Their offshore team felt completely in-house, demonstrating unparalleled professionalism and skill.”</p>
+          <strong class="testimonial-author">— Sarah P., Ops Director, RetailGear Solutions</strong>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">“Their Kaizen-driven approach helped us reduce project rework by 40% and significantly improve our overall delivery timelines. Exceptional project management.”</p>
+          <strong class="testimonial-author">— Michael S., Project Manager, HealthBridge Innovations</strong>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">“Nichi-In's digital marketing strategies boosted our online presence dramatically. We saw a 50% increase in qualified leads within three months.”</p>
+          <strong class="testimonial-author">— Emily R., Marketing Head, Global Logistics Corp.</strong>
+        </div>
+      </div>
+      <div class="testimonial-nav">
+        <button class="nav-button prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+        <div class="slider-dots-container"></div>
+        <button class="nav-button next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Teaser Section -->
+  <section class="section blog-preview-section">
+    <div class="container">
+      <h2 class="section-title reveal-on-scroll">Latest Insights & Thought Leadership</h2>
+      <p class="section-description reveal-on-scroll delay-1">Stay informed with expert analysis on technology, marketing, and business strategy. Our blog features in-depth articles, industry news, and practical tips to keep you ahead in the ever-evolving digital landscape.</p>
+      <div class="grid-layout blog-grid">
+        <article class="card blog-card reveal-on-scroll">
+          <img src="https://placehold.co/600x400/0d131f/ffffff?text=AI+Trends" alt="Article image about AI trends" class="blog-thumb" loading="lazy"/>
+          <div class="blog-content">
+            <h3>5 AI Trends Reshaping Enterprise IT in 2025</h3>
+            <p>Discover how AI is becoming a game-changer across various industries and driving the next wave of digital transformation.</p>
+            <a href="#" class="link-arrow">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="card blog-card reveal-on-scroll delay-1">
+          <img src="https://placehold.co/600x400/1a202c/ffffff?text=Odoo+ERP" alt="Article image about Odoo ERP" class="blog-thumb" loading="lazy"/>
+          <div class="blog-content">
+            <h3>Why Odoo is Winning the ERP War: A Deep Dive</h3>
+            <p>A comprehensive analysis into why Odoo outpaces legacy ERP platforms in terms of scalability, flexibility, and implementation speed.</p>
+            <a href="#" class="link-arrow">Explore Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="card blog-card reveal-on-scroll delay-2">
+          <img src="https://placehold.co/600x400/0a131f/ffffff?text=Cybersecurity" alt="Article image about Cybersecurity" class="blog-thumb" loading="lazy"/>
+          <div class="blog-content">
+            <h3>The Evolving Threat Landscape: Cybersecurity in 2025</h3>
+            <p>Understand the new challenges and advanced strategies for protecting your digital infrastructure from sophisticated cyber threats.</p>
+            <a href="#" class="link-arrow">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+      <div class="btn-group-center reveal-on-scroll delay-3">
+        <a href="#" class="btn btn-secondary">Explore All Articles</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section bg-gradient-light">
+    <div class="container content-split-grid">
+      <div class="content-form reveal-on-scroll">
+        <h2 class="section-title-small">Get in Touch</h2>
+        <p>Have a project in mind or a question? Fill out the form below and we'll get back to you promptly. Our team is ready to assist you with your IT and marketing needs.</p>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Company (Optional)</label>
+            <input type="text" id="company" name="company" placeholder="ABC Corporation">
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project or query..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+      <div class="content-info reveal-on-scroll delay-1">
+        <h2 class="section-title-small">Contact Information</h2>
+        <p>Prefer to reach out directly? Here's how you can find us. We're always available to answer your questions and provide support.</p>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt icon-primary"></i>
+          <p>Nichi-In Software Solutions Pvt. Ltd.<br>Bengaluru, India</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope icon-primary"></i>
+          <p><a href="mailto:info@nichiin.com">info@nichiin.com</a></p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone-alt icon-primary"></i>
+          <p><a href="tel:+9180XXXXXXX">+91 80 XXXXXXX</a></p>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn" class="social-icon-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter" class="social-icon-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook" class="social-icon-link"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer bg-gradient-dark">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <a href="#home" class="logo-link">
+          <img src="https://placehold.co/150x40/1a202c/ffffff?text=Nichi-In+Logo" alt="Nichi-In Logo" class="logo-footer" />
+        </a>
+        <p class="footer-tagline">Powering Your Digital Future</p>
+        <div class="social-links footer-social">
+          <a href="#" aria-label="LinkedIn" class="social-icon-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter" class="social-icon-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook" class="social-icon-link"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">AI & ML</a></li>
+          <li><a href="#services">Cloud Transformation</a></li>
+          <li><a href="#services">Cybersecurity</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact Us</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> Bengaluru, India</li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:info@nichiin.com">info@nichiin.com</a></li>
+          <li><i class="fas fa-phone-alt"></i> <a href="tel:+9180XXXXXXX">+91 80 XXXXXXX</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright-section">
+      <p class="copyright-text">© 2025 Nichi-In Software Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Smart Assistant Widget -->
+  <div class="chat-assistant" id="chatAssistant">
+    <button class="chat-toggle" aria-label="Open Assistant">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+    <div class="chat-window">
+      <div class="chat-header">
+        NichiBot
+        <button class="close-chat" aria-label="Close Chat"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <p class="bot-message"><strong>NichiBot:</strong> Hi! I'm NichiBot, your AI assistant. How can I assist you today?</p>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." aria-label="Chat Input"/>
+        <button class="send-button" id="sendChat"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky CTA -->
+  <button id="floatingCta" class="floating-cta btn-animated" aria-label="Schedule a Call">
+    <i class="fas fa-calendar-alt"></i> Schedule a Call
+  </button>
+
+  <!-- Booking Modal Structure (Hidden by default) -->
+  <div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close Booking Modal">&times;</button>
+      <h3 id="bookingModalTitle">Schedule Your Free Consultation</h3>
+      <p>Please select a convenient time using our booking tool below.</p>
+      <!-- Placeholder for Calendly or other booking widget -->
+      <div class="calendly-placeholder">
+        <p>Your Calendly/Booking Widget Goes Here</p>
+        <!-- In a real scenario, you'd embed: <div class="calendly-inline-widget" data-url="YOUR_CALENDLY_LINK" style="min-width:320px;height:700px;"></div> -->
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+        Alternatively, <a href="#contact">contact us directly</a> for more options.
+      </p>
+    </div>
+  </div>
+
+  <!-- Exit-Intent Modal Structure (Hidden by default) -->
+  <div id="exitIntentModal" class="exit-intent-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="exitIntentModalTitle">
+    <div class="exit-intent-modal-content">
+      <button class="close-modal" aria-label="Close Exit Intent Modal">&times;</button>
+      <h3 id="exitIntentModalTitle" class="text-gradient">Don't Leave Without Your Free Resource!</h3>
+      <p>Download our exclusive whitepaper: "Modern IT Consulting Trends 2025" to unlock actionable insights for your business.</p>
+      <button class="btn btn-primary download-resource" data-resource-name="Modern IT Consulting Trends 2025 Whitepaper - Exit">Download Now</button>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-placeholder);">No thanks, I'll explore later.</p>
+    </div>
+  </div>
+
+  <script src="sample-script3.js" defer></script>
+</body>
+</html>

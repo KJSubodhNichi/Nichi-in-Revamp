@@ -1,0 +1,376 @@
+/* Basic Resets & Global Styles */
+:root {
+    /* Color Palette */
+    --primary-dark: #0f0c29;
+    --secondary-dark: #302b63;
+    --accent-teal: #2a5298;
+    --accent-cyan: #00f2fe;
+    --accent-neon-green: #39ff14;
+    --text-light: #e0e0e0;
+    --text-dark: #1a1a1a;
+    --button-gradient-start: #3a1c71;
+    --button-gradient-end: #d76d77;
+    --button-glow: #00c6ff;
+
+    /* Typography */
+    --font-headline: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling, as this is a full-screen slider */
+    font-family: var(--font-body);
+    color: var(--text-light);
+    background-color: var(--primary-dark);
+}
+
+/* Slider Container */
+.slider-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Crucial for clip-path transitions */
+    display: flex; /* For centering content within slides */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Individual Slides */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none; /* Disable interaction when not active */
+    transition: opacity 0.6s ease-out; /* Fallback for quick fade */
+    will-change: opacity, transform, clip-path; /* Optimize animations */
+    transform: scale(1.05); /* Initial scale for zoom-out effect */
+    z-index: 1; /* Default z-index */
+}
+
+.slide.active {
+    opacity: 1;
+    pointer-events: auto; /* Enable interaction when active */
+    transform: scale(1); /* Active state */
+    z-index: 3; /* Active slide on top */
+}
+
+.slide.previous {
+    z-index: 2; /* Previous slide needs to be above non-active, but below current */
+}
+
+/* Slide Background */
+.slide-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* Initial state for background parallax */
+    transform: scale(1.1); /* Slightly zoomed in for subtle parallax effect */
+    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out for parallax */
+    z-index: 0; /* Keep background behind content */
+}
+
+.slide.active .slide-background {
+    transform: scale(1); /* Zoom back to normal on active slide */
+}
+
+/* Slide Content */
+.slide-content {
+    position: relative; /* To contain headlines, subheadlines, CTA */
+    z-index: 10; /* Ensure content is above background */
+    max-width: 900px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay for readability */
+    border-radius: 15px;
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(20px) scale(0.95); /* Initial state for content animation */
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.8s ease-out;
+}
+
+.slide.active .slide-content {
+    transform: translateY(0) scale(1); /* Active state */
+    opacity: 1;
+    transition-delay: 0.2s; /* Delay content animation slightly after slide reveal */
+}
+
+/* Headline Styling */
+.slide-headline {
+    font-family: var(--font-headline);
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: var(--text-light);
+    overflow: hidden; /* Hide overflow for word-by-word animation */
+    white-space: nowrap; /* Prevent line breaks during animation */
+    display: inline-block; /* To allow span wrapping */
+}
+
+.slide-headline span {
+    display: inline-block; /* Each word as an inline block for animation */
+    transform: translateY(100%); /* Start below view */
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease-out;
+}
+
+/* Staggered animation for headlines */
+.slide.active .slide-headline span {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Subheadline Styling */
+.slide-subheadline {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.4rem); /* Responsive font size */
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    color: var(--text-light);
+    transform: translateY(15px); /* Initial state for animation */
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease-out;
+}
+
+.slide.active .slide-subheadline {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.4s; /* Delay after headline */
+}
+
+/* CTA Button Styling */
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end));
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative; /* For glowing border */
+    overflow: hidden; /* For pseudo-element effects */
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+    transform: translateY(10px); /* Initial state for animation */
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease-out;
+}
+
+.slide.active .cta-button {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.6s; /* Delay after subheadline */
+}
+
+/* Glowing Border Effect */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-neon-green), var(--accent-cyan), var(--accent-neon-green));
+    background-size: 400%;
+    border-radius: 50px;
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, background-position 0.6s ease-in-out;
+}
+
+.cta-button:hover::before {
+    opacity: 1;
+    background-position: 100% 0;
+    animation: glowing-border 4s linear infinite;
+}
+
+@keyframes glowing-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    background-size: 150%;
+    background-position: right center;
+}
+
+/* Navigation Buttons */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--text-light);
+    border: none;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 20; /* Above everything else */
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border-radius: 50%; /* Make them circular */
+    width: 60px; /* Fixed size */
+    height: 60px; /* Fixed size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:hover {
+    background: var(--accent-teal);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-button {
+    left: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 25; /* Above nav buttons */
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-neon-green), var(--accent-cyan));
+    transition: width 0.6s ease-out; /* Smooth fill animation */
+    border-radius: 3px;
+}
+
+/* Numeric Indicator */
+.numeric-indicator {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-family: var(--font-headline);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    z-index: 25; /* Above everything */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.numeric-indicator:hover {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slide-content {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .slide-headline {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        white-space: normal; /* Allow wrap on smaller screens */
+    }
+
+    .slide-subheadline {
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    }
+
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    .nav-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .prev-button {
+        left: 10px;
+    }
+
+    .next-button {
+        right: 10px;
+    }
+
+    .numeric-indicator {
+        font-size: 1.4rem;
+        bottom: 10px;
+        right: 10px;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Slide Transition Animations (Clip-path) */
+/* Transition for "entering" slide */
+.slide.transition-enter {
+    opacity: 0;
+    transform: scale(0.95);
+    clip-path: circle(0% at 50% 50%); /* Starts from a point */
+    z-index: 3;
+}
+
+.slide.transition-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: circle(100% at 50% 50%); /* Expands to full circle */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, clip-path 1.2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+/* Transition for "leaving" slide */
+.slide.transition-exit {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: circle(100% at 50% 50%);
+    z-index: 2; /* Keep it above non-active, below entering slide */
+}
+
+.slide.transition-exit-active {
+    opacity: 0;
+    transform: scale(1.05); /* Slightly zooms out as it exits */
+    clip-path: circle(0% at 50% 50%); /* Shrinks to a point */
+    transition: opacity 0.8s ease-in, transform 0.8s ease-in, clip-path 1.2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
